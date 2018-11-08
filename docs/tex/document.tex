@@ -135,9 +135,6 @@
 %---------------------------------------	
 	\chapter{Diagram kontekstowy}
 
-	\begin{center}
-			\includegraphics[scale=0.6]{kontekstowy.png}
-	\end{center}
 
 %---------------------------------------	
 %---------------------------------------
@@ -147,6 +144,8 @@
 	\section{Rejstracja}
 	
 %---------------------------------------
+
+	\subsection{Opis przypadku użycia}
 	\begin{table}[h]
 		\def\arraystretch{1.3}
 		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -162,7 +161,7 @@
 			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
 					& Użytkownik przechodzi na podstronę ‘Sign in/Register’ 														\\ \hline
 			\textbf{Warunki wstępne}	
-					& brak 																											\\ \hline
+					& Użytkownik nie jest zalogowany																											\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
 					& Konto użytkownika zostaje utworzone i zapisane w bazie danych. Użytkownik zostaje powiadomiony o sukcesie.  	\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
@@ -204,11 +203,21 @@
 		\end{enumerate}
 	\end{enumerate}
 
+
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=400pt]{rejstracja.pdf}
+	\end{center}
+	
+	\newpage
 %---------------------------------------
 %---------------------------------------
 %---------------------------------------
 
 	\section{Logowanie}
+	
+	\subsection {Opis przypadku użycia}
+	
 	\begin{table}[h]
 		\def\arraystretch{1.3}
 		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -224,7 +233,8 @@
 			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
 			& Użytkownik przechodzi na podstronę ‘Sign in/Register’ 														\\ \hline
 			\textbf{Warunki wstępne}	
-			& brak 																											\\ \hline
+			& 
+			Użytkownik nie jest zalogowany									\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
 			& Użytkownik zastaje zalogowany. Następuje przekierowanie na podstronę 'Shop'. 	\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
@@ -232,6 +242,7 @@
 		\end{tabular}
 	\end{table}
 
+\newpage
 	%---------------------------------------
 	\colorbox{grey}{Scenariusz główny:}
 	\begin{enumerate}
@@ -241,10 +252,7 @@
 		\item System przekierowuje na podstronę ‘Shop’.
 		\item System wyświetla ‘My account’ na pasku nawigacji
 		\item System zamienia opcję przekierowania na postronę ‘Sign in/Register’ na opcję wylogowania użytkownika ‘Sign out’
-		\item Użytkownik przechodzi na podstronę ‘My account’
-		\item Użytkownik wybiera opcję ‘Sign out’
-		\item System przekierowuje na podstonę ‘Shop’
-		\item System usuwa ‘My account’ z paska nawigacji
+		%\item Użytkownik przechodzi na podstronę ‘My account’
 	\end{enumerate}
 	%---------------------------------------	
 	
@@ -260,28 +268,56 @@
 		\end{enumerate}
 	\end{enumerate}
 	%---------------------------------------
-	
-	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{6}
-		\item[]
-		\begin{enumerate}
-			\item Następuje przejście do punktu 9 scenariusza głównego
-		\end{enumerate}
-	\end{enumerate}
 
-	%---------------------------------------	
-	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{8}
-		\item[]
-		\begin{enumerate}
-			\item Następuje przejście do punktu 10 scenariusza głównego
-		\end{enumerate}
-	\end{enumerate}
-	
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=300pt]{logowanie.pdf}
+	\end{center}
+\newpage
+
 %---------------------------------------		
 	\section{Wylogowanie}
+	\subsection{Opis przypadku użycia}
+	
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik chce się wylogować. Sklep chce poprawnie wykonać operację.           					\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			& Użytkownik przechodzi na podstronę ‘Sign out’ 														\\ \hline
+			\textbf{Warunki wstępne}	
+			& 
+			Użytkownik jest zalogowany									\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& Użytkownik zastaje wylogowany. Następuje przekierowanie na podstronę 'Shop'. 	\\ \hline
+		
+		\end{tabular}
+	\end{table}
+	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item Użytkownik wybiera opcję 'Sign out'
+		\item System usuwa odnośnik 'My account' z paska nawigacji
+		\item System zamienia opcję przekierowania na podstronę ‘Sign out’ na opcję logowania ‘Sign in/Register’
+		\item System przekierowuje na podstronę ‘Shop’.
+	\end{enumerate}
+	%---------------------------------------	
+	
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=110pt]{wylogowanie.pdf}
+	\end{center}
+	
 %---------------------------------------
-\newpage
 		
 	\section{Zmiana zawartości koszyka}
 		\subsection{Dodawanie produktów do koszyka z poziomu podstrony produktu}
@@ -384,6 +420,79 @@
 	
 %---------------------------------------			
 	\section{Zakup produktu}
+	
+	\section{Logowanie}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik chce się zalogować. Sklep chce zebrać dane spełniające zadane warunki.           					\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			& Użytkownik przechodzi na podstronę ‘Sign in/Register’ 														\\ \hline
+			\textbf{Warunki wstępne}	
+			& brak 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& Użytkownik zastaje zalogowany. Następuje przekierowanie na podstronę 'Shop'. 	\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
+			& Użytkownik nie zostaje zalogowany. Użytkownik zostaje powiadomiony o niepowodzeniu. 	\\ \hline
+		\end{tabular}
+	
+		
+	\end{table}
+	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item System wyświetla formularz wprowadzania danych logowania
+		\item Użytkownik wprowadza dane: email, hasło
+		\item System weryfikuje czy w bazie danych istnieje konto, które odpowiada wprowadzonym danym
+		\item System przekierowuje na podstronę ‘Shop’.
+		\item System wyświetla ‘My account’ na pasku nawigacji
+		\item System zamienia opcję przekierowania na postronę ‘Sign in/Register’ na opcję wylogowania użytkownika ‘Sign out’
+		\item Użytkownik przechodzi na podstronę ‘My account’
+		\item Użytkownik wybiera opcję ‘Sign out’
+		\item System przekierowuje na podstonę ‘Shop’
+		\item System usuwa ‘My account’ z paska nawigacji
+	\end{enumerate}
+	%---------------------------------------	
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{3}
+		\item[]
+		\begin{enumerate}
+			\item Nie istnieje konto dla wprowadzonych danych
+			\begin{enumerate}
+				\item System wyświetla informację o niepowodzeniu
+				\item Następuje powrót do punktu 2 scenariusza głównego
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	%---------------------------------------
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{6}
+		\item[]
+		\begin{enumerate}
+			\item Następuje przejście do punktu 9 scenariusza głównego
+		\end{enumerate}
+	\end{enumerate}
+	
+	%---------------------------------------	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{8}
+		\item[]
+		\begin{enumerate}
+			\item Następuje przejście do punktu 10 scenariusza głównego
+		\end{enumerate}
+	\end{enumerate}
+	
 	\section{Reklamacja}	
 	\section{Filtrowanie produktów}
 	\section{Zapis do newslettera}
@@ -400,7 +509,7 @@
 	
 	\chapter{Model danych - diagramy ERD}
 
-	\includegraphics[width=500pt]{database.jpg}
+	\includegraphics[width=500pt]{database.pdf}
 	
 	
 %---------------------------------------	
