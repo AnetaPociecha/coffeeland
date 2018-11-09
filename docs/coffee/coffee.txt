@@ -151,6 +151,60 @@ Scenariusz główny:
 
 =======================
 
+EDYCJA DANYCH OSOBOWYCH
+
+Aktorzy:				Użytkownik	
+Zakres:					Sklep internetowy
+Poziom:					Systemowy
+Udziałowcy i ich cele:			Użytkownik zmienia swoje dane osobowe, oraz adres e-mail.
+					Sklep zapisuje nowopodane dane.
+Zdarzenie wyzwalające:			Wybranie opcji 'Personal Informations' w podstronie widocznej po zalogowaniu 
+					użytkownika.
+Warunki wstępne:			Użytkownik jest zalogowany.
+Warunki końcowe dla sukcesu:		System zapisuje nowe dane uzytkownika.
+Warunki końcowe dla niepowodzenia:	System wysyła komunikat o błędzie i powraca do formularza z danymi osobowymi.
+
+Scenariusz główny:
+1. Użytkownik wybiera opcję 'Personal Informations'.
+2. System wyświetla na stronie widok formularza.
+3. Użytkownik wypełnia formularz.
+4. Użytkownik klika 'OK'.
+5. System weryfikuje dane.
+6. System wysyła komunikat o zapisie danych.
+
+Scenariusz alternatywny:
+5.a System odrzuca zmiany.
+5.a.1 System wyświetla komunikat o niepoprawności danych.
+5.a.2 Następuje powrót do punktu 3. scenariusza głównego.
+
+=======================
+
+FILTROWANIE
+
+Aktorzy:				Użytkownik	
+Zakres:					Sklep internetowy
+Poziom:					Systemowy
+Udziałowcy i ich cele:			Użytkownik zaznacza opcję o nazwie kategorii, jaką
+					powiniem spełniać szukany produkt, w podstronie z wynikami wyszukiwania.
+					Sklep redukuje/rozszerza listę o pordukty spełniające warunki.
+Zdarzenie wyzwalające:			Zaznaczenie/odznaczenie opcji.
+Warunki wstępne:			Brak
+Warunki końcowe dla sukcesu:		System wyświetla produkty spełniające określone kryterium.
+
+Scenariusz główny:
+1. Klient wyszukuje produkt w wyszukiwarce.
+2. System przekierowywuje go do podstrony z listą rezultatów.
+3. Klient zaznacza opcję przy dostępnych kategoriach.
+4. System odświeża listę zostawiając tylko te produkty, które spełniają kryteria.
+
+Scenariusz alternatywny:
+3.a Klienit odznacza opcję.
+3.a.1 System odświeża listę, rozszerzając listę o produkty, które spełniają kryteria.
+
+4.a System wyświetla informację, że nie ma produktów spełniających podane kryteria.
+
+=======================
+
 DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU)
 
 Aktorzy:				Użytkownik	
@@ -275,6 +329,50 @@ Scenariusz alternatywny:
 
 2.b.4.a System odrzuca dane.
 2.b.4.a.1 Następuje powrót do punktu 2.b.2 scenariusza alternatywnego.
+
+=======================
+
+CHECKOUT DETAILS (USTAWIENIA)
+
+Aktorzy:				Użytkownik
+Zakres:					Sklep internetowy
+Poziom:					Systemowy
+Udziałowcy i ich cele:			Użytkownik dodaje/edytuje/usuwa adres wysyłki do swojej listy adresów.
+					System modyfikuje listę adresów według polecenia użytkownika.
+Zdarzenie wyzwalające:			Użytkownik klika 'My Addresses' na podstronie widoczej bezpośrednio
+					po zalogowaniu. 
+Warunki wstępne:			Użytkownik jest zalogowany.
+Warunki końcowe dla sukcesu:		System wykona żądaną operację.
+Warunki końcowe dla niepowodzenia:	Nastąpi powrót do widoku z listą adresów, i nie zajdą żadne zmiany.
+
+Scenariusz główny:
+1. Użytkownik klika 'My Addresses'.
+2. System przekierowywuje go na podstronę z wyborem adresu.
+3. Użytkownik klika na przycisk rozwijający listę zapisanych adresów.
+4. System wyświetla tę listę, zaznaczając w widoczny sposób adres domyślny.
+5. Użytkownik najeżdża na element listy.
+6. System wyświetla przy elemencie przyciski 'Edit' i 'Delete'.
+7. Użytkownik klika 'Edit'.
+8. System rozwija widok z formularzem do danych adresowych.
+9. System wypełnia pola wartościami tworzącymi adres.
+10. Użytkownik edytuje pola fornularza.
+11. Użytkownik klika 'Save'.
+12. System weryfikuje poprawność danych.
+13. System zapisuje zmiany.
+
+Scenariusz alternatywny:
+
+3.a Użytkownik klika 'Add new Address'.
+3.a.1 System rozwija widok z formularzem do danych adresowych.
+3.a.2 Następuje powrót do punktu 10. scenariusza głównego.
+
+6.a Użytkownik klika 'Delete'.
+6.a.1 System wyświetla widok z komunikatem ostrzegawczym, oraz przycisakmi 'Yes', 'No'.
+6.a.2 Użytkownik klika 'Yes'.
+6.a.3 System usuwa element z listy.
+
+6.a.2.a Użytkownik klika 'No'.
+6.a.2.a.1 System ukrywa widok z komunikatem ostrzegawczym.
 
 =======================
 
