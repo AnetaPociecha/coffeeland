@@ -1,51 +1,51 @@
 -------SKLEP INTERNETOWY-------
 
 *********************************************************
-*               	S£OWNIK			        *
+*               	SÅOWNIK			        *
 *********************************************************
 
-*imiê 	 	minimum jeden znak
+*imiÄ™ 	 	minimum jeden znak
 *Nazwisko  	minimum jeden znak
 *Email  	<minimum jeden znak> @ <minimum jeden znak>
-*Has³o  	minimum 8 znaków w tym wielka litera, ma³a litera i cyfra
+*HasÅ‚o  	minimum 8 znakÃ³w w tym wielka litera, maÅ‚a litera i cyfra
 
 
 *********************************************************
-*                  FUNKCJONALNOŒCI			*
+*                  FUNKCJONALNOÅšCI			*
 *********************************************************
 
-1. Rejestracja u¿ytkownika. ----DONE
-Wymagany email (w bazie danych nie ma konta u¿ytkownika z podanym email’em), imiê, nazwisko,  
-has³o, powtórzenie has³a (podstrona ‘Sign in/Register’). 
+1. Rejestracja uÅ¼ytkownika. ----DONE
+Wymagany email (w bazie danych nie ma konta uÅ¼ytkownika z podanym emailâ€™em), imiÄ™, nazwisko,  
+hasÅ‚o, powtÃ³rzenie hasÅ‚a (podstrona â€˜Sign in/Registerâ€™). 
 
 2. Logowanie. ----DONE
-Wymagany email i has³o, które odpowiadaj¹ 
-u¿ytkownikowi zapisanemu w bazie danych (podstrona ‘Sign in/Register’).
+Wymagany email i hasÅ‚o, ktÃ³re odpowiadajÄ… 
+uÅ¼ytkownikowi zapisanemu w bazie danych (podstrona â€˜Sign in/Registerâ€™).
 
 3. Wylogowywanie ----DONE
 
 4. Zakup. ----DONE
-Wymagane wczeœniejsze logowanie, podanie adresu lub wybranie adresu 
-z listy adresów u¿ytkownika, p³atnoœæ (podstrona ‘Cart’).
+Wymagane wczeÅ›niejsze logowanie, podanie adresu lub wybranie adresu 
+z listy adresÃ³w uÅ¼ytkownika, pÅ‚atnoÅ›Ä‡ (podstrona â€˜Cartâ€™).
 
 5. Reklamacja ----DONE
-(podstrona ‘My account’, zak³adka ‘Orders’) Wymagane logowanie.
+(podstrona â€˜My accountâ€™, zakÅ‚adka â€˜Ordersâ€™) Wymagane logowanie.
 
-6. Filtrowanie oferty ze wzglêdu na typ produktu i zakres ceny. ----DONE
+6. Filtrowanie oferty ze wzglÄ™du na typ produktu i zakres ceny. ----DONE
 
-7. Zapis/rezygnacja do/z newsletter’a (podstrona  ‘My account’, zak³adka ‘Newsletter’). 
+7. Zapis/rezygnacja do/z newsletterâ€™a (podstrona  â€˜My accountâ€™, zakÅ‚adka â€˜Newsletterâ€™). 
 Wymagane logowanie.
 
-8. Dodanie/usuniêcie adresu do/z listy adresów  ----DONE
-(podstrona  ‘My account, zak³adka ‘Address book’)’. Wymaganie logowanie.
+8. Dodanie/usuniÄ™cie adresu do/z listy adresÃ³w  ----DONE
+(podstrona  â€˜My account, zakÅ‚adka â€˜Address bookâ€™)â€™. Wymaganie logowanie.
 
-9. Edycja danych u¿ytkownika ----DONE
-tj. imiê, nazwisko (podstrona ‘My account’, zak³adka ‘Profile’). 
+9. Edycja danych uÅ¼ytkownika ----DONE
+tj. imiÄ™, nazwisko (podstrona â€˜My accountâ€™, zakÅ‚adka â€˜Profileâ€™). 
 Wymagane logowanie.
 
-10. Koszyk – aktualizacja ----DONE
+10. Koszyk â€“ aktualizacja ----DONE
 
-11. Koszyk – dodawanie przedmiotów ----DONE
+11. Koszyk â€“ dodawanie przedmiotÃ³w ----DONE
 
 
 *********************************************************
@@ -57,13 +57,13 @@ Szablon
 Aktorzy:
 Zakres:
 Poziom:
-Udzia³owcy i ich cele:
-Zdarzenie wyzwalaj¹ce:
-Warunki wstêpne:
-Warunki koñcowe dla sukcesu:
-Warunki koñcowe dla niepowodzenia:
+UdziaÅ‚owcy i ich cele:
+Zdarzenie wyzwalajÄ…ce:
+Warunki wstÄ™pne:
+Warunki koÅ„cowe dla sukcesu:
+Warunki koÅ„cowe dla niepowodzenia:
 
-Scenariusz g³ówny:
+Scenariusz gÅ‚Ã³wny:
 
 Scenariusz alternatywny:
 
@@ -71,228 +71,302 @@ Scenariusz alternatywny:
 
 REJSTRACJA
 
-Aktorzy: 				U¿ytkownik
+Aktorzy: 				UÅ¼ytkownik
 Zakres: 				Sklep internetowy
 Poziom: 				Sytemowowy
-Udzia³owcy i ich cele: 			U¿ytkownik chce stworzyæ konto. 
-					Sklep chce zebraæ dane spe³niaj¹ce zadane warunki.
-Zdarzenie wyzwalaj¹ce: 			U¿ytkownik przechodzi na podstronê ‘Sign in/Register’
-Warunki wstêpne:			U¿ytkownik jest wylogowany	
-Warunki koñcowe dla sukcesu:		Konto u¿ytkownika zostaje utworzone i zapisane w bazie danych. 
-					U¿ytkownik zostaje powiadomiony o sukcesie
-Warunki koñcowe dla niepowodzenia:	Konto nie zostaje stworzony. 
-					U¿ytkownik zostaje powiadomiony o niepowodzeniu i przyczynach niepowodzenia.
+UdziaÅ‚owcy i ich cele: 			UÅ¼ytkownik chce stworzyÄ‡ konto. 
+					Sklep chce zebraÄ‡ dane speÅ‚niajÄ…ce zadane warunki.
+Zdarzenie wyzwalajÄ…ce: 			UÅ¼ytkownik przechodzi na podstronÄ™ â€˜Sign in/Registerâ€™
+Warunki wstÄ™pne:			UÅ¼ytkownik jest wylogowany	
+Warunki koÅ„cowe dla sukcesu:		Konto uÅ¼ytkownika zostaje utworzone i zapisane w bazie danych. 
+					UÅ¼ytkownik zostaje powiadomiony o sukcesie
+Warunki koÅ„cowe dla niepowodzenia:	Konto nie zostaje stworzony. 
+					UÅ¼ytkownik zostaje powiadomiony o niepowodzeniu i przyczynach niepowodzenia.
 
-Scenariusz g³ówny:
-1. System wyœwietla formularz wprowadzania danych rejestracji
-2. U¿ytkownik wprowadza dane (zdefiniowane w s³owniku): imiê, nazwisko, email, has³o
+Scenariusz gÅ‚Ã³wny:
+1. System wyÅ›wietla formularz wprowadzania danych rejestracji
+2. UÅ¼ytkownik wprowadza dane (zdefiniowane w sÅ‚owniku): imiÄ™, nazwisko, email, hasÅ‚o
 4. System weryfikuje dane
-5. System wyœwietla powiadomienie o udanej rejestracji
+5. System wyÅ›wietla powiadomienie o udanej rejestracji
 
 Scenariusz alternatywny:
 4.a. Nie wprowadzono wymaganych danych
-4.a.1 System wyœwietla ponownie formularz zaznaczaj¹c, które dane powinny zostaæ poprawione i jakie warunki powinny spe³niaæ zaznaczone dane
-4.a.2 Nastêpuje powrót do punktu 2 scenariusza g³ównego
+4.a.1 System wyÅ›wietla ponownie formularz zaznaczajÄ…c, ktÃ³re dane powinny zostaÄ‡ poprawione i jakie warunki powinny speÅ‚niaÄ‡ zaznaczone dane
+4.a.2 NastÄ™puje powrÃ³t do punktu 2 scenariusza gÅ‚Ã³wnego
 
 Scenariusz alternatywny:
-4.a. W bazie danych znajdujê siê konto dla podanego email’a
-4.a.1 System wyœwietla ponownie formularz zaznaczaj¹c email i wyœwietla informacjê o istnieniu konta dla podanego email’a
-4.a.2 Nastêpuje powrót do punktu 2 scenariusza g³ównego
+4.a. W bazie danych znajdujÄ™ siÄ™ konto dla podanego emailâ€™a
+4.a.1 System wyÅ›wietla ponownie formularz zaznaczajÄ…c email i wyÅ›wietla informacjÄ™ o istnieniu konta dla podanego emailâ€™a
+4.a.2 NastÄ™puje powrÃ³t do punktu 2 scenariusza gÅ‚Ã³wnego
 
 =======================
 
 LOGOWANIE
 
-Aktorzy:				U¿ytkownik
+Aktorzy:				UÅ¼ytkownik
 Zakres:					Sklep internetowy
 Poziom:					Sytemowowy 
-Udzia³owcy i ich cele:			U¿ytkownik chce siê zalogowaæ. 
-					Sklep chce zebraæ dane spe³niaj¹ce zadane warunki.
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê ‘Sign in/Register’
-Warunki wstêpne:			U¿ytkownik nie jest zalogowany.
-Warunki koñcowe dla sukcesu:		U¿ytkownik zostaje zalogowany. 
-					Nastêpuje przekierownie na podstronê ’Shop’ 
-Warunki koñcowe dla niepowodzenia:	U¿ytkownik nie zostaje zalogowany. 
-					U¿ytkownik zostaje powiadomiony o niepowodzeniu.
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce siÄ™ zalogowaÄ‡. 
+					Sklep chce zebraÄ‡ dane speÅ‚niajÄ…ce zadane warunki.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ â€˜Sign in/Registerâ€™
+Warunki wstÄ™pne:			UÅ¼ytkownik nie jest zalogowany.
+Warunki koÅ„cowe dla sukcesu:		UÅ¼ytkownik zostaje zalogowany. 
+					NastÄ™puje przekierownie na podstronÄ™ â€™Shopâ€™ 
+Warunki koÅ„cowe dla niepowodzenia:	UÅ¼ytkownik nie zostaje zalogowany. 
+					UÅ¼ytkownik zostaje powiadomiony o niepowodzeniu.
 
-Scenariusz g³ówny:
-1. System wyœwietla formularz wprowadzania danych logowania
-2. U¿ytkownik wprowadza dane: email, has³o
-4. System weryfikuje czy w bazie danych istnieje konto, które odpowiada wprowadzonym danym
-5. System przekierowuje na podstronê ‘Shop’.
-6. System wyœwietla ‘My account’ na pasku nawigacji
-7. System zamienia opcjê przekierowania na postronê ‘Sign in/Register’ na opcjê wylogowania u¿ytkownika ‘Sign out’
-8. U¿ytkownik przechodzi na podstronê ‘My account’
+Scenariusz gÅ‚Ã³wny:
+1. System wyÅ›wietla formularz wprowadzania danych logowania
+2. UÅ¼ytkownik wprowadza dane: email, hasÅ‚o
+4. System weryfikuje czy w bazie danych istnieje konto, ktÃ³re odpowiada wprowadzonym danym
+5. System przekierowuje na podstronÄ™ â€˜Shopâ€™.
+6. System wyÅ›wietla â€˜My accountâ€™ na pasku nawigacji
+7. System zamienia opcjÄ™ przekierowania na postronÄ™ â€˜Sign in/Registerâ€™ na opcjÄ™ wylogowania uÅ¼ytkownika â€˜Sign outâ€™
+8. UÅ¼ytkownik przechodzi na podstronÄ™ â€˜My accountâ€™
 
 Scenariusz alternatywny:
 4.a. Nie istnieje konto dla wprowadzonych danych
-4.a.1 System wyœwietla informacjê o niepowodzeniu
-4.a.2 Nastêpuje powrót do punktu 2 scenariusza g³ównego
+4.a.1 System wyÅ›wietla informacjÄ™ o niepowodzeniu
+4.a.2 NastÄ™puje powrÃ³t do punktu 2 scenariusza gÅ‚Ã³wnego
 
 =======================
 
 WYLOGOWANIE
 
-Aktorzy:				U¿ytkownik
+Aktorzy:				UÅ¼ytkownik
 Zakres:					Sklep internetowy
 Poziom:					Sytemowowy 
-Udzia³owcy i ich cele:			U¿ytkownik chce siê wylogowaæ. 
-					Sklep chce poprawnie wykonaæ operacjê.
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê ‘Sign out’
-Warunki wstêpne:			U¿ytkownik jest zalogowany
-Warunki koñcowe dla sukcesu:		U¿ytkownik zostaje wylogowany. 
-					Nastêpuje przekierownie na podstronê ’Shop’ 
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce siÄ™ wylogowaÄ‡. 
+					Sklep chce poprawnie wykonaÄ‡ operacjÄ™.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ â€˜Sign outâ€™
+Warunki wstÄ™pne:			UÅ¼ytkownik jest zalogowany
+Warunki koÅ„cowe dla sukcesu:		UÅ¼ytkownik zostaje wylogowany. 
+					NastÄ™puje przekierownie na podstronÄ™ â€™Shopâ€™ 
 
-Scenariusz g³ówny:
-1. U¿ytkownik wybiera opcjê ‘Sign out’
-2. System usuwa ‘My account’ z paska nawigacji
-3. System zamienia opcjê przekierowania na postronê ‘Sign out’ na opcjê wylogowania u¿ytkownika ‘Sign in/Register’
-4. System przekierowuje na podstonê ‘Shop’
+Scenariusz gÅ‚Ã³wny:
+1. UÅ¼ytkownik wybiera opcjÄ™ â€˜Sign outâ€™
+2. System usuwa â€˜My accountâ€™ z paska nawigacji
+3. System zamienia opcjÄ™ przekierowania na postronÄ™ â€˜Sign outâ€™ na opcjÄ™ wylogowania uÅ¼ytkownika â€˜Sign in/Registerâ€™
+4. System przekierowuje na podstonÄ™ â€˜Shopâ€™
 
 =======================
 
-DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU)
+DODAWANIE PRODUKTÃ“W DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU)
 
-Aktorzy:				U¿ytkownik	
+Aktorzy:				UÅ¼ytkownik	
 Zakres:					Sklep internetowy
 Poziom:					Systemowy
-Udzia³owcy i ich cele:			U¿ytkownik chce dodawaæ produkty do koszyka. 
-					Sklep chce zebraæ i zapisaæ informacje o zawartoœci koszyka.
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê produktu
-Warunki wstêpne:			Brak
-Warunki koñcowe dla sukcesu:		dodanie produktów do koszyka
-Warunki koñcowe dla niepowodzenia:	Informacja o niepowodzeniu
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce dodawaÄ‡ produkty do koszyka. 
+					Sklep chce zebraÄ‡ i zapisaÄ‡ informacje o zawartoÅ›ci koszyka.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ produktu
+Warunki wstÄ™pne:			Brak
+Warunki koÅ„cowe dla sukcesu:		dodanie produktÃ³w do koszyka
+Warunki koÅ„cowe dla niepowodzenia:	Informacja o niepowodzeniu
 
-Scenariusz g³ówny:
-1. System wyœwietla podstronê produktu
-2. U¿ytkownik wprowadza iloœæ produktów (domyœlna wartoœæ=1)
-4. System weryfikuje dane (iloœæ>0, 0-ignoruj)
-5. U¿ytkownik wybiera opcjê ‘Add to Cart’
+Scenariusz gÅ‚Ã³wny:
+1. System wyÅ›wietla podstronÄ™ produktu
+2. UÅ¼ytkownik wprowadza iloÅ›Ä‡ produktÃ³w (domyÅ›lna wartoÅ›Ä‡=1)
+4. System weryfikuje dane (iloÅ›Ä‡>0, 0-ignoruj)
+5. UÅ¼ytkownik wybiera opcjÄ™ â€˜Add to Cartâ€™
 6. System zmienia stan koszyka
 
 Scenariusz alternatywny:
-4.a. Iloœæ nie jest liczb¹ naturaln¹
-4.a.1 System wyœwietla ponownie formularz zaznaczaj¹c, które dane powinny zostaæ poprawione
-4.a.2 Nastêpuje powrót do punktu 2 scenariusza g³ównego
+4.a. IloÅ›Ä‡ nie jest liczbÄ… naturalnÄ…
+4.a.1 System wyÅ›wietla ponownie formularz zaznaczajÄ…c, ktÃ³re dane powinny zostaÄ‡ poprawione
+4.a.2 NastÄ™puje powrÃ³t do punktu 2 scenariusza gÅ‚Ã³wnego
 
 
 =======================
 
-ZMIANA ZAWARTOŒCI KOSZYKA (Z POZIOMU KOSZYKA)
+ZMIANA ZAWARTOÅšCI KOSZYKA (Z POZIOMU KOSZYKA)
 
-Aktorzy:				U¿ytkownik	
+Aktorzy:				UÅ¼ytkownik	
 Zakres:					Sklep internetowy
 Poziom:					Systemowy
-Udzia³owcy i ich cele:			U¿ytkownik chce zmieniæ zawartoœæ koszyka. 
-					Sklep chce zaktualizowaæ informacje o zawartoœci koszyka.
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê koszyka.
-Warunki wstêpne:			Brak
-Warunki koñcowe dla sukcesu:		aktualizacja stanu koszyka
-Warunki koñcowe dla niepowodzenia:	Informacja o niepowodzeniu
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce zmieniÄ‡ zawartoÅ›Ä‡ koszyka. 
+					Sklep chce zaktualizowaÄ‡ informacje o zawartoÅ›ci koszyka.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ koszyka.
+Warunki wstÄ™pne:			Brak
+Warunki koÅ„cowe dla sukcesu:		aktualizacja stanu koszyka
+Warunki koÅ„cowe dla niepowodzenia:	Informacja o niepowodzeniu
 
-Scenariusz g³ówny:
-1. System wyœwietla podstronê koszyka
-3. U¿ytkownik zmienia iloœæ produktów
+Scenariusz gÅ‚Ã³wny:
+1. System wyÅ›wietla podstronÄ™ koszyka
+3. UÅ¼ytkownik zmienia iloÅ›Ä‡ produktÃ³w
 4. System weryfikuje dane
 5. System aktualizuje stan koszyka
 
 Scenariusz alternatywny:
-4.a.Iloœæ nie jest liczb¹ naturaln¹
-4.a.1 System wyœwietla ponownie formularz zaznaczaj¹c, które dane powinny zostaæ poprawione
-4.a.2 Nastêpuje powrót do punktu 2 scenariusza g³ównego
+4.a.IloÅ›Ä‡ nie jest liczbÄ… naturalnÄ…
+4.a.1 System wyÅ›wietla ponownie formularz zaznaczajÄ…c, ktÃ³re dane powinny zostaÄ‡ poprawione
+4.a.2 NastÄ™puje powrÃ³t do punktu 2 scenariusza gÅ‚Ã³wnego
 
+=======================
+
+ZAKUP
+
+Aktorzy:				UÅ¼ytkownik
+Zakres:					Sklep internetowy
+Poziom:					Systemowy
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik dokonuje zakupu towarÃ³w.
+					Sklep przekierowuje go do procedury pÅ‚atnoÅ›ci.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik klika 'Buy' na podstronie koszyka.
+Warunki wstÄ™pne:			UÅ¼ytkownik jest zalogowany
+Warunki koÅ„cowe dla sukcesu:		NastÄ…pi przekierowanie do procedury pÅ‚atnoÅ›ci.
+Warunki koÅ„cowe dla niepowodzenia:	UÅ¼ytkownik zostanie powiadomiony o niepowodzeniu.
+
+Scenariusz gÅ‚Ã³wny:
+1. UÅ¼ytkownik przechodzi na podstronÄ™ Koszyka.
+2. UÅ¼ytkownik klika 'Buy'.
+3. System sprawdza, czy uÅ¼ytkownik jest zalogowany.
+4. System przekierowywuje uÅ¼ytkownika na stronÄ™ 'Checkout Details'.
+5. UÅ¼ytkownik wykonuje jeden ze scenariuszy odnoszÄ…cych siÄ™ do scenariusza CHECKOUT DETAILS (WYSYÅKA).
+6. System przekazuje dane z koszyka do systemu pÅ‚atniczego, i przekierowywuje na formularz wymagajÄ…cy uwierzytelnienia.
+
+Scenariusz alternatywny:
+
+6.a UÅ¼ytkownik nie jest zalogowany.
+6.a.1 System przekierowywuje uÅ¼ytkownika do postrony z logowaniem.
+6.a.2 UÅ¼ytkownik realizuje jeden ze scenariuszy ze scenariusza LOGOWANIE.
+6.a.3 NastÄ™puje powrÃ³t do punktu 1. scenariusza gÅ‚Ã³wnego.
+
+=======================
+
+CHECKOUT DETAILS (WYSYÅKA)
+
+Aktorzy:				UÅ¼ytkownik
+Zakres:					Sklep interneetowy
+Poziom:					Systemowy
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik okreÅ›la adres wysyÅ‚ki.
+					System pobiera okreÅ›lony przez uÅ¼ytkownika adres 
+					jako dane do wysyÅ‚ki.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik klika 'Next' na podstronie z danymi adresowymi. 
+Warunki wstÄ™pne:			UÅ¼ytkownik jest zalogowany.
+Warunki koÅ„cowe dla sukcesu:		Podany przez uÅ¼ytkownika adres zostanie podany jako
+					informacja dla sklepu.
+Warunki koÅ„cowe dla niepowodzenia:	NastÄ…pi przekierowanie do podstrony z wyborem adresu wysyÅ‚ki.
+
+Scenariusz gÅ‚Ã³wny:
+1. System przekierowywuje zalogowanego uÅ¼ytkownika na podstronÄ™ z wyborem adresu.
+2. UÅ¼ytkownik klika na przycisk rozwijajÄ…cy listÄ™ zapisanych adresÃ³w.
+3. System wyÅ›wietla tÄ™ listÄ™, zaznaczajÄ…c w widoczny sposÃ³b adres domyÅ›lny.
+4. UÅ¼ytkownik klika na jeden z innych adresÃ³w na liÅ›cie.
+5. System zaznacza w widoczny sposÃ³b wybrany adres, ale nie ustawia go jako domyÅ›lny.
+6. UÅ¼ytkownik klika 'Next'
+7. System przekazuje zaznaczony adres jako dane do wysyÅ‚ki.
+
+Scenariusz alternatywny:
+
+2.a UÅ¼ytkownik klika 'Next'.
+2.a.1 NastÄ™puje przekierownie do punktu 7. scenariusza gÅ‚Ã³wnego.
+
+2.b UÅ¼ytkownik klika 'Add new address'.
+2.b.1 System rozwija widok z formularzem do danych adresowych.
+2.b.2 UÅ¼ytkownik wypeÅ‚nia pola formularza.
+2.b.3 UÅ¼ytkownik klika 'Save'.
+2.b.4 System sprawdza poprawnoÅ›Ä‡ danych.
+2.b.5 System odznacza adres domyÅ›lny z listy, a zaznacza ten podany w formularzu.
+2.b.6 NastÄ™puje powrÃ³t do punktu 6. scenariusza gÅ‚Ã³wnego.
+
+2.b.3.a UÅ¼ytkownik klika 'Add to my Address Book'.
+2.b.3.a.1 System otrzymuje informacjÄ™ o tym, by w punkcie 2.b.3 scenariusza alternatywnego
+	  dodaÄ‡ podany adres do bazy danych jako adres klienta.
+2.b.3.a.2 Nastepuje powrÃ³t do punktu 2.b.3
+
+2.b.4.a System odrzuca dane.
+2.b.4.a.1 NastÄ™puje powrÃ³t do punktu 2.b.2 scenariusza alternatywnego.
 
 =======================
 
 REKLAMACJA
 
-Aktorzy:				U¿ytkownik
+Aktorzy:				UÅ¼ytkownik
 Zakres:					Sklep internetowy
 Poziom:					Sytemowowy
-Udzia³owcy i ich cele:			U¿ytkownik chce dokonaæ reklamacji. 
-					Sklep chce zebraæ dane spe³niaj¹ce zadane warunki.
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê ‘My account’
-Warunki wstêpne:			U¿ytkownik jest zalogowany
-Warunki koñcowe dla sukcesu:		Reklamacja zostaje zapisana w bazie danych. 
-					U¿ytkownik zostaje powiadomiony o sukcesie
-Warunki koñcowe dla niepowodzenia:	U¿ytkownik zostaje powiadomiony o niepowodzeniu i przyczynach niepowodzenia.
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce dokonaÄ‡ reklamacji. 
+					Sklep chce zebraÄ‡ dane speÅ‚niajÄ…ce zadane warunki.
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ â€˜My accountâ€™
+Warunki wstÄ™pne:			UÅ¼ytkownik jest zalogowany
+Warunki koÅ„cowe dla sukcesu:		Reklamacja zostaje zapisana w bazie danych. 
+					UÅ¼ytkownik zostaje powiadomiony o sukcesie
+Warunki koÅ„cowe dla niepowodzenia:	UÅ¼ytkownik zostaje powiadomiony o niepowodzeniu i przyczynach niepowodzenia.
 
-Scenariusz g³ówny:
-1. U¿ytkownik przechodzi na zak³adkê ‘Orders’
-2. U¿ytkownik wybiera opcjê ‘Complain’
-3. System otwiera podstronê ‘Complain’
-4. U¿ytkownik wprowadza dane w polu ‘Letter of complain’
-5. System weryfikuje dane (czy wprowadzono minimum 10 znaków)
-6. System wyœwietla powiadomienie o udanej reklamacji
+Scenariusz gÅ‚Ã³wny:
+1. UÅ¼ytkownik przechodzi na zakÅ‚adkÄ™ â€˜Ordersâ€™
+2. UÅ¼ytkownik wybiera opcjÄ™ â€˜Complainâ€™
+3. System otwiera podstronÄ™ â€˜Complainâ€™
+4. UÅ¼ytkownik wprowadza dane w polu â€˜Letter of complainâ€™
+5. System weryfikuje dane (czy wprowadzono minimum 10 znakÃ³w)
+6. System wyÅ›wietla powiadomienie o udanej reklamacji
 
 Scenariusz alternatywny:
 5.a. Nie wprowadzono wymaganych danych
-5a.1 System wyœwietla ponownie formularz zaznaczaj¹c ile znaków nale¿y wprowadziæ
-5.a.2 Nastêpuje powrót do punktu 4 scenariusza g³ównego
+5.a.1 System wyÅ›wietla ponownie formularz zaznaczajÄ…c ile znakÃ³w naleÅ¼y wprowadziÄ‡
+5.a.2 NastÄ™puje powrÃ³t do punktu 4 scenariusza gÅ‚Ã³wnego
 
 
 =======================
 
 NEWSLETTER
 
-Aktorzy:				U¿ytkownik
+Aktorzy:				UÅ¼ytkownik
 Zakres:					Sklep internetowy
 Poziom:					Sytemowowy
-Udzia³owcy i ich cele:			U¿ytkownik chce zapisaæ siê/wypisaæ z newsletter’a. 
-					Sklep chce zebraæ informacje o zapisie do newsletter’a	
-Zdarzenie wyzwalaj¹ce:			U¿ytkownik przechodzi na podstronê ‘My account’
-Warunki wstêpne:			U¿ytkownik jest zalogowany
-Warunki koñcowe dla sukcesu:		Deklaracja dotycz¹ca newsletter’ zostaje zapisana w bazie danych
+UdziaÅ‚owcy i ich cele:			UÅ¼ytkownik chce zapisaÄ‡ siÄ™/wypisaÄ‡ z newsletterâ€™a. 
+					Sklep chce zebraÄ‡ informacje o zapisie do newsletterâ€™a	
+Zdarzenie wyzwalajÄ…ce:			UÅ¼ytkownik przechodzi na podstronÄ™ â€˜My accountâ€™
+Warunki wstÄ™pne:			UÅ¼ytkownik jest zalogowany
+Warunki koÅ„cowe dla sukcesu:		Deklaracja dotyczÄ…ca newsletterâ€™ zostaje zapisana w bazie danych
 
-Scenariusz g³ówny:
-1.U¿ytkownik przechodzi na zak³adkê ‘Newsletter’
-2.U¿ytkownik wybiera opcjê zapisu do newsletter’a / rezygnacji z newsletter’a
+Scenariusz gÅ‚Ã³wny:
+1.UÅ¼ytkownik przechodzi na zakÅ‚adkÄ™ â€˜Newsletterâ€™
+2.UÅ¼ytkownik wybiera opcjÄ™ zapisu do newsletterâ€™a / rezygnacji z newsletterâ€™a
 3.System aktualizuje informacje na stronie i w bazie danych
 
 
 *********************************************************
-*               SCENARIUSZE DO TESTÓW			*
+*               SCENARIUSZE DO TESTÃ“W			*
 *********************************************************
 
 LOGIN
-1.	Click ‘Sign in/Register’
-2.	Redirect to ‘Sign in/Register’ page
-3.	Enter invalid data in ‘Sign in’ form
-4.	Click ‘Sign in’
+1.	Click â€˜Sign in/Registerâ€™
+2.	Redirect to â€˜Sign in/Registerâ€™ page
+3.	Enter invalid data in â€˜Sign inâ€™ form
+4.	Click â€˜Sign inâ€™
 5.	See failure message
-6.	Enter valid datain ‘Sign in’ form
-7.	Click ‘Sign in’
-8.	Redirect to ‘Shop’ page
-9.	‘My account’ is displayed
-10.	‘Sign out’ appear instead of ‘Sign in/Register’
-11.	Click ‘Sign out’
-12.	‘My account’ disapear
-13.	 ‘Sign in/Register’ appear instead of ‘Sign out’
+6.	Enter valid datain â€˜Sign inâ€™ form
+7.	Click â€˜Sign inâ€™
+8.	Redirect to â€˜Shopâ€™ page
+9.	â€˜My accountâ€™ is displayed
+10.	â€˜Sign outâ€™ appear instead of â€˜Sign in/Registerâ€™
+11.	Click â€˜Sign outâ€™
+12.	â€˜My accountâ€™ disapear
+13.	 â€˜Sign in/Registerâ€™ appear instead of â€˜Sign outâ€™
 
 LOGIN 2
-1.	Click ‘Sign in/Register’
-2.	Redirect to ‘Sign in/Register’ page
-3.	Enter valid data in ‘Sign in’ form
-4.	Click ‘Sign in’
-5.	Redirect to ‘Shop’ page
-6.	‘My account’ is displayed
-7.	‘Sign out’ appear instead of ‘Sign in/Register’
-8.	Click ‘My account’
-9.	Click ‘Sign out’
-10.	Redirect to ‘Shop’ page
-11.	‘My account’ disapear
-12.	‘Sign in/Register’ appear instead of ‘Sign out’
+1.	Click â€˜Sign in/Registerâ€™
+2.	Redirect to â€˜Sign in/Registerâ€™ page
+3.	Enter valid data in â€˜Sign inâ€™ form
+4.	Click â€˜Sign inâ€™
+5.	Redirect to â€˜Shopâ€™ page
+6.	â€˜My accountâ€™ is displayed
+7.	â€˜Sign outâ€™ appear instead of â€˜Sign in/Registerâ€™
+8.	Click â€˜My accountâ€™
+9.	Click â€˜Sign outâ€™
+10.	Redirect to â€˜Shopâ€™ page
+11.	â€˜My accountâ€™ disapear
+12.	â€˜Sign in/Registerâ€™ appear instead of â€˜Sign outâ€™
 
 REGISTER
-1.	Click ‘Sign in/Register’
-2.	Redirect to ‘Sign in/Register’ page
-3.	Enter nothing in ‘Register’ form
-4.	Click ‘Register’
+1.	Click â€˜Sign in/Registerâ€™
+2.	Redirect to â€˜Sign in/Registerâ€™ page
+3.	Enter nothing in â€˜Registerâ€™ form
+4.	Click â€˜Registerâ€™
 5.	See error messages
-6.	Enter valid data but taken email in ‘Register’ form
+6.	Enter valid data but taken email in â€˜Registerâ€™ form
 7.	See email taken error
 8.	Enter available email
-9.	Click ‘Register’
+9.	Click â€˜Registerâ€™
 10.	See successful message
 
 
@@ -300,7 +374,7 @@ REGISTER
 *               	BAZA DANYCH			*
 *********************************************************
 
-Tabela „Products”
+Tabela â€Productsâ€
 
 - 	productId: integer (PK)
 - 	name: string 
@@ -309,7 +383,7 @@ Tabela „Products”
 - 	type: string
 - 	description: string
 
-Tabela “Clients”
+Tabela â€œClientsâ€
 
 -	clientId: integer (PK)
 -	email: string 
@@ -318,7 +392,7 @@ Tabela “Clients”
 -	password: string
 -	newsletter: boolean
 
-Tabela “Orders”
+Tabela â€œOrdersâ€
 -	orderId: integer (PK)
 -	clientId: integer (FK)
 -	workerId: integer (FK)
@@ -328,13 +402,13 @@ Tabela “Orders”
 -	closedate: date
 
 
-Tabela “Order Entries”
+Tabela â€œOrder Entriesâ€
 
 -	orderId: integer (FK)
 -	productId: integer (FK)
 -	amount: integer
 
-Tabela “Addresses”
+Tabela â€œAddressesâ€
 -	addressId: integer (PK)
 -	clientId: integer (FK)
 -	country: string
@@ -344,20 +418,20 @@ Tabela “Addresses”
 -	buildingNumber: integer
 -	apartmentNumber: integer
 
-Tabela “Payments”
+Tabela â€œPaymentsâ€
 -	paymentId: integer (PK)
 -	orderId: integer (FK)
 -	amount: integer 
 -	date: date
 
-Tabela “Complaints”
+Tabela â€œComplaintsâ€
 -	orderId: integer (FK)
 -	workerId: integer (FK)
 -	description: string
 -	date: date
 -	isClosed: boolean 
 
-Tabela “Workers”
+Tabela â€œWorkersâ€
 -	workerId: integer (PK)
 -	role: enum 
 -	email: string
@@ -368,31 +442,31 @@ Tabela “Workers”
 *              	   REQUESTY DO BAZY			*
 *********************************************************
 
-GetClientCredentials : pobierz imiê, nazwisko, adresy 
-(flaga przy adresie domyœlnym tzn. tym który zosta³ u¿yty przy ostatnim zamówieniu 
-i jednoczeœnie jest zapisany w ksi¹¿ce adresów) zalogowanego klienta
+GetClientCredentials : pobierz imiÄ™, nazwisko, adresy 
+(flaga przy adresie domyÅ›lnym tzn. tym ktÃ³ry zostaÅ‚ uÅ¼yty przy ostatnim zamÃ³wieniu 
+i jednoczeÅ›nie jest zapisany w ksiÄ…Å¼ce adresÃ³w) zalogowanego klienta
 
-GetOrders : pobierz wszystkie zamówienia zalogowanego klienta 
+GetOrders : pobierz wszystkie zamÃ³wienia zalogowanego klienta 
 
 IsEmailAvailable  : sprawdzenie czy dany email jest zapisany w bazie danych
 
 CreateNewClient  : dodaj klienta do bazy danych
 
 IsSingInCredentialCorrect : sprawdzenie czy w bazie danych 
-jest zapisany klient o podanym email’u i haœle 
+jest zapisany klient o podanym emailâ€™u i haÅ›le 
 
 IsClientSignInForNewsletter : sprawdzenie czy zalogowany 
-klient powinien otrzymywaæ newsletter
+klient powinien otrzymywaÄ‡ newsletter
 
 UpdateClientCredentials : zaktualizuj dane zalogowanego klienta
 
-AddNewAddress : stwórz nowy adres i przypisz do zalogowanego klienta
+AddNewAddress : stwÃ³rz nowy adres i przypisz do zalogowanego klienta
 
-RemoveAddress : usuñ wybrany adres
+RemoveAddress : usuÅ„ wybrany adres
 
-SaveOrder : zapisz zamówienie 
+SaveOrder : zapisz zamÃ³wienie 
 
-CreateComplain : stwórz reklamacje
+CreateComplain : stwÃ³rz reklamacje
 
 
 
