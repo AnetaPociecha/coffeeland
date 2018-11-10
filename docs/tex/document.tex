@@ -340,8 +340,6 @@
 				& brak 																											\\ \hline
 				\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
 				& Dodanie produktu do koszyka.	\\ \hline
-				\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
-				& Stan koszyka nie zostaje zmieniony. Użytkownik zostaje powiadomiony o niepowodzeniu. 	\\ \hline
 			\end{tabular}
 		\end{table}
 		
@@ -353,20 +351,10 @@
 			\item System weryfikuje dane 
 			\item Użytkownik wybiera opcję 'Add to Cart'
 			\item System zmienia stan koszyka
+			\item System wyświetla informację o powodzeniu
 		\end{enumerate}
 		%---------------------------------------	
-		
-		\colorbox{grey}{Scenariusz alternatywny:}
-		\begin{enumerate}\addtocounter{enumi}{3}
-			\item[]
-			\begin{enumerate}
-				\item Ilość nie jest liczbą naturalną
-				\begin{enumerate}
-					\item System wyświetla ponownie formularz zaznaczając które dane powinny zostać poprawione
-					\item Następuje powrót do punktu 2 scenariusza głównego
-				\end{enumerate}
-			\end{enumerate}
-		\end{enumerate}
+	
 	
 	\newpage
 		%---------------------------------------
@@ -397,8 +385,6 @@
 			& brak 																											\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
 			& Aktualizacja stanu koszyka.	\\ \hline
-			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
-			& Stan koszyka nie zostaje zmieniony. Użytkownik zostaje powiadomiony o niepowodzeniu. 	\\ \hline
 		\end{tabular}
 	\end{table}
 	
@@ -408,22 +394,10 @@
 		\item System wyświetla podstronę koszyka
 		\item Użytkownik zmienia ilość produktów
 		\item System weryfikuje dane 
-		\item Użytkownik wybiera opcję 'Update Cart'
 		\item System aktualizuje stan koszyka
 	\end{enumerate}
 	%---------------------------------------	
-	
-	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{3}
-		\item[]
-		\begin{enumerate}
-			\item Ilość nie jest liczbą naturalną
-			\begin{enumerate}
-				\item System wyświetla ponownie formularz zaznaczając które dane powinny zostać poprawione
-				\item Następuje powrót do punktu 2 scenariusza głównego
-			\end{enumerate}
-		\end{enumerate}
-	\end{enumerate}
+
 \newpage
 
 \subsubsection{Model przypadku użycia}
@@ -646,7 +620,7 @@
 		\item Użytkownik klika na przycisk rozwijający listę zapisanych adresów.
 		\item System wyświetla tę listę, zaznaczając w widoczny sposób adres domyślny.
 		\item Użytkownik klika na jeden z innych adresów na liście.
-		\item System zaznacza w widoczny sposób wybrany adres, ale nie ustawia go jako domyślny.
+		\item System zaznacza w widoczny sposób wybrany adres i ustawia go jako domyślny.
 		\item Użytkownik klika 'Next'
 		\item System przekazuje zaznaczony adres jako dane do wysyłki.
 	\end{enumerate}
@@ -780,24 +754,12 @@
 		\begin{enumerate}
 			\item[6.1] Użytkownik klika 'Delete'.
 			\begin{enumerate}
-				\item System wyświetla widok z komunikatem ostrzegawczym, oraz przycisakmi 'Yes', 'No'.
-				\item Użytkownik klika 'Yes'.
 				\item System usuwa element z listy.	
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
 	%---------------------------------------
 	
-	\colorbox{grey}{Scenariusz alternatywny:}
-\begin{enumerate}\addtocounter{enumi}{6}
-	\item[]
-	\begin{enumerate}
-		\item[6.1.ii.1.] Użytkownik klika 'No'.
-		\begin{enumerate}
-			\item System ukrywa widok z komunikatem ostrzegawczym.
-		\end{enumerate}
-	\end{enumerate}
-\end{enumerate}
 	
 	\newpage
 	
@@ -818,8 +780,7 @@
 			\textbf{Poziom}     	
 			& Sytemowowy            \\ \hline
 			\textbf{Udziałowcy i cele}	
-			& Użytkownik zaznacza opcję o nazwie kategorii, jaką
-			powiniem spełniać szukany produkt, w podstronie z wynikami wyszukiwania. Sklep redukuje/rozszerza listę o pordukty spełniające warunki.           		\\ \hline
+			& Użytkownik zaznacza typ/cenę szukanego produktu. Sklep redukuje/rozszerza listę produktów o te spełniające zadane warunki.           		\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
 			& Zaznaczenie/odznaczenie opcji. 			\\ \hline
 			\textbf{Warunki wstępne}	
@@ -832,32 +793,33 @@
 	%---------------------------------------
 	\colorbox{grey}{Scenariusz główny:}
 	\begin{enumerate}
-		\item Klient wyszukuje produkt w wyszukiwarce.
-		\item System przekierowywuje go do podstrony z listą rezultatów.
-		\item Klient zaznacza opcję przy dostępnych kategoriach.
-		\item System odświeża listę zostawiając tylko te produkty, które spełniają kryteria.
+		\item Klient wybiera kategorię filtracji.
+		\item System wyświetla listę produktów spełniających kryteria
 	\end{enumerate}
 	%---------------------------------------	
 	
 	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{3}
+	\begin{enumerate}\addtocounter{enumi}{1}
 		\item[]
 		\begin{enumerate}
-			\item Klienit odznacza opcję.
+			\item Klient odznacza opcję.
 			\begin{enumerate}
-				\item System odświeża listę, rozszerzając listę o produkty, które spełniają kryteria.
+				\item System wyświetla listę, rozszerzając ją o produkty spełniające kryteria.
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
 	%---------------------------------------
 	
+	
 	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{4}
+	\begin{enumerate}\addtocounter{enumi}{2}
 		\item[]
 		\begin{enumerate}
 			\item System wyświetla informację, że nie ma produktów spełniających podane kryteria.
 		\end{enumerate}
 	\end{enumerate}
+
+	
 %-----------------------------------------------------
 	\newpage
 		\section{Newsletter}
