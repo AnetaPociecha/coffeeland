@@ -1,4 +1,4 @@
--------SKLEP INTERNETOWY-------
+﻿-------SKLEP INTERNETOWY-------
 
 *********************************************************
 *               	SŁOWNIK			        *
@@ -69,7 +69,7 @@ Scenariusz alternatywny:
 
 =======================
 
-REJSTRACJA
+REJSTRACJA --- done
 
 Aktorzy: 				Użytkownik
 Zakres: 				Sklep internetowy
@@ -101,7 +101,7 @@ Scenariusz alternatywny:
 
 =======================
 
-LOGOWANIE
+LOGOWANIE --- done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy
@@ -131,7 +131,7 @@ Scenariusz alternatywny:
 
 =======================
 
-WYLOGOWANIE
+WYLOGOWANIE --- done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy
@@ -151,7 +151,7 @@ Scenariusz główny:
 
 =======================
 
-EDYCJA DANYCH OSOBOWYCH
+EDYCJA DANYCH OSOBOWYCH --- table bone
 
 Aktorzy:				Użytkownik	
 Zakres:					Sklep internetowy
@@ -179,7 +179,7 @@ Scenariusz alternatywny:
 
 =======================
 
-FILTROWANIE
+FILTROWANIE --- table done
 
 Aktorzy:				Użytkownik	
 Zakres:					Sklep internetowy
@@ -205,7 +205,7 @@ Scenariusz alternatywny:
 
 =======================
 
-DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU)
+DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU) --- table done
 
 Aktorzy:				Użytkownik	
 Zakres:					Sklep internetowy
@@ -232,7 +232,7 @@ Scenariusz alternatywny:
 
 =======================
 
-ZMIANA ZAWARTOŚCI KOSZYKA (Z POZIOMU KOSZYKA)
+ZMIANA ZAWARTOŚCI KOSZYKA (Z POZIOMU KOSZYKA) --- table done
 
 Aktorzy:				Użytkownik	
 Zakres:					Sklep internetowy
@@ -257,7 +257,7 @@ Scenariusz alternatywny:
 
 =======================
 
-ZAKUP
+ZAKUP --- table done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy
@@ -286,7 +286,7 @@ Scenariusz alternatywny:
 
 =======================
 
-CHECKOUT DETAILS (WYSYŁKA)
+CHECKOUT DETAILS (WYSYŁKA) --- table done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep interneetowy
@@ -332,7 +332,7 @@ Scenariusz alternatywny:
 
 =======================
 
-CHECKOUT DETAILS (USTAWIENIA)
+CHECKOUT DETAILS (USTAWIENIA) ---table done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy
@@ -376,7 +376,7 @@ Scenariusz alternatywny:
 
 =======================
 
-REKLAMACJA
+REKLAMACJA --- table done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy
@@ -405,7 +405,7 @@ Scenariusz alternatywny:
 
 =======================
 
-NEWSLETTER
+NEWSLETTER --- table done
 
 Aktorzy:				Użytkownik
 Zakres:					Sklep internetowy

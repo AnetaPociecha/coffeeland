@@ -141,10 +141,10 @@
 %---------------------------------------
 	
 	\chapter{Funkcjonalności}
-	\section{Rejstracja}
+	
 	
 %---------------------------------------
-
+\section{Rejstracja}
 	\subsection{Opis przypadku użycia}
 	\begin{table}[h]
 		\def\arraystretch{1.3}
@@ -182,7 +182,7 @@
 		\begin{enumerate}\addtocounter{enumi}{2}
 			\item[]
 			\begin{enumerate}
-				\item Nie wprowadzono wymaganych danych
+				\item[2.1] Nie wprowadzono wymaganych danych
 				\begin{enumerate}
 					\item System wyświetla ponownie formularz zaznaczając, które dane powinny zostać poprawione i jakie warunki powinny spełniać zaznaczone dane
 					\item Następuje powrót do punktu 2 scenariusza głównego
@@ -195,7 +195,7 @@
 	\begin{enumerate}\addtocounter{enumi}{2}
 		\item[]
 		\begin{enumerate}
-			\item W bazie danych znajduję się konto dla podanego email’a
+			\item[2.2] W bazie danych znajduję się konto dla podanego email’a
 			\begin{enumerate}
 				\item System wyświetla ponownie formularz zaznaczając email i wyświetla informację o istnieniu konta dla podanego email’a
 				\item Następuje powrót do punktu 2 scenariusza głównego
@@ -214,8 +214,7 @@
 %---------------------------------------
 %---------------------------------------
 
-	\section{Logowanie}
-	
+\section{Logowanie}
 	\subsection {Opis przypadku użycia}
 	
 	\begin{table}[h]
@@ -275,8 +274,9 @@
 	\end{center}
 \newpage
 
+
 %---------------------------------------		
-	\section{Wylogowanie}
+\section{Wylogowanie}
 	\subsection{Opis przypadku użycia}
 	
 	\begin{table}[h]
@@ -316,12 +316,12 @@
 	\begin{center}
 		\includegraphics[width=110pt]{wylogowanie.pdf}
 	\end{center}
-	
+	\newpage
 %---------------------------------------
 		
 	\section{Zmiana zawartości koszyka}
 		\subsection{Dodawanie produktów do koszyka z poziomu podstrony produktu}
-		
+		\subsubsection{Opis przypadku użycia}
 		\begin{table}[h]
 			\def\arraystretch{1.3}
 			\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -367,10 +367,12 @@
 				\end{enumerate}
 			\end{enumerate}
 		\end{enumerate}
+	
+	\newpage
 		%---------------------------------------
 		
 	\subsection{Zmiana zawartości koszyka z poziomu podstrony koszyka}
-	
+	\subsubsection{Opis przypadku użycia}
 	\begin{table}[h]
 		\def\arraystretch{1.3}
 		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -416,12 +418,13 @@
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
+\newpage
 	%---------------------------------------
 	
 %---------------------------------------			
 	\section{Zakup produktu}
 	
-	\section{Logowanie}
+	\subsection{Opis przypadku użycia}
 	\begin{table}[h]
 		\def\arraystretch{1.3}
 		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -433,33 +436,378 @@
 			\textbf{Poziom}     	
 			& Sytemowowy            \\ \hline
 			\textbf{Udziałowcy i cele}	
-			& Użytkownik chce się zalogować. Sklep chce zebrać dane spełniające zadane warunki.           					\\ \hline
+			& Użytkownik dokonuje zakupu towarów. Sklep przekierowuje go do procedury płatności.     	\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
-			& Użytkownik przechodzi na podstronę ‘Sign in/Register’ 														\\ \hline
+			& Użytkownik klika 'Buy' na podstronie koszyka. 	\\ \hline
 			\textbf{Warunki wstępne}	
-			& brak 																											\\ \hline
+			& Użytkownik jest zalogowany 																											\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
-			& Użytkownik zastaje zalogowany. Następuje przekierowanie na podstronę 'Shop'. 	\\ \hline
+			& Nastąpi przekierowanie do procedury płatności.	\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
-			& Użytkownik nie zostaje zalogowany. Użytkownik zostaje powiadomiony o niepowodzeniu. 	\\ \hline
+			& Użytkownik zostanie powiadomiony o niepowodzeniu. \\ \hline
 		\end{tabular}
+	\end{table}
 	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item Użytkownik przechodzi na podstronę Koszyka.
+		\item Użytkownik klika 'Buy'.
+		\item System sprawdza, czy użytkownik jest zalogowany.
+		\item System przekierowywuje użytkownika na stronę 'Checkout Details'.
+		\item Użytkownik wykonuje jeden ze scenariuszy odnoszących się do scenariusza CHECKOUT DETAILS (WYSYŁKA).
+		\item System przekazuje dane z koszyka do systemu płatniczego, i przekierowywuje na formularz wymagający uwierzytelnienia.
+	\end{enumerate}
+	%---------------------------------------	
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{6}
+		\item[]
+		\begin{enumerate}
+			\item Użytkownik nie jest zalogowany.
+			\begin{enumerate}
+				\item System przekierowywuje użytkownika do postrony z logowaniem.
+				\item Użytkownik realizuje jeden ze scenariuszy ze scenariusza LOGOWANIE.
+				\item Następuje powrót do punktu 1. scenariusza głównego.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+\newpage
+%-------------------------------------------------
+
+	
+	\section{Edycja danych osobowych}
+	\subsection{Opis przypadku użycia}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik zmienia swoje dane osobowe, oraz adres e-mail. Sklep zapisuje nowopodane dane.          					\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			& Wybranie opcji 'Personal Informations' w podstronie widocznej po zalogowaniu użytkownika. 				\\ \hline
+			\textbf{Warunki wstępne}	
+			& Użytkownik jest zalogowany. 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& System zapisuje nowe dane uzytkownika. 	\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
+			& System wysyła komunikat o błędzie i powraca do formularza z danymi osobowymi. 	\\ \hline
+		\end{tabular}
+		
 		
 	\end{table}
 	
 	%---------------------------------------
 	\colorbox{grey}{Scenariusz główny:}
 	\begin{enumerate}
-		\item System wyświetla formularz wprowadzania danych logowania
-		\item Użytkownik wprowadza dane: email, hasło
-		\item System weryfikuje czy w bazie danych istnieje konto, które odpowiada wprowadzonym danym
-		\item System przekierowuje na podstronę ‘Shop’.
-		\item System wyświetla ‘My account’ na pasku nawigacji
-		\item System zamienia opcję przekierowania na postronę ‘Sign in/Register’ na opcję wylogowania użytkownika ‘Sign out’
-		\item Użytkownik przechodzi na podstronę ‘My account’
-		\item Użytkownik wybiera opcję ‘Sign out’
-		\item System przekierowuje na podstonę ‘Shop’
-		\item System usuwa ‘My account’ z paska nawigacji
+		\item Użytkownik wybiera opcję 'Personal Informations'.
+		\item System wyświetla na stronie widok formularza.
+		\item Użytkownik wypełnia formularz.
+		\item Użytkownik klika 'OK'.
+		\item System weryfikuje dane.
+		\item System wysyła komunikat o zapisie danych.
+	\end{enumerate}
+	%---------------------------------------	
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{5}
+		\item[]
+		\begin{enumerate}
+			\item System odrzuca zmiany.
+			\begin{enumerate}
+				\item System wyświetla komunikat o niepoprawności danych.
+				\item Następuje powrót do punktu 3. scenariusza głównego.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+\newpage
+%-----------------------------------------------
+	
+	%----------------------------------------
+	
+	\section{Reklamacja}
+		\subsection{Opis przypadku użycia}
+		\begin{table}[h]
+			\def\arraystretch{1.3}
+			\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+				\hline
+				\textbf{Aktorzy}		
+				& Użytkownik 			\\ \hline
+				\textbf{Zakres}    		
+				& Sklep internetowy     \\ \hline
+				\textbf{Poziom}     	
+				& Sytemowowy            \\ \hline
+				\textbf{Udziałowcy i cele}	
+				& Użytkownik chce dokonać reklamacji. 
+				Sklep chce zebrać dane spełniające zadane warunki.            					\\ \hline
+				\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+				&Użytkownik przechodzi na podstronę ‘My account’								\\ \hline
+				\textbf{Warunki wstępne}	
+				& Użytkownik jest zalogowany. 																											\\ \hline
+				\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+				& Reklamacja zostaje zapisana w bazie danych. 
+				Użytkownik zostaje powiadomiony o sukcesie	\\ \hline
+				\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
+				& Użytkownik zostaje powiadomiony o niepowodzeniu i przyczynach niepowodzenia.
+					\\ \hline
+			\end{tabular}
+			
+			
+		\end{table}
+		
+		%---------------------------------------
+		\colorbox{grey}{Scenariusz główny:}
+		\begin{enumerate}
+			\item Użytkownik przechodzi na zakładkę ‘Orders’.
+			\item Użytkownik wybiera opcję ‘Complain’
+			\item System otwiera podstronę ‘Complain’
+			\item Użytkownik wprowadza dane w polu ‘Letter of complain’
+			\item System weryfikuje dane (czy wprowadzono minimum 10 znaków)
+			\item System wyświetla powiadomienie o udanej reklamacji
+		\end{enumerate}
+		%---------------------------------------	
+	
+		\colorbox{grey}{Scenariusz alternatywny:}
+		\begin{enumerate}\addtocounter{enumi}{2}
+			\item[]
+			\begin{enumerate}
+				\item[5.1] Nie wprowadzono wymaganych danych
+				\begin{enumerate}
+					\item System wyświetla ponownie formularz zaznaczając ile znaków należy wprowadzić
+					\item Następuje powrót do punktu 4 scenariusza głównego
+				\end{enumerate}
+			\end{enumerate}
+		\end{enumerate}
+		
+		\newpage
+		
+	%----------------------------------------
+	\section{Checkout details (wysyłka)}
+	
+	\subsection{Opis przypadku użycia}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik określa adres wysyłki. System pobiera określony przez użytkownika adres jako dane do wysyłki.            					\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			&Użytkownik klika 'Next' na podstronie z danymi adresowymi.									\\ \hline
+			\textbf{Warunki wstępne}	
+			& Użytkownik jest zalogowany. 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& Podany przez użytkownika adres zostanie podany jako
+			informacja dla sklepu. 	\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
+			& Nastąpi przekierowanie do podstrony z wyborem adresu wysyłki. 	\\ \hline
+		\end{tabular}
+		
+		
+	\end{table}
+	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item System przekierowywuje zalogowanego użytkownika na podstronę z wyborem adresu.
+		\item Użytkownik klika na przycisk rozwijający listę zapisanych adresów.
+		\item System wyświetla tę listę, zaznaczając w widoczny sposób adres domyślny.
+		\item Użytkownik klika na jeden z innych adresów na liście.
+		\item System zaznacza w widoczny sposób wybrany adres, ale nie ustawia go jako domyślny.
+		\item Użytkownik klika 'Next'
+		\item System przekazuje zaznaczony adres jako dane do wysyłki.
+	\end{enumerate}
+	%---------------------------------------	
+	\newpage
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{2}
+		\item[]
+		\begin{enumerate}
+			\item[2.1] Użytkownik klika 'Next'.
+			\begin{enumerate}
+				\item Następuje przekierownie do punktu 7. scenariusza głównego.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{2}
+		\item[]
+		\begin{enumerate}
+			\item[2.2] Użytkownik klika 'Add new address'.
+				\begin{enumerate}
+					\item System rozwija widok z formularzem do danych adresowych.
+					\item Użytkownik wypełnia pola formularza.
+					\item Użytkownik klika 'Save'.
+					\item System sprawdza poprawność danych.
+					\item System odznacza adres domyślny z listy, a zaznacza ten podany w formularzu.
+					\item Następuje powrót do punktu 6. scenariusza głównego.	
+				\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	%---------------------------------------
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{2}
+		\item[]
+		\begin{enumerate}
+			\item[2.2.iii.1.] Użytkownik klika 'Add to my Address Book'.
+			\begin{enumerate}
+				\item System otrzymuje informację o tym, by w punkcie 2.2.iii scenariusza alternatywnego dodać podany adres do bazy danych jako adres klienta.
+				\item Nastepuje powrót do punktu 2.2.iii
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	
+	%---------------------------------------	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{2}
+		\item[]
+		\begin{enumerate}
+			\item[2.2.iv.1] System odrzuca dane.
+			\begin{enumerate}
+				\item Następuje powrót do punktu 2.2.iii scenariusza alternatywnego.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	
+	\newpage
+	
+	%----------------------------------------
+	
+	\section{Checkout details (ustawienia)}
+	
+	\subsection{Opis przypadku użycia}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik dodaje/edytuje/usuwa adres wysyłki do swojej listy adresów.
+			System modyfikuje listę adresów według polecenia użytkownika.           					\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			&Użytkownik klika 'My Addresses' na podstronie widoczej bezpośrednio
+			po zalogowaniu.								\\ \hline
+			\textbf{Warunki wstępne}	
+			& Użytkownik jest zalogowany. 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& System wykona żądaną operację. 	\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
+			& Nastąpi powrót do widoku z listą adresów, i nie zajdą żadne zmiany. \\ \hline
+		\end{tabular}
+		
+		
+	\end{table}
+	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item Użytkownik klika 'My Addresses'.
+		\item System przekierowywuje go na podstronę z wyborem adresu.
+		\item Użytkownik klika na przycisk rozwijający listę zapisanych adresów.
+		\item System wyświetla tę listę, zaznaczając w widoczny sposób adres domyślny.
+		\item Użytkownik najeżdża na element listy.
+		\item System wyświetla przy elemencie przyciski 'Edit' i 'Delete'.
+		\item Użytkownik klika 'Edit'.
+		\item System rozwija widok z formularzem do danych adresowych.
+		\item System wypełnia pola wartościami tworzącymi adres.
+		\item Użytkownik edytuje pola formularza.
+		\item Użytkownik klika 'Save'.
+		\item System weryfikuje poprawność danych.
+		\item System zapisuje zmiany.
+	\end{enumerate}
+	%---------------------------------------	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{2}
+		\item[]
+		\begin{enumerate}
+			\item[3.1] Użytkownik klika 'Add new Address'.
+			\begin{enumerate}
+				\item System rozwija widok z formularzem do danych adresowych.
+				\item Następuje powrót do punktu 10. scenariusza głównego.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{6}
+		\item[]
+		\begin{enumerate}
+			\item[6.1] Użytkownik klika 'Delete'.
+			\begin{enumerate}
+				\item System wyświetla widok z komunikatem ostrzegawczym, oraz przycisakmi 'Yes', 'No'.
+				\item Użytkownik klika 'Yes'.
+				\item System usuwa element z listy.	
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	%---------------------------------------
+	
+	\colorbox{grey}{Scenariusz alternatywny:}
+\begin{enumerate}\addtocounter{enumi}{6}
+	\item[]
+	\begin{enumerate}
+		\item[6.1.ii.1.] Użytkownik klika 'No'.
+		\begin{enumerate}
+			\item System ukrywa widok z komunikatem ostrzegawczym.
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+	
+	\newpage
+	
+	
+	
+	%---------------------------------------
+	
+	\section{Filtrowanie produktów}
+		\subsection{Opis przypadku użycia}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik zaznacza opcję o nazwie kategorii, jaką
+			powiniem spełniać szukany produkt, w podstronie z wynikami wyszukiwania. Sklep redukuje/rozszerza listę o pordukty spełniające warunki.           		\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			& Zaznaczenie/odznaczenie opcji. 			\\ \hline
+			\textbf{Warunki wstępne}	
+			& brak 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& System wyświetla produkty spełniające określone kryterium. 	\\ \hline
+		\end{tabular}
+	\end{table}
+	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item Klient wyszukuje produkt w wyszukiwarce.
+		\item System przekierowywuje go do podstrony z listą rezultatów.
+		\item Klient zaznacza opcję przy dostępnych kategoriach.
+		\item System odświeża listę zostawiając tylko te produkty, które spełniają kryteria.
 	\end{enumerate}
 	%---------------------------------------	
 	
@@ -467,41 +815,57 @@
 	\begin{enumerate}\addtocounter{enumi}{3}
 		\item[]
 		\begin{enumerate}
-			\item Nie istnieje konto dla wprowadzonych danych
+			\item Klienit odznacza opcję.
 			\begin{enumerate}
-				\item System wyświetla informację o niepowodzeniu
-				\item Następuje powrót do punktu 2 scenariusza głównego
+				\item System odświeża listę, rozszerzając listę o produkty, które spełniają kryteria.
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
 	%---------------------------------------
 	
 	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{6}
+	\begin{enumerate}\addtocounter{enumi}{4}
 		\item[]
 		\begin{enumerate}
-			\item Następuje przejście do punktu 9 scenariusza głównego
+			\item System wyświetla informację, że nie ma produktów spełniających podane kryteria.
 		\end{enumerate}
 	\end{enumerate}
+%-----------------------------------------------------
+	\newpage
+		\section{Newsletter}
+	\subsection{Opis przypadku użycia}
+	\begin{table}[h]
+		\def\arraystretch{1.3}
+		\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
+			\hline
+			\textbf{Aktorzy}		
+			& Użytkownik 			\\ \hline
+			\textbf{Zakres}    		
+			& Sklep internetowy     \\ \hline
+			\textbf{Poziom}     	
+			& Sytemowowy            \\ \hline
+			\textbf{Udziałowcy i cele}	
+			& Użytkownik chce zapisać się/wypisać z newsletter’a. 
+			Sklep chce zebrać informacje o zapisie do newsletter’a	          		\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
+			& Użytkownik przechodzi na podstronę ‘My account’ 			\\ \hline
+			\textbf{Warunki wstępne}	
+			& Użytkownik jest zalogowany 																											\\ \hline
+			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla sukcesu\end{tabular}}     
+			& Deklaracja dotycząca newsletter’ zostaje zapisana w bazie danych 	\\ \hline
+		\end{tabular}
+	\end{table}
 	
+	%---------------------------------------
+	\colorbox{grey}{Scenariusz główny:}
+	\begin{enumerate}
+		\item Użytkownik przechodzi na zakładkę ‘Newsletter’
+		\item Użytkownik wybiera opcję zapisu do newsletter’a / rezygnacji z newsletter’a
+		\item System aktualizuje informacje na stronie i w bazie danych
+	\end{enumerate}
 	%---------------------------------------	
-	\colorbox{grey}{Scenariusz alternatywny:}
-	\begin{enumerate}\addtocounter{enumi}{8}
-		\item[]
-		\begin{enumerate}
-			\item Następuje przejście do punktu 10 scenariusza głównego
-		\end{enumerate}
-	\end{enumerate}
-	
-	\section{Reklamacja}	
-	\section{Filtrowanie produktów}
-	\section{Zapis do newslettera}
-	\section{Rezygnacja z newslettera}
-	\section{Dodanie adresu do listy adresów}
-	\section{Usunięcie adresu z listy adresów}
-	\section{Edycja danych użytkownika}
-		
-	
+
+	\newpage
 	
 %---------------------------------------	
 
@@ -532,7 +896,6 @@
 			\item nUnit
 			\item .NET
 			\item JestTest
-			\item CircleCI
 		\end{itemize}
 		
 		\section{Narzędzia}
@@ -541,6 +904,7 @@
 			\item Visual Studio Community
 			\item Selenium
 			\item Chromium
+			\item CircleCI
 		\end{itemize}
 	
 \end{document}
