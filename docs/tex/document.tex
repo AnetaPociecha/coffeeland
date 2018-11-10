@@ -370,6 +370,12 @@
 	
 	\newpage
 		%---------------------------------------
+	\subsubsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=400pt]{koszyk1.pdf}
+	\end{center}
+		
+	%-------------------------------------------------	
 		
 	\subsection{Zmiana zawartości koszyka z poziomu podstrony koszyka}
 	\subsubsection{Opis przypadku użycia}
@@ -399,7 +405,7 @@
 	%---------------------------------------
 	\colorbox{grey}{Scenariusz główny:}
 	\begin{enumerate}
-		\item System wyświetla podstronę produktu
+		\item System wyświetla podstronę koszyka
 		\item Użytkownik zmienia ilość produktów
 		\item System weryfikuje dane 
 		\item Użytkownik wybiera opcję 'Update Cart'
@@ -419,6 +425,11 @@
 		\end{enumerate}
 	\end{enumerate}
 \newpage
+
+\subsubsection{Model przypadku użycia}
+\begin{center}
+	\includegraphics[width=400pt]{koszyk2.pdf}
+\end{center}
 	%---------------------------------------
 	
 %---------------------------------------			
@@ -464,7 +475,7 @@
 	\begin{enumerate}\addtocounter{enumi}{6}
 		\item[]
 		\begin{enumerate}
-			\item Użytkownik nie jest zalogowany.
+			\item[3.1] Użytkownik nie jest zalogowany.
 			\begin{enumerate}
 				\item System przekierowywuje użytkownika do postrony z logowaniem.
 				\item Użytkownik realizuje jeden ze scenariuszy ze scenariusza LOGOWANIE.
@@ -472,7 +483,11 @@
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
-\newpage
+
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=350pt]{zakup.pdf}
+	\end{center}
 %-------------------------------------------------
 
 	
@@ -498,15 +513,13 @@
 			& System zapisuje nowe dane uzytkownika. 	\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Warunki końcowe \\ dla niepowodzenia\end{tabular}}   
 			& System wysyła komunikat o błędzie i powraca do formularza z danymi osobowymi. 	\\ \hline
-		\end{tabular}
-		
-		
+		\end{tabular}	
 	\end{table}
 	
 	%---------------------------------------
 	\colorbox{grey}{Scenariusz główny:}
 	\begin{enumerate}
-		\item Użytkownik wybiera opcję 'Personal Informations'.
+		\item Użytkownik wybiera opcję 'Personal Information'.
 		\item System wyświetla na stronie widok formularza.
 		\item Użytkownik wypełnia formularz.
 		\item Użytkownik klika 'OK'.
@@ -526,9 +539,14 @@
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
-\newpage
+
+	\subsection{Model przypadku użycia}
 %-----------------------------------------------
-	
+	\begin{center}
+		\includegraphics[width=400pt]{edycja.pdf}
+	\end{center}
+	\newpage
+%------------------------------------------
 	%----------------------------------------
 	
 	\section{Reklamacja}
@@ -586,7 +604,11 @@
 		\end{enumerate}
 		
 		\newpage
-		
+		\subsection{Model przypadku użycia}
+			\begin{center}
+			\includegraphics[width=400pt]{reklamacja.pdf}
+		\end{center}
+		\newpage
 	%----------------------------------------
 	\section{Checkout details (wysyłka)}
 	
@@ -682,6 +704,12 @@
 		\end{enumerate}
 	\end{enumerate}
 	
+	\newpage
+	
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=450pt]{wysylka.pdf}
+	\end{center}
 	\newpage
 	
 	%----------------------------------------

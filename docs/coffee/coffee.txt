@@ -205,7 +205,7 @@ Scenariusz alternatywny:
 
 =======================
 
-DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU) --- table done
+DODAWANIE PRODUKTÓW DO KOSZYKA (Z POZIOMU PODSTRONY PRODUKTU) --- done
 
 Aktorzy:				Użytkownik	
 Zakres:					Sklep internetowy
