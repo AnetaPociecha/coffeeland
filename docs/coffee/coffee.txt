@@ -566,5 +566,18 @@ SaveOrder : zapisz zamówienie
 
 CreateComplain : stwórz reklamacje
 
+**********************************************************************
+PANEL ADMINISTRATORA
+**********************************************************************
 
+Przypadki użycia
+1. Logowanie 
+2. Dodanie towaru (wymagane logowanie) (następuje sprawdzenie czy w bazie danych istnieje już produkt o podanej nazwie jeśli tak wyświetlana informacja o błędzie)
+2. Usunięcie towaru (wymagane logowanie)
+3. Wyświetlenie wszystkich reklamacji (sortowanie po datach) (wymagane logowanie)
+4. Wyświetlenie wszystkich produktów (wymagane logowanie)
+5. Możliwość wyszukania produktu po nazwie po nazwie (wymagane logowanie)
+5. Edycja danych produktu (nazwa, typ, opis, cena) (wymagane logowanie)
+6. Wyświetlenie wszystkich klientów (wymagane logowanie)
+7. Możliwowość wyszukania klienta po imieniu i nazwisku (wymagane logowanie)
 
