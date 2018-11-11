@@ -705,7 +705,7 @@
 			& Użytkownik dodaje/edytuje/usuwa adres wysyłki do swojej listy adresów.
 			System modyfikuje listę adresów według polecenia użytkownika.           					\\ \hline
 			\textbf{\begin{tabular}[l]{@{}l@{}}Zdarzenie \\ wyzwalające\end{tabular}} 	
-			&Użytkownik klika 'My Addresses' na podstronie widoczej bezpośrednio
+			& Użytkownik klika 'My Addresses' na podstronie widoczej bezpośrednio
 			po zalogowaniu.								\\ \hline
 			\textbf{Warunki wstępne}	
 			& Użytkownik jest zalogowany. 																											\\ \hline
@@ -725,7 +725,6 @@
 		\item System przekierowywuje go na podstronę z wyborem adresu.
 		\item Użytkownik klika na przycisk rozwijający listę zapisanych adresów.
 		\item System wyświetla tę listę, zaznaczając w widoczny sposób adres domyślny.
-		\item Użytkownik najeżdża na element listy.
 		\item System wyświetla przy elemencie przyciski 'Edit' i 'Delete'.
 		\item Użytkownik klika 'Edit'.
 		\item System rozwija widok z formularzem do danych adresowych.
@@ -735,7 +734,8 @@
 		\item System weryfikuje poprawność danych.
 		\item System zapisuje zmiany.
 	\end{enumerate}
-	%---------------------------------------	
+	%---------------------------------------
+		
 	\colorbox{grey}{Scenariusz alternatywny:}
 	\begin{enumerate}\addtocounter{enumi}{2}
 		\item[]
@@ -754,15 +754,32 @@
 		\begin{enumerate}
 			\item[6.1] Użytkownik klika 'Delete'.
 			\begin{enumerate}
-				\item System usuwa element z listy.	
+				\item System usuwa element z listy.
+				\item Następuje powrót do punktu 12 scenariusza głównego
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+
+	\colorbox{grey}{Scenariusz alternatywny:}
+	\begin{enumerate}\addtocounter{enumi}{6}
+		\item[]
+		\begin{enumerate}
+			\item[11.1] Wprowadzone dane są błędne.
+			\begin{enumerate}
+				\item System ponownie wyświetla formularz z informacją o niepowodzeniu.
+				\item Następuje powrót do punktu 9 scenariusza głównego.
 			\end{enumerate}
 		\end{enumerate}
 	\end{enumerate}
 	%---------------------------------------
 	
-	
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=350pt]{ustawienia.pdf}
+	\end{center}
 	\newpage
 	
+	%---------------------------------------
 	
 	
 	%---------------------------------------
@@ -819,9 +836,13 @@
 		\end{enumerate}
 	\end{enumerate}
 
-	
-%-----------------------------------------------------
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=350pt]{filtracja.pdf}
+	\end{center}
 	\newpage
+%-----------------------------------------------------
+
 		\section{Newsletter}
 	\subsection{Opis przypadku użycia}
 	\begin{table}[h]
@@ -855,6 +876,10 @@
 	\end{enumerate}
 	%---------------------------------------	
 
+	\subsection{Model przypadku użycia}
+	\begin{center}
+		\includegraphics[width=150pt]{newsletter.pdf}
+	\end{center}
 	\newpage
 	
 %---------------------------------------	
