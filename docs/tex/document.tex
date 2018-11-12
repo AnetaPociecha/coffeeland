@@ -891,11 +891,34 @@
 
 	\renewcommand{\thesection}{\thechapter.\arabic{section}}		
 	
-	\chapter{Model danych - diagramy ERD}
-
+	\chapter{Model danych}
+	
+	\section{Diagram związków encji}
 	\includegraphics[width=500pt]{database.pdf}
 	
+	\section{Zapytania wysyłane do bazy danych}
 	
+	\paragraph{GetClientCredentials} : pobierz imię, nazwisko, adresy zalogowanego klienta
+	
+	\paragraph{GetOrders} : pobierz wszystkie zamówienia zalogowanego klienta 
+	
+	\paragraph{IsEmailAvailable} : prawdzenie czy dany email jest zapisany w bazie danych
+	
+	\paragraph{CreateNewClient} : dodaj klienta do bazy danych 
+	
+	\paragraph{IsSingInCredentialCorrect} : sprawdzenie czy w bazie danych jest zapisany klient o podanym email’u i haśle
+	
+	\paragraph{IsClientSignInForNewsletter} : sprawdzenie czy zalogowany klient powinien otrzymywać newsletter
+	
+	\paragraph{UpdateClientCredentials} : zaktualizuj dane zalogowanego klienta
+	
+	\paragraph{AddNewAddress} : stwórz nowy adres i przypisz do zalogowanego klienta
+	
+	\paragraph{RemoveAddress} : usuń wybrany adres
+	
+	\paragraph{SaveOrder} : zapisz zamówienie
+	
+	\paragraph{CreateComplain} : stwórz reklamacje
 %---------------------------------------	
 	\chapter{Model dynamiki - diagramy STD}
 	
@@ -922,6 +945,7 @@
 			\item nUnit
 			\item .NET
 			\item JestTest
+			\item git
 		\end{itemize}
 		
 		\section{Narzędzia}
@@ -931,6 +955,7 @@
 			\item Selenium
 			\item Chromium
 			\item CircleCI
+			\item GitHub
 		\end{itemize}
 	
 \end{document}
