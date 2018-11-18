@@ -566,6 +566,14 @@ SaveOrder : zapisz zamówienie
 
 CreateComplain : stwórz reklamacje
 
+
+CreateNewProduct : dodaj nowy produkt do bazy danych
+DeleteProduct : usuń produkt z bazy danych
+UpdateProductDescription : zaktualizuj opis produktu
+GetClients : pobierz wszystkich klientów sklepu
+GetComplaints : pobierz wszystkie reklamacje
+
+
 **********************************************************************
 PANEL ADMINISTRATORA
 **********************************************************************
