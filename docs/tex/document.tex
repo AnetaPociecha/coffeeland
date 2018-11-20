@@ -26,6 +26,8 @@
 
 \begin{document}
 	
+	
+	
 	\begin{titlepage} 
 		
 		\begin{center}
@@ -63,14 +65,14 @@
 		
 	\end{titlepage}
 	
-	
+	\tableofcontents
 	%-------------------------------------------------------
 	%-------------------------------------------------------
 	%-------------------------------------------------------
 	
-	\newpage
+	%\newpage
 	
-	\tableofcontents 
+	%\tableofcontents 
 	
 	\setcounter{chapter}{0}	
 	\setcounter{section}{0}	
@@ -92,7 +94,7 @@
 		%-------------------------------------------------------
 		\section{Diagram kontekstowy}
 			\begin{center}
-				\includegraphics[width=400pt]{kontekstowy.pdf}
+				\includegraphics[width=300pt]{kontekstowy.pdf}
 			\end{center}
 	
 		%-------------------------------------------------------
@@ -592,7 +594,7 @@
 				\item Użytkownik przechodzi na zakładkę ‘Orders’.
 				\item Użytkownik wybiera opcję ‘Complain’
 				\item System otwiera podstronę ‘Complain’
-				\item Użytkownik wprowadza dane w polu ‘Letter of complain’
+				\item Użytkownik wprowadza dane w polu ‘Letter of complaint’
 				\item System weryfikuje dane (czy wprowadzono minimum 10 znaków)
 				\item System wyświetla powiadomienie o udanej reklamacji
 			\end{enumerate}
@@ -960,7 +962,7 @@
 	\section{Dodanie towaru}
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=200pt]{admin_dodaj.pdf}
+				\includegraphics[width=150pt]{admin_dodaj.pdf}
 			\end{center}
 	%-------------------------------------------------------
 	
@@ -999,7 +1001,7 @@
 	\section{Możliwowość wyszukania klienta po imieniu i nazwisku lub mailu}
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=150pt]{szukaj_klienta.pdf}
+				\includegraphics[width=200pt]{szukaj_klienta.pdf}
 			\end{center}
 		
 	
@@ -1025,48 +1027,62 @@
 		%-------------------------------------------------------
 		\subsection{Commands}
 		
-				\paragraph{CreateNewClient} : dodaj klienta do bazy danych 
+			\begin{itemize}
+				\item \textbf{CreateNewProduct} : dodaj nowy produkt do bazy danych
 				
-				\paragraph{UpdateClientCredentials} : zaktualizuj dane zalogowanego klienta
+				\item \textbf{DeleteProduct} : usuń produkt z bazy danych
 				
-				\paragraph{AddNewAddress} : stwórz nowy adres i przypisz do zalogowanego klienta
+				\item \textbf{UpdateProductDescription} : zaktualizuj opis produktu
+						
+				\item \textbf{CreateNewClient} : dodaj klienta do bazy danych 
 				
-				\paragraph{RemoveAddress} : usuń wybrany adres
+				\item \textbf{UpdateClientCredentials} : zaktualizuj dane zalogowanego klienta
 				
-				\paragraph{SaveOrder} : zapisz zamówienie
+				\item \textbf{AddNewAddress} : stwórz nowy adres i przypisz do zalogowanego klienta
 				
-				\paragraph{CreateComplain} : stwórz reklamacje
+				\item \textbf{RemoveAddress} : usuń wybrany adres
 				
+				\item \textbf{SaveOrder} : zapisz zamówienie
+				
+				\item \textbf{CreateComplaint} : stwórz reklamacje
+				
+			\end{itemize}	
 		%-------------------------------------------------------		
 		\subsection{Queries}
-			
-				\paragraph{GetClientCredentials} : pobierz imię, nazwisko, adresy zalogowanego klienta
+			\begin{itemize}
+				\item \textbf{GetClients} : pobierz wszystkich klientów sklepu
 				
-				\paragraph{GetOrders} : pobierz wszystkie zamówienia zalogowanego klienta 
-		
-				\paragraph{IsEmailAvailable} : sprawdzenie czy dany email jest zapisany w bazie danych
-	
-				\paragraph{IsSingInCredentialCorrect} : sprawdzenie czy w bazie danych jest zapisany klient o podanym email’u i haśle
-		
-				\paragraph{IsClientSignInForNewsletter} : sprawdzenie czy zalogowany klient powinien otrzymywać newsletter
+				\item \textbf{GetClients} : pobierz wszystkie reklamacje 
 			
+				\item \textbf{GetClientCredentials} : pobierz imię, nazwisko, adresy zalogowanego klienta
+				
+				\item \textbf{GetOrders} : pobierz wszystkie zamówienia zalogowanego klienta 
+		
+				\item \textbf{IsEmailAvailable} : sprawdzenie czy dany email jest zapisany w bazie danych
+	
+				\item \textbf{IsSingInCredentialCorrect} : sprawdzenie czy w bazie danych jest zapisany klient o podanym email’u i haśle
+		
+				\item \textbf{IsClientSignInForNewsletter} : sprawdzenie czy zalogowany klient powinien otrzymywać newsletter
+			\end{itemize}
 
 %-------------------------------------------------------
 %-------------------------------------------------------
 %-------------------------------------------------------	
 
-\chapter{Słownik danych}
+%\chapter{Słownik danych}
 	
 	%-------------------------------------------------------
 	%-------------------------------------------------------
-	\subsubsection{E}
-		\paragraph{email} $=$ <minimum jeden znak> @ <minimum jeden znak> 
-		\subsubsection{H}
-		\paragraph{hasło} $=$ minimum 8 znaków w tym wielka litera, mała litera i cyfra 
-		\subsubsection{I}
-		\paragraph{imię}  $=$ minimum jeden znak  
-		\subsubsection{N}
-		\paragraph{nazwisko} $=$ minimum jeden znak 
+%	\subsubsection{E}
+%			\textbf{email} $=$ <minimum jeden znak> @ <minimum jeden znak> 
+%		\subsubsection{H}
+%			\textbf{hasło} $=$ minimum 8 znaków w tym wielka litera, mała litera i cyfra 
+%		\subsubsection{I}
+%			\textbf{imię}  $=$ minimum jeden znak  
+%		\subsubsection{L}
+%			\textbf{letterOfComplaint} $=$ minimum 10 znaków
+%		\subsubsection{N}
+%			\textbf{nazwisko} $=$ minimum jeden znak 
 
 
 %-------------------------------------------------------
@@ -1081,7 +1097,7 @@
 			\def\arraystretch{1.3}
 			\begin{tabular}{lll}
 				
-				\textbf{Technologie} & \hspace{20mm} & \textbf{Narzędzia}      \\
+				\textbf{Technologie} & \hspace{50mm} & \textbf{Narzędzia}      \\
 				React                &  & Visual Studio Code      	\\
 				JavaScript           &  & Visual Studio Community 	\\
 				SignalR              &  & Selenium                	\\
