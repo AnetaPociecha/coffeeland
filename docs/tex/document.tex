@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[10pt]{report}
 \usepackage[a4paper, left=2cm, right=2cm]{geometry}
 \usepackage{xcolor}
 \definecolor{grey}{rgb}{0.9,0.9,0.9}
@@ -7,7 +7,13 @@
 \usepackage[sfdefault,light]{FiraSans}
 \usepackage{graphicx}
 \usepackage{colortbl}
+
 \usepackage{enumerate}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]   
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}   
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
 
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}}
 \renewcommand{\labelenumi}{\theenumi.}
@@ -22,11 +28,8 @@
 	urlcolor=black
 }
 \renewcommand{\chaptername}{}
-
-
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 \begin{document}
-	
-	
 	
 	\begin{titlepage} 
 		
@@ -65,14 +68,14 @@
 		
 	\end{titlepage}
 	
+	
+	%-------------------------------------------------------
+	%-------------------------------------------------------
+	%-------------------------------------------------------
+	
+	 
+	
 	\tableofcontents
-	%-------------------------------------------------------
-	%-------------------------------------------------------
-	%-------------------------------------------------------
-	
-	%\newpage
-	
-	%\tableofcontents 
 	
 	\setcounter{chapter}{0}	
 	\setcounter{section}{0}	
@@ -94,7 +97,7 @@
 		%-------------------------------------------------------
 		\section{Diagram kontekstowy}
 			\begin{center}
-				\includegraphics[width=300pt]{kontekstowy.pdf}
+				\includegraphics[width=200pt]{kontekstowy.pdf}
 			\end{center}
 	
 		%-------------------------------------------------------
@@ -144,8 +147,6 @@
 	%-------------------------------------------------------
 	%-------------------------------------------------------
 	\section{Rejstracja}
-		\subsection{Opis przypadku użycia}
-		
 			\begin{table}[h]
 				\def\arraystretch{1.3}
 				\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |} \hline
@@ -207,18 +208,17 @@
 %-------------------------------------------------------
 %-------------------------------------------------------
 	
-	\newpage
+	 
 
 %-------------------------------------------------------
 %-------------------------------------------------------
 %-------------------------------------------------------
 
-	
+	\newpage 
 	\section{Logowanie}
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection {Opis przypadku użycia}
 	
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -244,7 +244,7 @@
 					& Użytkownik nie zostaje zalogowany. Użytkownik zostaje powiadomiony o niepowodzeniu. 	\\ \hline
 				\end{tabular}
 			\end{table}
-			\newpage
+			 
 			
 			%-------------------------------------------------------
 			\colorbox{grey}{Scenariusz główny:}
@@ -274,9 +274,9 @@
 		%-------------------------------------------------------
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=300pt]{logowanie.pdf}
+				\includegraphics[width=150pt]{logowanie.pdf}
 			\end{center}
-			\newpage
+			 
 
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -286,7 +286,6 @@
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 	
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -324,9 +323,9 @@
 			%-------------------------------------------------------	
 			\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=120pt]{wylogowanie.pdf}
+				\includegraphics[width=70pt]{wylogowanie.pdf}
 			\end{center}
-			\newpage
+			 
 		
 	%-------------------------------------------------------	
 	%-------------------------------------------------------
@@ -339,7 +338,6 @@
 		\subsection{Dodawanie produktów do koszyka z poziomu podstrony produktu}
 		
 			%-------------------------------------------------------
-			\subsubsection{Opis przypadku użycia}
 				\begin{table}[h]
 					\def\arraystretch{1.3}
 					\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -371,17 +369,17 @@
 					\item System zmienia stan koszyka
 					\item System wyświetla informację o powodzeniu
 				\end{enumerate}
-				\newpage
+				 
 			
 			%-------------------------------------------------------
 			\subsubsection{Model przypadku użycia}
 				\begin{center}
-					\includegraphics[width=120pt]{koszyk1.pdf}
+					\includegraphics[width=80pt]{koszyk1.pdf}
 				\end{center}
 			
 		%-------------------------------------------------------	
 		%-------------------------------------------------------	
-		
+		\newpage
 		\subsection{Zmiana zawartości koszyka z poziomu podstrony koszyka}
 		
 			%-------------------------------------------------------
@@ -415,12 +413,12 @@
 					\item System weryfikuje dane 
 					\item System aktualizuje stan koszyka
 				\end{enumerate}
-				\newpage
+				 
 	
 			%-------------------------------------------------------
 			\subsubsection{Model przypadku użycia}
 				\begin{center}
-					\includegraphics[width=120pt]{koszyk2.pdf}
+					\includegraphics[width=70pt]{koszyk2.pdf}
 				\end{center}
 	
 	
@@ -431,7 +429,6 @@
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 		
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -457,6 +454,7 @@
 				\end{tabular}
 			\end{table}
 	
+	 \newpage
 			%-------------------------------------------------------
 			\colorbox{grey}{Scenariusz główny:}
 			\begin{enumerate}
@@ -497,7 +495,6 @@
 		
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 			\begin{table}[h]
 				\def\arraystretch{1.3}
 				\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -550,9 +547,9 @@
 		%-------------------------------------------------------
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=400pt]{edycja.pdf}
+				\includegraphics[width=250pt]{edycja.pdf}
 			\end{center}
-			\newpage
+			 
 
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -561,7 +558,6 @@
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 			\begin{table}[h]
 				\def\arraystretch{1.3}
 				\begin{tabular}{|>{\columncolor[gray]{0.97}}p{4cm}| p{12cm} |}
@@ -588,13 +584,14 @@
 				\end{tabular}
 			\end{table}
 		
+			\newpage
 			%-------------------------------------------------------
 			\colorbox{grey}{Scenariusz główny:}
 			\begin{enumerate}
 				\item Użytkownik przechodzi na zakładkę ‘Orders’.
 				\item Użytkownik wybiera opcję ‘Complain’
 				\item System otwiera podstronę ‘Complain’
-				\item Użytkownik wprowadza dane w polu ‘Letter of complaint’
+				\item Użytkownik wprowadza dane w polu ‘Letter of complain’
 				\item System weryfikuje dane (czy wprowadzono minimum 10 znaków)
 				\item System wyświetla powiadomienie o udanej reklamacji
 			\end{enumerate}
@@ -611,15 +608,16 @@
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
-			\newpage
+			 
 			
 		%-------------------------------------------------------
 		%-------------------------------------------------------
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=400pt]{reklamacja.pdf}
+				\includegraphics[width=200pt]{reklamacja.pdf}
 			\end{center}
-			\newpage
+			 
+			 \newpage
 			
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -628,7 +626,6 @@
 		
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 		
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -668,7 +665,7 @@
 			\end{enumerate}
 		
 			%-------------------------------------------------------	
-			\newpage
+			 
 			\colorbox{grey}{Scenariusz alternatywny:}
 			\begin{enumerate}\addtocounter{enumi}{2}
 				\item[]
@@ -721,15 +718,17 @@
 					\end{enumerate}
 				\end{enumerate}
 			\end{enumerate}
-			\newpage
+			 
 			
 		%-------------------------------------------------------
 		%-------------------------------------------------------
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=450pt]{wysylka.pdf}
+				\includegraphics[width=400pt]{wysylka.pdf}
 			\end{center}
-			\newpage
+			 
+	
+	\newpage
 	
 	%-------------------------------------------------------
 	%----------------------------------------
@@ -738,7 +737,6 @@
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 		
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -821,14 +819,13 @@
 				\end{enumerate}
 			\end{enumerate}
 		\end{enumerate}
-	
 	%-------------------------------------------------------
 	%-------------------------------------------------------
 	\subsection{Model przypadku użycia}
 	\begin{center}
-		\includegraphics[width=350pt]{ustawienia.pdf}
+		\includegraphics[width=250pt]{ustawienia.pdf}
 	\end{center}
-	\newpage
+	 
 	
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -838,7 +835,6 @@
 	
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
 		
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -895,9 +891,9 @@
 		%-------------------------------------------------------
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=350pt]{filtracja.pdf}
+				\includegraphics[width=180pt]{filtracja.pdf}
 			\end{center}
-		\newpage
+		 
 		
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -906,7 +902,7 @@
 		
 		%-------------------------------------------------------
 		%-------------------------------------------------------
-		\subsection{Opis przypadku użycia}
+
 		
 			%-------------------------------------------------------
 			\begin{table}[h]
@@ -942,7 +938,7 @@
 			%-------------------------------------------------------
 			\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=130pt]{newsletter.pdf}
+				\includegraphics[width=80pt]{newsletter.pdf}
 			\end{center}
 			
 			
@@ -962,7 +958,7 @@
 	\section{Dodanie towaru}
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=150pt]{admin_dodaj.pdf}
+				\includegraphics[width=200pt]{admin_dodaj.pdf}
 			\end{center}
 	%-------------------------------------------------------
 	
@@ -1001,7 +997,7 @@
 	\section{Możliwowość wyszukania klienta po imieniu i nazwisku lub mailu}
 		\subsection{Model przypadku użycia}
 			\begin{center}
-				\includegraphics[width=200pt]{szukaj_klienta.pdf}
+				\includegraphics[width=250pt]{szukaj_klienta.pdf}
 			\end{center}
 		
 	
@@ -1018,7 +1014,7 @@
 	%-------------------------------------------------------
 	\section{Diagram związków encji}
 		\includegraphics[width=500pt]{database.pdf}
-		\newpage
+		 
 		
 	%-------------------------------------------------------
 	%-------------------------------------------------------
@@ -1027,43 +1023,31 @@
 		%-------------------------------------------------------
 		\subsection{Commands}
 		
-			\begin{itemize}
-				\item \textbf{CreateNewProduct} : dodaj nowy produkt do bazy danych
+				\paragraph{CreateNewClient} : dodaj klienta do bazy danych 
 				
-				\item \textbf{DeleteProduct} : usuń produkt z bazy danych
+				\paragraph{UpdateClientCredentials} : zaktualizuj dane zalogowanego klienta
 				
-				\item \textbf{UpdateProductDescription} : zaktualizuj opis produktu
-						
-				\item \textbf{CreateNewClient} : dodaj klienta do bazy danych 
+				\paragraph{AddNewAddress} : stwórz nowy adres i przypisz do zalogowanego klienta
 				
-				\item \textbf{UpdateClientCredentials} : zaktualizuj dane zalogowanego klienta
+				\paragraph{RemoveAddress} : usuń wybrany adres
 				
-				\item \textbf{AddNewAddress} : stwórz nowy adres i przypisz do zalogowanego klienta
+				\paragraph{SaveOrder} : zapisz zamówienie
 				
-				\item \textbf{RemoveAddress} : usuń wybrany adres
+				\paragraph{CreateComplain} : stwórz reklamacje
 				
-				\item \textbf{SaveOrder} : zapisz zamówienie
-				
-				\item \textbf{CreateComplaint} : stwórz reklamacje
-				
-			\end{itemize}	
 		%-------------------------------------------------------		
 		\subsection{Queries}
-			\begin{itemize}
-				\item \textbf{GetClients} : pobierz wszystkich klientów sklepu
-				
-				\item \textbf{GetClients} : pobierz wszystkie reklamacje 
 			
-				\item \textbf{GetClientCredentials} : pobierz imię, nazwisko, adresy zalogowanego klienta
+				\paragraph{GetClientCredentials} : pobierz imię, nazwisko, adresy zalogowanego klienta
 				
-				\item \textbf{GetOrders} : pobierz wszystkie zamówienia zalogowanego klienta 
+				\paragraph{GetOrders} : pobierz wszystkie zamówienia zalogowanego klienta 
 		
-				\item \textbf{IsEmailAvailable} : sprawdzenie czy dany email jest zapisany w bazie danych
+				\paragraph{IsEmailAvailable} : sprawdzenie czy dany email jest zapisany w bazie danych
 	
-				\item \textbf{IsSingInCredentialCorrect} : sprawdzenie czy w bazie danych jest zapisany klient o podanym email’u i haśle
+				\paragraph{IsSingInCredentialCorrect} : sprawdzenie czy w bazie danych jest zapisany klient o podanym email’u i haśle
 		
-				\item \textbf{IsClientSignInForNewsletter} : sprawdzenie czy zalogowany klient powinien otrzymywać newsletter
-			\end{itemize}
+				\paragraph{IsClientSignInForNewsletter} : sprawdzenie czy zalogowany klient powinien otrzymywać newsletter
+			
 
 %-------------------------------------------------------
 %-------------------------------------------------------
@@ -1073,27 +1057,18 @@
 	
 	%-------------------------------------------------------
 	%-------------------------------------------------------
-		\subsubsection{A}
-			\textbf{apartmentNumber} $=$ 1-4 cyfry
-		\subsubsection{B}
-			\textbf{buildingNumber} $=$ 1-4 cyfry 
-		\subsubsection{C}
-			\textbf{country} $=$ 1-20 liter  \\
-			\textbf{city} $=$ 1-20 liter
-		\subsubsection{E}
-			\textbf{email} $=$ <minimum jeden znak> @ <minimum jeden znak> 
-		\subsubsection{I}
-			\textbf{firstName}  $=$ minimum jeden znak  
-		\subsubsection{L}
-			\textbf{lastName}  $=$ minimum jeden znak \\
-			\textbf{letterOfComplaint} $=$ minimum 10 znaków
-		\subsubsection{P}
-			\textbf{password} $=$ minimum 8 znaków w tym wielka litera, mała litera i cyfra 
-		\subsubsection{S}
-			\textbf{street} $=$ 1-20 liter
-		\subsubsection{Z}
-			\textbf{ZIPcode} $=$ <cyfra><cyfra>-<cyfra><cyfra><cyfra>
-		
+		\paragraph{country} $=$ 1-20 liter
+		\paragraph{city} $=$  1-20 liter
+		\paragraph{street} $=$ 1-20 liter
+		\paragraph{ZIPCode} $=$ <cyfra><cyfra>-<cyfra><cyfra><cyfra>
+		\paragraph{Building number} $=$ 1-4 cyfry
+		\paragraph{Apartament number} $=$ 1-4 cyfry
+		\paragraph{Letter of complain} $=$  minimum 10 znaków
+		\paragraph{email} $=$ <minimum jeden znak> @ <minimum jeden znak> 
+		\paragraph{hasło} $=$ minimum 8 znaków w tym wielka litera, mała litera i cyfra 
+		\paragraph{imię}  $=$ minimum jeden znak  
+		\paragraph{nazwisko} $=$ minimum jeden znak 
+
 
 %-------------------------------------------------------
 %-------------------------------------------------------
