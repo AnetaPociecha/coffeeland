@@ -1,0 +1,122 @@
+*********************************************
+
+SCENARIUSZE DO TESTÓW
+
+*********************************************
+
+TESTY BĘDĄ REALIZOWAŁY KAŻDY ZE SCENARIUSZY, SPRAWDZAJĄC, CZY DZIAŁANIE SYSTEMU JEST
+
+TAKIE, JAK OCZEKIWANE. BĘDĄ TO TESTY AUTOMATYCZNE
+
+*********************************************
+
+Szablon:
+
+---------------------------------------------
+
+AKCJA
+
+---------------------------------------------
+
+TEST 1
+_____________________________________________
+
+....
+
+_____________________________________________
+
+TEST n
+_____________________________________________
+
+....
+
+_____________________________________________
+
+---------------------------------------------
+
+REJESTRACJA
+
+---------------------------------------------
+
+TEST 1
+_____________________________________________
+	1. Interakcja:	Wprowadzenie danych: imię, nazwisko, email, hasło według reguł podanych w słowniku. Podany email nie istnieje w bazie danych.
+
+	2. Interakcja:	Zatwierdzenie.
+
+	3. Weryfikacja: czy pojawił się komunikat o udanej rejestracji.
+_____________________________________________
+
+TEST 2
+_____________________________________________
+	1. Interakcja:	Wprowadzenie danych: imię, nazwisko, email, hasło według reguł podanych w słowniku. Podany email istnieje wbazie danych.
+
+	2. Interakcja:	Zatwierdzenie.
+
+	3. Weryfikacja: czy pojawił się komunikat o istniejacym już adresie email.
+_____________________________________________
+
+TEST 3
+_____________________________________________
+	1. Zostają wprowadzone dane nie spełniające kryteriów określonych w słowniku.
+
+	2. Interakcja:	Zatwierdzenie.
+
+	3. Weryfikacja: czy pola, dla których wprowdzono dane, są podświetlone.
+_____________________________________________
+
+---------------------------------------------
+
+LOGOWANIE
+
+---------------------------------------------
+
+TEST 1
+_____________________________________________
+
+	1. Interakcja:	Wprowadzenie danych: email, hasło, które istnieją w bazie danych.
+
+	2. Interakcja:	Zatwierdzenie, przycisk 'Sign in'.
+
+	3. Weryfikacja:	Czy system przekierował na podstronę 'Shop'.
+
+	4. Weryfikacja:	Czy pojawił się 'My Account'.
+
+	5. weryfikacja:	Czy tekst w przycisku zmienił wartość na 'Sign out'
+
+_____________________________________________
+
+TEST 2
+_____________________________________________
+
+	1. Interakcja:	Wprowadzenie danych: email, hasło, których nie ma w bazie danych.
+
+	2. Interakcja:	Zatwierdzenie, przycisk 'Sign in'.
+
+	3. Weryfikacja:	Czy system nie przekierował na podstronę 'Shop'.
+
+_____________________________________________		
+			
+---------------------------------------------
+
+WYLOGOWANIE -> Wydaje mi sie, że możnaby zrobić to jako kontynuacja LOGOWANIE TEST 1
+
+---------------------------------------------
+
+TEST 1
+_____________________________________________
+
+	1. Interakcja:	Wprowadzenie danych: email, hasło, które istnieją w bazie danych.
+
+	2. Interakcja:	Zatwierdzenie, przycisk 'Sign in'.
+
+	3. Weryfikacja:	Czy system przekierował na podstronę 'Shop'.
+
+	4. Interakcja:	Kliknięcie przycisku 'Sign out'.
+
+	5. Weryfikacja:	Czy system przekierował na podstronę 'Shop'.
+
+	6. Weryfikacja:	Czy napis w przycisku zmienił wartość na 'Sign in/Register'.
+
+_____________________________________________
+
