@@ -13,6 +13,10 @@ Testy:
 * Usunięcie towaru
 * Wyświelenie reklamacji
 * Wyszukiwanie klienta po imieniu i nazwisku
+* Checkout Details - edycja
+* Edycja danych produktu
+* Podawanie danych do reklamacji
+* Edycja danych osobowych
 ---------------------------------------------
 
 ---------------------------------------------
@@ -21,12 +25,16 @@ Technologia: Jest
 Testy:
 
 * Filtrowanie
-* Edycja danych osobowych
 * Dodawanie produktów do koszyka
-* Checkout Details - edycja
-* Edycja danych produktu
+* Usuwanie produktów z koszyka
 * Wyświetlanie klientów
-* Podawanie danych do reklamacji
+* Wyświetlanie reklamacji
+* Zmienianie ilości produktów w koszyku
+* Wyświetlanie formularza do zmiany danych osobowych
+* Wyświetlanie formularza do książki adresowej
+* Wyswietlanie formularza do edycji produktów
+* Podświetlenie domyślnego adresu do wysyłki
+* Usuwanie elementu z listy adresów
 ---------------------------------------------
 
 ---------------------------------------------
