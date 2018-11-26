@@ -1,0 +1,47 @@
+---------------------------------------------
+Technologia: Selenium
+---------------------------------------------
+Testy:
+
+* Rejestracja
+* Logowanie
+* Wylogowanie
+* Zmiana zawartosci koszyka
+* Zakup produktu (dla domyślnych danych)
+* Zgłaszanie reklamacji
+* Dodawanie towaru
+* Usunięcie towaru
+* Wyświelenie reklamacji
+* Wyszukiwanie klienta po imieniu i nazwisku
+---------------------------------------------
+
+---------------------------------------------
+Technologia: Jest
+---------------------------------------------
+Testy:
+
+* Filtrowanie
+* Edycja danych osobowych
+* Dodawanie produktów do koszyka
+* Checkout Details - edycja
+* Edycja danych produktu
+* Wyświetlanie klientów
+* Podawanie danych do reklamacji
+---------------------------------------------
+
+---------------------------------------------
+Technologia: nUnit
+---------------------------------------------
+Testy:
+
+* Dane przy rejestracji
+* Dane przy logowaniu
+* Przekazanie zawartości koszyka podczas zakupu
+* Dane dla filtracji
+* Dane podczas zmiany danych osobowych
+* Dane podczas modyfikacji Checkout Details
+* Dane przy składaniu reklamacji
+* Dane przy dodawaniu/usuwaniu towaru
+* Zapis historii zakupów
+* Zapis historii reklamacji
+---------------------------------------------
