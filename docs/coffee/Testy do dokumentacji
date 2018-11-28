@@ -27,6 +27,7 @@ Testy:
 * Filtrowanie
 * Dodawanie produktów do koszyka
 * Usuwanie produktów z koszyka
+* Przekazanie zawartości koszyka podczas zakupu
 * Wyświetlanie klientów
 * Wyświetlanie reklamacji
 * Zmienianie ilości produktów w koszyku
@@ -44,12 +45,9 @@ Testy:
 
 * Dane przy rejestracji
 * Dane przy logowaniu
-* Przekazanie zawartości koszyka podczas zakupu
-* Dane dla filtracji
-* Dane podczas zmiany danych osobowych
+* Dane podczas modyfikacji danych osobowych
 * Dane podczas modyfikacji Checkout Details
 * Dane przy składaniu reklamacji
-* Dane przy dodawaniu/usuwaniu towaru
 * Zapis historii zakupów
 * Zapis historii reklamacji
 ---------------------------------------------
