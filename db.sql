@@ -35,7 +35,7 @@ create table addresses (
 	country			varchar(30) not null,
 	city			varchar(30) not null,
 	street			varchar(30) not null,
-	ZIPCode			integer not null,
+	ZIPCode			varchar(30) not null,
 	buildingNumber	integer not null,
 	apartmentNumber	integer not null
 );
