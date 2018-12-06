@@ -3,3 +3,8 @@
 *.out
 *.gz
 *.toc
+src/Coffeeland/.vs/*
+src/Coffeeland/packages/*
+src/Coffeeland/Coffeeland/obj/*
+src/Coffeeland/Coffeeland/Client/node_modules/*
+src/Coffeeland/Coffeeland/bin/*
