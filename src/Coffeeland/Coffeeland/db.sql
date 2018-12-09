@@ -11,8 +11,8 @@ begin;
 
 create table products (
 	productId		integer primary key,
-	name        		varchar(30) not null,
-	price	    		integer	not null,
+	name        	varchar(30) not null,
+	price	    	integer	not null,
 	imagePath		varchar(50) not null,
 	blend			varchar(30) not null,
 	description		varchar(100) not null
@@ -36,8 +36,8 @@ create table addresses (
 	city			varchar(30) not null,
 	street			varchar(30) not null,
 	ZIPCode			varchar(30) not null,
-	buildingNumber		integer not null,
-	apartmentNumber		integer 
+	buildingNumber	integer not null,
+	apartmentNumber	integer not null
 );
 
 create table workers (
@@ -49,9 +49,9 @@ create table workers (
 
 create table orders (
 	orderId			integer primary key,
-	clientId		integer not null references clients,
-	workerId		integer not null references workers,
-	addressId		integer not null references addresses,
+	clientId		integer not null unique references clients,
+	workerId		integer not null unique references workers,
+	addressId		integer not null unique references addresses,
 	status			integer not null,
 	openDate		date not null,
 	closeDate		date
@@ -72,6 +72,12 @@ create table payments (
 	orderId			integer not null references orders,
 	amount			integer not null,
 	openDate		date not null
+);
+
+create table order_entries (
+	orderId			integer references orders,
+	productId		integer references products,
+	amount			integer not null	
 );
 
 commit;

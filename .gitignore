@@ -3,6 +3,7 @@
 *.out
 *.gz
 *.toc
+*.user
 src/Coffeeland/.vs/*
 src/Coffeeland/packages/*
 src/Coffeeland/Coffeeland/obj/*
