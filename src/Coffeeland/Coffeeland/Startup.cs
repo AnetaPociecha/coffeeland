@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
+using Microsoft.AspNet.SignalR;
+
 
 [assembly: OwinStartup(typeof(Coffeeland.Startup))]
 

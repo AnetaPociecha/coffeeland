@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Diagnostics;
 
-namespace DatabaseConnector
+namespace Coffeeland.Database
 {
-    class DatabaseQueryProcessor
+    public class DatabaseQueryProcessor
     {
         Connector connector;
 
         public DatabaseQueryProcessor()
         {
+            Debug.WriteLine("Test");
             connector = new Connector();
         }
 
@@ -82,7 +84,6 @@ namespace DatabaseConnector
             }
             return 0;
         }
-
         
         public bool IsClientSignInForNewsletter(String email)
         {
@@ -348,8 +349,7 @@ namespace DatabaseConnector
             }
             return builder.ToString();
         }
-
-
+        
         int boolToBit(bool a)
         {
             if (a) return 1;
@@ -358,7 +358,7 @@ namespace DatabaseConnector
 
     }
 
-    enum WorkerPosition
+    public enum WorkerPosition
     {
         a = 'a',
         b = 'b',

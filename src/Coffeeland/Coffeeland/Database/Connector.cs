@@ -7,12 +7,12 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 
-namespace DatabaseConnector
+namespace Coffeeland.Database
 {
     class Connector
     {
         const String connectionString = "datasource=localhost;Initial Catalog=coffeeland;port=3306;username=root;password=;Convert Zero Datetime=True";
-        const String dbScriptPath = @"D:\studia\so5\coffeeland\coffeeland\db.sql";
+        const String dbScriptPath = @"C:\programistyczne\coffeeland\src\Coffeeland\Coffeeland\db.sql";
 
         internal bool Erase()
         {
@@ -75,13 +75,5 @@ namespace DatabaseConnector
                 throw;
             }
         }
-
-        
-
-
-
-
-
-
     }
 }
