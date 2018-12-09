@@ -2,6 +2,7 @@ drop table if exists products;
 drop table if exists products;
 drop table if exists clients;
 drop table if exists addresses;
+drop table if exists order_entries;
 drop table if exists workers;
 drop table if exists orders;
 drop table if exists complaints;
@@ -37,7 +38,8 @@ create table addresses (
 	street			varchar(30) not null,
 	ZIPCode			varchar(30) not null,
 	buildingNumber	integer not null,
-	apartmentNumber	integer not null
+	apartmentNumber	integer,
+	isDefault 		bit default 0
 );
 
 create table workers (
@@ -49,15 +51,19 @@ create table workers (
 
 create table orders (
 	orderId			integer primary key,
-	clientId		integer not null unique references clients,
-	workerId		integer not null unique references workers,
-	addressId		integer not null unique references addresses,
+	clientId		integer not null references clients,
+	workerId		integer not null references workers,
+	addressId		integer not null references addresses,
 	status			integer not null,
 	openDate		date not null,
 	closeDate		date
 );
 
-
+create table order_entries (
+	orderId 	integer not null references orders,
+	productId	integer not null references products,
+	amount		integer not null
+);
 
 create table complaints (
 	orderId   		integer not null references orders,
@@ -72,12 +78,6 @@ create table payments (
 	orderId			integer not null references orders,
 	amount			integer not null,
 	openDate		date not null
-);
-
-create table order_entries (
-	orderId			integer references orders,
-	productId		integer references products,
-	amount			integer not null	
 );
 
 commit;
