@@ -1,0 +1,11 @@
+export const MY_ACCOUNT = '/myaccount';
+export const SIGN_IN = '/signin';
+export const CART = '/cart';
+export const SHOP = '/';
+export const INFORMATION = '/information';
+export const MY_ACCOUNT_PROFILE = '/myaccount/profile';
+export const MY_ACCOUNT_ORDERS = '/myaccount/orders';
+export const MY_ACCOUNT_ADDRESSBOOK = '/myaccount/addressbook';
+export const MY_ACCOUNT_NEWSLETTER = '/myaccount/newsletter';
+export const SHOP_ITEM = '/coffee/';
+export const SHOP_ITEM_FULL = '/coffee/:name';

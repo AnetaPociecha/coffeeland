@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class App extends Component {
 
-    state = {
-      hej: 'hej !'
-    }
+  fun(){
+    return 3;
+  }
 
     render() {
         return (
-        <div>
-            <h1>{this.state.hej}</h1>
+        <div className="border p-5">
+            <h1>hej</h1>
         </div> )
     }
 }
