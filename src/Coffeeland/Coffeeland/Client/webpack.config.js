@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['bootstrap','./src/index.js'],
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
@@ -13,9 +13,7 @@ module.exports = {
             {
                 test: [/\.jsx?$/, /\.js?$/],
                 exclude: /node_module/,
-                use: {
-                    loader: 'babel-loader'
-                }
+                loader: 'babel-loader',
             },
             {
                 test: /\.(scss)$/,
