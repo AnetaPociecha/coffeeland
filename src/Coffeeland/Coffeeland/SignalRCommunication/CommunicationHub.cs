@@ -4,46 +4,104 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using Coffeeland.Database;
+using Coffeeland.Messaging.Shared;
+using Coffeeland.Messaging.Queries.Queries;
+using System.Reflection;
+using Coffeeland.Messaging.Dtos;
 
 namespace Coffeeland.SignalRCommunication
 {
     public class CommunicationHub : Hub
     {
-
         private static DatabaseQueryProcessor _processor;
+        private static JsonSerializerSettings _querySerializerSettings;
+        private static JsonSerializerSettings _messageSerializerSettings;
 
         public CommunicationHub()
         {
             if(_processor == null)
                 _processor = new DatabaseQueryProcessor();
+
+            if(_querySerializerSettings == null)
+                _querySerializerSettings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    SerializationBinder = new QuerySerializationBinder()
+                };
+
+            if (_messageSerializerSettings == null)
+                _messageSerializerSettings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    SerializationBinder = new MessageSerializationBinder()
+                };
         }
 
-        public dynamic Send(string json)
+        public dynamic SendQuery(string json)
         {
-            Debug.WriteLine("Test1");
-            var t = typeof(DatabaseQueryProcessor);
-            Debug.WriteLine(t);
-            dynamic o = Activator.CreateInstance(t);
-            var a = o.Test();
+           
+            dynamic query = ConvertToQuery(json);
+            dynamic handler = GetQueryHandler(query);
 
-            Dictionary<string, string> query = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            string queryName = query.First().Value;
+            return handler.Handle(query);
+        }
 
-            var someObject = new Dictionary<string, string>();
-            someObject.Add("property1", "value1");
-            someObject.Add("property2", "value2");
-            someObject.Add("property3", "value... surprisingly... 3");
+        public dynamic SendMessage(string json)
+        {
 
-            if(queryName.Equals("getSomeNumberQuery"))
-                return new Random().Next(1, 11);
-            if (queryName.Equals("getStringQuery"))
-                return new String("wysokozmineralizowany".ToCharArray());
-            if (queryName.Equals("getSameResponseQuery"))
-                return new String(query.ElementAt(1).Value.ToCharArray());
-            else
-                return JsonConvert.SerializeObject(someObject);
+            dynamic message = ConvertToQuery(json);
+            dynamic handler = GetQueryHandler(message);
+
+            return handler.Handle(message);
+        }
+
+        private IQuery ConvertToQuery(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<IQuery>(json, _querySerializerSettings);
+            }
+            catch
+            {
+                throw new NotImplementedException();    // implement some mechanism for errors
+            }
+        }
+
+        private IMessage ConvertToMessage(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<IMessage>(json, _messageSerializerSettings);
+            }
+            catch
+            {
+                throw new NotImplementedException();    // implement some mechanism for errors
+            }
+        }
+
+        private dynamic GetQueryHandler(IQuery query)
+        {
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            foreach (Type type in myAssembly.GetTypes())
+            {
+                if (typeof(IQueryHandler<>).MakeGenericType(query.GetType()).IsAssignableFrom(type))
+                    return Activator.CreateInstance(type);
+            }
+            throw new NotImplementedException();
+        }
+
+        private dynamic GetMessageHandler(IMessage message)
+        {
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            foreach (Type type in myAssembly.GetTypes())
+            {
+                if (typeof(IMessageHandler<>).MakeGenericType(message.GetType()).IsAssignableFrom(type))
+                    return Activator.CreateInstance(type);
+            }
+            throw new NotImplementedException();
         }
     }
 }

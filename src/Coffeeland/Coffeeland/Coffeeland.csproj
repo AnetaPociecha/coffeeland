@@ -122,13 +122,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messaging\IQueryHandler.cs" />
+    <Compile Include="Messaging\Dtos\NumberDto.cs" />
+    <Compile Include="Messaging\Queries\Queries\GetSomeNumberQuery.cs" />
+    <Compile Include="Messaging\Shared\IMessage.cs" />
+    <Compile Include="Messaging\Shared\IMessageHandler.cs" />
+    <Compile Include="Messaging\Shared\IQuery.cs" />
+    <Compile Include="Messaging\Shared\IQueryHandler.cs" />
+    <Compile Include="Messaging\Shared\IResult.cs" />
+    <Compile Include="Messaging\Shared\MessageSerializationBinder.cs" />
+    <Compile Include="Messaging\Shared\QuerySerializationBinder.cs" />
     <Compile Include="SignalRCommunication\CommunicationHub.cs" />
     <Compile Include="Database\Connector.cs" />
     <Compile Include="Database\DatabaseQueryProcessor.cs" />
-    <Compile Include="Messaging\GetSomeNumberQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Handlers\GetSomeNumberQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Messaging\Messages\Handlers\" />
+    <Folder Include="Messaging\Messages\Messages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

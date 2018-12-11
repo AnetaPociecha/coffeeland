@@ -11,16 +11,7 @@ var displayResponse = function(data) {
 var set_buttons_for_tests = function(queryProcessor) {
 
     $('#sendQuery1').click(function () {
-        queryProcessor.processQuery({name: "getSomeNumberQuery"}).then(data => displayResponse("1: " + data));;
-    });
-    $('#sendQuery2').click(function () {
-        queryProcessor.processQuery({name: "getStringQuery"}).then(data => displayResponse("2: " + data));;
-    });
-    $('#sendQuery3').click(function () {
-        queryProcessor.processQuery({name: "getSameResponseQuery", message: $('#message').val()}).then(data => displayResponse("3: " + data));;
-    });
-    $('#sendQuery4').click(function () {
-        queryProcessor.processQuery({name: "getSomeJsonQuery"}).then(data => displayResponse("4: " + data));
+        queryProcessor.processQuery({$type: "GetSomeNumberQuery", variable: 7}).then(data => console.log(data));
     });
 }
 
@@ -32,7 +23,7 @@ class QueryProcessor {
     }
 
     processQuery(query) {
-        return this.chat.server.send(JSON.stringify(query));
+        return this.chat.server.sendQuery(JSON.stringify(query));
     }
 }
 var queryProcessor;
