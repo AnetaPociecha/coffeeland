@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MimeKit;
 
 
-namespace Coffeeland
+namespace Coffeeland.MailService
 {
     class EmailMessage
     {
@@ -39,7 +35,7 @@ namespace Coffeeland
             message.Subject = subject;
         }
 
-        public void SetEmailBody(String body)
+        public void SetBody(String body)
         {
             bodyBuilder.TextBody = body;
             message.Body = bodyBuilder.ToMessageBody();

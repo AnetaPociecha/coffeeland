@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
 
@@ -105,7 +102,7 @@ namespace Coffeeland.Database
         
 
         //-------- ADDRESSES --------
-        public bool CreateNewAddress(int clientId, String country, String city, String street, String ZIPCode, int buildingNumber, int apartmentNumber)
+        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = ToInt(dataTableId);
@@ -116,11 +113,11 @@ namespace Coffeeland.Database
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber) VALUES "
                 + "(" + addressId.ToString() + ",'" + clientId.ToString() + "','" + country + "','" 
-                + city + "','" + street + "','" + ZIPCode + "'," + buildingNumber + "," + apartmentNumber + ")";
+                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ",'" + apartmentNumber + "')";
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, String ZIPCode, int buildingNumber)
+        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = ToInt(dataTableId);
@@ -131,11 +128,11 @@ namespace Coffeeland.Database
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber) VALUES "
                 + "(" + addressId.ToString() + ",'" + clientId.ToString() + "','" + country + "','"
-                + city + "','" + street + "','" + ZIPCode + "'," + buildingNumber + ")";
+                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ")";
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, String ZIPCode, int buildingNumber, int apartmentNumber,bool isDefault)
+        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber,bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = ToInt(dataTableId);
@@ -146,11 +143,11 @@ namespace Coffeeland.Database
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isDefault) VALUES "
                 + "(" + addressId.ToString() + ",'" + clientId.ToString() + "','" + country + "','"
-                + city + "','" + street + "','" + ZIPCode + "'," + buildingNumber + "," + apartmentNumber + "," +boolToBit(isDefault) +")";
+                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ",'" + apartmentNumber + "'," +boolToBit(isDefault) +")";
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, String ZIPCode, int buildingNumber,bool isDefault)
+        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber,bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = ToInt(dataTableId);
@@ -161,7 +158,7 @@ namespace Coffeeland.Database
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,isDefault) VALUES "
                 + "(" + addressId.ToString() + ",'" + clientId.ToString() + "','" + country + "','"
-                + city + "','" + street + "','" + ZIPCode + "'," + buildingNumber + "," + boolToBit(isDefault) + ")";
+                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + "," + boolToBit(isDefault) + ")";
             return connector.ExecuteCommand(command);
         }
 
@@ -296,7 +293,7 @@ namespace Coffeeland.Database
             CreateNewClient("olanowak69@gmail.com", "Aleksandra", "Nowak", "admin123", false);
 
             CreateNewClient("kasiapepsinska@op.pl", "Katarzyna", "Pepsinska", "admin123", true);
-            CreateNewAddress(31, "Poland", "Cracow", "Kupa", "31-442", 13, 1, true);
+            CreateNewAddress(31, "Poland", "Cracow", "Kupa", 31442, 13, 1, true);
             CreateNewOrder(31,21,40,0,"2018-11-05");
             CreateNewOrderEntry(50, 10, 2);
             CreateNewOrderEntry(50, 11, 3);
@@ -304,8 +301,8 @@ namespace Coffeeland.Database
             CreateNewComplaint(51,21,"It is not good", "2018-11-05",false);
 
             CreateNewClient("aniaubek@agh.edu.pl", "Anna", "Ubek", "admin123", true);
-            CreateNewAddress(32, "Poland", "Warsaw", "Kosciuszki", "32-111", 145,5, true);
-            CreateNewAddress(32, "Poland", "Warsaw", "Kochanowskiego","32-121", 1);
+            CreateNewAddress(32, "Poland", "Warsaw", "Kosciuszki", 32111, 145,5, true);
+            CreateNewAddress(32, "Poland", "Warsaw", "Kochanowskiego",32121, 1);
             CreateNewOrder(32, 21,41, 0, "2018-12-07"); CreateNewOrderEntry(50, 10, 2);
             CreateNewOrderEntry(51, 13, 3);
             CreateNewOrderEntry(51, 10, 2);
