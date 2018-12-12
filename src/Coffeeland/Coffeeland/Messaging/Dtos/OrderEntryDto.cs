@@ -8,7 +8,7 @@ namespace Coffeeland.Messaging.Dtos
 {
     public class OrderEntryDto : IResult
     {
-        public int key;
+        public int orderId;
         public string name;
         public int quantity;
         public int price;

@@ -261,7 +261,7 @@ namespace Coffeeland.Database
 
 
         //-------- WORKERS --------
-        public bool CreateNewWorker(WorkerPosition role, String email, String password)
+        public bool CreateNewWorker(WorkerRole role, String email, String password)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(workerId)+1 FROM workers");
             int workerId = ToInt(dataTableId);
@@ -287,8 +287,8 @@ namespace Coffeeland.Database
             CreateNewProduct("Bazarra", 55, "/path/to/bazarra", "60% Arabica, 40% Robusta", "It is ok");
             CreateNewProduct("Konesso", 35, "/path/to/konesso", "50% Arabica, 50% Robusta", "Nice");
 
-            CreateNewWorker(WorkerPosition.a, "szef123@buziaczek.pl", "admin123");
-            CreateNewWorker(WorkerPosition.b, "zwykly_konsultant@interia.pl", "admin123");
+            CreateNewWorker(WorkerRole.a, "szef123@buziaczek.pl", "admin123");
+            CreateNewWorker(WorkerRole.b, "zwykly_konsultant@interia.pl", "admin123");
 
             CreateNewClient("olanowak69@gmail.com", "Aleksandra", "Nowak", "admin123", false);
 
@@ -353,12 +353,5 @@ namespace Coffeeland.Database
             return 0;
         }
 
-    }
-
-    public enum WorkerPosition
-    {
-        a = 'a',
-        b = 'b',
-        c = 'c'
     }
 }

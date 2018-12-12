@@ -140,7 +140,21 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\WorkerRole.cs" />
+    <Compile Include="Database\Records\AddressRecord.cs" />
+    <Compile Include="Database\Records\ComplaintRecord.cs" />
+    <Compile Include="Database\Records\OrderRecord.cs" />
+    <Compile Include="Database\Records\ClientRecord.cs" />
+    <Compile Include="Database\Records\OrderEntryRecord.cs" />
+    <Compile Include="Database\Records\PaymentRecord.cs" />
+    <Compile Include="Database\Records\ProductRecord.cs" />
+    <Compile Include="Database\Records\Workers.cs" />
     <Compile Include="MailService\EmailMessage.cs" />
+    <Compile Include="Messaging\Dtos\AddressDto.cs" />
+    <Compile Include="Messaging\Dtos\ClientDto.cs" />
+    <Compile Include="Messaging\Dtos\OrderDto.cs" />
+    <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
+    <Compile Include="Messaging\Dtos\ProductDto.cs" />
     <Compile Include="Messaging\Dtos\NumberDto.cs" />
     <Compile Include="Messaging\Queries\Queries\GetSomeNumberQuery.cs" />
     <Compile Include="Messaging\Shared\IMessage.cs" />
