@@ -117,10 +117,11 @@ namespace Coffeeland.Database
         //-------- CREATE --------
         public static bool CreateNewClient(String email, String firstName, String lastName, String password, String newsletterEmail)
         {
+            
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(clientId)+1 FROM clients");
-            int clientId = Convert.ToInt32(dataTableId.Rows[0]["MAX(clientId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(clientId)+1"].ToString(), out int clientId);
 
-            String command = $"INSERT INTO clients(clientId,email,firstName,lastName,password,newsletterEmail) VALUES({clientId},'{email}','{firstName}','{lastName}','{password}',{newsletterEmail})";
+            String command = $"INSERT INTO clients(clientId,email,firstName,lastName,password,newsletterEmail) VALUES({clientId},'{email}','{firstName}','{lastName}','{password}','{newsletterEmail}')";
 
             return connector.ExecuteCommand(command);
         }
@@ -128,11 +129,7 @@ namespace Coffeeland.Database
         public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
-            if (clientId == 0)
-            {
-                clientId = 40;
-            }
+            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
 
             String command = $"INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber) VALUES({addressId},{clientId},'{country}','{city}','{street}',{ZIPCode},{buildingNumber},'{apartmentNumber}')";
             return connector.ExecuteCommand(command);
@@ -141,7 +138,7 @@ namespace Coffeeland.Database
         public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
 
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber) VALUES "
@@ -153,7 +150,7 @@ namespace Coffeeland.Database
         public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber, bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isDefault) VALUES "
                 + "(" + addressId + ",'" + clientId + "','" + country + "','"
@@ -164,7 +161,7 @@ namespace Coffeeland.Database
         public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
 
 
             String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,isDefault) VALUES "
@@ -191,10 +188,10 @@ namespace Coffeeland.Database
         public static bool CreateNewPayment(int orderId, String openDate)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(paymentId)+1 FROM payments");
-            int paymentId = Convert.ToInt32(dataTableId.Rows[0]["MAX(paymentId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(paymentId)+1"].ToString(), out int paymentId);
 
             DataTable dataTableAmount = connector.ExecuteQuery("SELECT SUM(oe.amount*p.price) FROM order_entries oe NATURAL JOIN products p WHERE oe.orderId=" + orderId);
-            int amount = Convert.ToInt32(dataTableId.Rows[0]["SUM(oe.amount*p.price)"]);
+            int.TryParse(dataTableId.Rows[0]["SUM(oe.amount*p.price)"].ToString(), out int amount);
 
             String command = "INSERT INTO payments(paymentId,orderId,amount,openDate) VALUES "
                 + "(" + paymentId + "," + orderId + "," + amount + ", DATE '"
@@ -205,7 +202,7 @@ namespace Coffeeland.Database
         public static bool CreateNewProduct(String name, int price, String imagePath, String blend, String description)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(productId)+1 FROM products");
-            int productId = Convert.ToInt32(dataTableId.Rows[0]["MAX(productId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(productId)+1"].ToString(),out int productId);
 
             String command = "INSERT INTO products(productId,name,price,imagePath,blend,description) VALUES "
                 + "(" + productId + ",'" + name + "'," + price + ",'"
@@ -216,7 +213,7 @@ namespace Coffeeland.Database
         public static bool CreateNewOrder(int clientId, int workerId, int addressId, int status, String openDate)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(orderId)+1 FROM orders");
-            int orderId = Convert.ToInt32(dataTableId.Rows[0]["MAX(orderId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(orderId)+1"].ToString(), out int orderId);
 
 
             String command = "INSERT INTO orders(orderId,clientId,workerId,addressId,status,openDate) VALUES "
@@ -228,7 +225,7 @@ namespace Coffeeland.Database
         public static bool CreateNewWorker(WorkerRole role, String email, String password)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(workerId)+1 FROM workers");
-            int workerId = Convert.ToInt32(dataTableId.Rows[0]["MAX(workerId)+1"]);
+            int.TryParse(dataTableId.Rows[0]["MAX(workerId)+1"].ToString(), out int workerId);
 
             String command = "INSERT INTO workers(workerId,role,email,password) VALUES "
                 + "(" + workerId + ",'" + role + "','" + email + "','"
