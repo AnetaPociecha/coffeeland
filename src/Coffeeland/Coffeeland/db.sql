@@ -15,7 +15,7 @@ create table products (
 	name        	varchar(30) not null,
 	price	    	integer	not null,
 	imagePath		varchar(50) not null,
-	blend			varchar(30) not null,
+	productType		varchar(30) not null,
 	description		varchar(100) not null
 );
 

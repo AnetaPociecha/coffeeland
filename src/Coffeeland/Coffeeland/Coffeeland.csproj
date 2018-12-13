@@ -140,6 +140,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Records\IRecord.cs" />
     <Compile Include="Database\WorkerRole.cs" />
     <Compile Include="Database\Records\AddressRecord.cs" />
     <Compile Include="Database\Records\ComplaintRecord.cs" />
@@ -148,7 +149,7 @@
     <Compile Include="Database\Records\OrderEntryRecord.cs" />
     <Compile Include="Database\Records\PaymentRecord.cs" />
     <Compile Include="Database\Records\ProductRecord.cs" />
-    <Compile Include="Database\Records\Workers.cs" />
+    <Compile Include="Database\Records\WorkerRecord.cs" />
     <Compile Include="MailService\EmailMessage.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
     <Compile Include="Messaging\Dtos\ClientDto.cs" />
