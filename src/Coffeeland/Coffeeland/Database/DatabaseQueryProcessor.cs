@@ -7,18 +7,18 @@ using System.Collections.Generic;
 
 namespace Coffeeland.Database
 {
-    public class DatabaseQueryProcessor
+    public static class DatabaseQueryProcessor
     {
-        Connector connector;
+        static Connector connector;
 
-        public DatabaseQueryProcessor()
+        static DatabaseQueryProcessor()
         {
            connector = new Connector();
         }
 
 
         //-------- GET --------
-        public List<ProductRecord> GetProducts()
+        public static List<ProductRecord> GetProducts()
         {
             List<ProductRecord> productRecords = new List<ProductRecord>();
 
@@ -34,7 +34,7 @@ namespace Coffeeland.Database
             return productRecords;
         }
 
-        public List<AddressRecord> GetAddresses(int clientId)
+        public static List<AddressRecord> GetAddresses(int clientId)
         {
             List<AddressRecord> addressRecords = new List<AddressRecord>();
             String query = "SELECT * FROM addresses WHERE clientId=" + clientId;
@@ -49,7 +49,7 @@ namespace Coffeeland.Database
             return addressRecords;
         }
 
-        public List<ClientRecord> GetClients()
+        public static List<ClientRecord> GetClients()
         {
             List<ClientRecord> clientsRecords = new List<ClientRecord>();
 
@@ -65,7 +65,7 @@ namespace Coffeeland.Database
             return clientsRecords;
         }
 
-        public List<ComplaintRecord> GetComplaints()
+        public static List<ComplaintRecord> GetComplaints()
         {
             List<ComplaintRecord> complaintRecords = new List<ComplaintRecord>();
             String query = "SELECT * FROM complaints";
@@ -80,7 +80,7 @@ namespace Coffeeland.Database
             return complaintRecords;
         }
 
-        public List<OrderEntryRecord> GetOrderEntries(int orderId)
+        public static List<OrderEntryRecord> GetOrderEntries(int orderId)
         {
             List<OrderEntryRecord> orderEntryRecords = new List<OrderEntryRecord>();
 
@@ -96,7 +96,7 @@ namespace Coffeeland.Database
             return orderEntryRecords;
         }
 
-        public List<OrderRecord> GetOrders(int clientId)
+        public static List<OrderRecord> GetOrders(int clientId)
         {
             List<OrderRecord> ordersRecords = new List<OrderRecord>();
 
@@ -115,7 +115,7 @@ namespace Coffeeland.Database
 
 
         //-------- CREATE --------
-        public bool CreateNewClient(String email, String firstName, String lastName, String password, bool newsletter)
+        public static bool CreateNewClient(String email, String firstName, String lastName, String password, bool newsletter)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(clientId)+1 FROM clients");
             int clientId = Convert.ToInt32(dataTableId.Rows[0]["MAX(clientId)+1"]);
@@ -128,7 +128,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
+        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
@@ -143,7 +143,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber)
+        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
@@ -155,7 +155,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber, bool isDefault)
+        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber, bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
@@ -166,7 +166,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, bool isDefault)
+        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, bool isDefault)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int addressId = Convert.ToInt32(dataTableId.Rows[0]["MAX(addressId)+1"]);
@@ -178,7 +178,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewComplaint(int orderId, int workerId, String description, String openDate, bool isClosed)
+        public static bool CreateNewComplaint(int orderId, int workerId, String description, String openDate, bool isClosed)
         {
             String command = "INSERT INTO complaints(orderId,workerId,description,openDate,isClosed) VALUES "
                 + "(" + orderId + ",'" + workerId + "','" + description + "', DATE '"
@@ -186,14 +186,14 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewOrderEntry(int orderId, int productId, int amount)
+        public static bool CreateNewOrderEntry(int orderId, int productId, int amount)
         {
             String command = "INSERT INTO order_entries(orderId,productId,amount) VALUES "
                 + "(" + orderId + "," + productId + "," + amount + ")";
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewPayment(int orderId, String openDate)
+        public static bool CreateNewPayment(int orderId, String openDate)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(paymentId)+1 FROM payments");
             int paymentId = Convert.ToInt32(dataTableId.Rows[0]["MAX(paymentId)+1"]);
@@ -207,7 +207,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewProduct(String name, int price, String imagePath, String blend, String description)
+        public static bool CreateNewProduct(String name, int price, String imagePath, String blend, String description)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(productId)+1 FROM products");
             int productId = Convert.ToInt32(dataTableId.Rows[0]["MAX(productId)+1"]);
@@ -218,7 +218,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewOrder(int clientId, int workerId, int addressId, int status, String openDate)
+        public static bool CreateNewOrder(int clientId, int workerId, int addressId, int status, String openDate)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(orderId)+1 FROM orders");
             int orderId = Convert.ToInt32(dataTableId.Rows[0]["MAX(orderId)+1"]);
@@ -230,7 +230,7 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public bool CreateNewWorker(WorkerRole role, String email, String password)
+        public static bool CreateNewWorker(WorkerRole role, String email, String password)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(workerId)+1 FROM workers");
             int workerId = Convert.ToInt32(dataTableId.Rows[0]["MAX(workerId)+1"]);
@@ -243,13 +243,13 @@ namespace Coffeeland.Database
 
 
         //-------- DELETE --------
-        public bool DeleteAddress(int addressId)
+        public static bool DeleteAddress(int addressId)
         {
             String command = "DELETE FROM addresses WHERE addressId=" + addressId;
             return connector.ExecuteCommand(command);
         }
 
-        public bool DeleteProduct(int productId)
+        public static bool DeleteProduct(int productId)
         {
             String command = "DELETE FROM products WHERE productId=" + productId;
             return connector.ExecuteCommand(command);
@@ -257,13 +257,13 @@ namespace Coffeeland.Database
 
 
         //-------- UPDATE --------
-        public bool UpdateClientCredentials(int clientId, String whatToChange, String value)
+        public static bool UpdateClientCredentials(int clientId, String whatToChange, String value)
         {
             String command = "UPDATE clients SET " + whatToChange + "='" + value + "' WHERE clientId=" + clientId;
             return connector.ExecuteCommand(command);
         }
         
-        public bool UpdateProductDescription(int productId, String value)
+        public static bool UpdateProductDescription(int productId, String value)
         {
             String command = "UPDATE products SET description='" + value + "' WHERE productId=" + productId;
             return connector.ExecuteCommand(command);
