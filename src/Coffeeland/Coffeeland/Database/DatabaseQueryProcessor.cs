@@ -191,7 +191,7 @@ namespace Coffeeland.Database
             int.TryParse(dataTableId.Rows[0]["MAX(paymentId)+1"].ToString(), out int paymentId);
 
             DataTable dataTableAmount = connector.ExecuteQuery("SELECT SUM(oe.amount*p.price) FROM order_entries oe NATURAL JOIN products p WHERE oe.orderId=" + orderId);
-            int.TryParse(dataTableId.Rows[0]["SUM(oe.amount*p.price)"].ToString(), out int amount);
+            int.TryParse(dataTableAmount.Rows[0]["SUM(oe.amount*p.price)"].ToString(), out int amount);
 
             String command = "INSERT INTO payments(paymentId,orderId,amount,openDate) VALUES "
                 + "(" + paymentId + "," + orderId + "," + amount + ", DATE '"
@@ -199,14 +199,14 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-        public static bool CreateNewProduct(String name, int price, String imagePath, String blend, String description)
+        public static bool CreateNewProduct(String name, int price, String imagePath, String productType, String description)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(productId)+1 FROM products");
             int.TryParse(dataTableId.Rows[0]["MAX(productId)+1"].ToString(),out int productId);
 
-            String command = "INSERT INTO products(productId,name,price,imagePath,blend,description) VALUES "
+            String command = "INSERT INTO products(productId,name,price,imagePath,productType,description) VALUES "
                 + "(" + productId + ",'" + name + "'," + price + ",'"
-                + imagePath + "','" + blend + "','" + description + "')";
+                + imagePath + "','" + productType + "','" + description + "')";
             return connector.ExecuteCommand(command);
         }
 
