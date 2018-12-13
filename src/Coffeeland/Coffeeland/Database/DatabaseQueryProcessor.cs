@@ -37,7 +37,7 @@ namespace Coffeeland.Database
         public static List<AddressRecord> GetAddresses(int clientId)
         {
             List<AddressRecord> addressRecords = new List<AddressRecord>();
-            String query = "SELECT * FROM addresses WHERE clientId=" + clientId;
+            String query = $"SELECT * FROM addresses WHERE clientId={clientId}";
             DataTable addresses = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in addresses.Rows)
@@ -68,7 +68,7 @@ namespace Coffeeland.Database
         public static List<ComplaintRecord> GetComplaints()
         {
             List<ComplaintRecord> complaintRecords = new List<ComplaintRecord>();
-            String query = "SELECT * FROM complaints";
+            String query = "SELECT orderId, workerId, description, DATE_FORMAT(openDate,'%Y-%m-%d') AS openDate, isClosed  FROM complaints";
             DataTable complaints = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in complaints.Rows)
@@ -84,7 +84,7 @@ namespace Coffeeland.Database
         {
             List<OrderEntryRecord> orderEntryRecords = new List<OrderEntryRecord>();
 
-            String query = "SELECT * FROM order_entries WHERE orderId=" + orderId;
+            String query = $"SELECT * FROM order_entries WHERE orderId={orderId}";
             DataTable orderEntries = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in orderEntries.Rows)
@@ -100,7 +100,7 @@ namespace Coffeeland.Database
         {
             List<OrderRecord> ordersRecords = new List<OrderRecord>();
 
-            String query = "SELECT * FROM orders WHERE clientId=" + clientId;
+            String query = $"SELECT orderId, clientId, workerId, addressId, status, DATE_FORMAT(openDate,'%Y-%m-%d') as openDate, DATE_FORMAT(closeDate,'%Y-%m-%d') as closeDate FROM orders WHERE clientId={clientId}";
             DataTable orders = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in orders.Rows)
@@ -122,9 +122,6 @@ namespace Coffeeland.Database
 
             String command = $"INSERT INTO clients(clientId,email,firstName,lastName,password,newsletter) VALUES({clientId},'{email}','{firstName}','{lastName}','{password}',{(newsletter ? 1 : 0)})";
 
-            //String command = "INSERT INTO clients(clientId,email,firstName,lastName,password,newsletter) VALUES "
-            //    + "(" + clientId + ",'" + email + "','" + firstName + "','" + lastName + "','" + password + "'," + (newsletter ? 1 : 0) + ")";
-
             return connector.ExecuteCommand(command);
         }
 
@@ -137,9 +134,7 @@ namespace Coffeeland.Database
                 clientId = 40;
             }
 
-            String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber) VALUES "
-                + "(" + addressId + ",'" + clientId + "','" + country + "','"
-                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ",'" + apartmentNumber + "')";
+            String command = $"INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber) VALUES({addressId},{clientId},'{country}','{city}','{street}',{ZIPCode},{buildingNumber},'{apartmentNumber}')";
             return connector.ExecuteCommand(command);
         }
 
