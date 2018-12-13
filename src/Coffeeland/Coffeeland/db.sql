@@ -27,7 +27,7 @@ create table clients (
 	firstName		varchar(30) not null,
 	lastName		varchar(30) not null,
 	password		varchar(100) not null,
-	newsletter		bit not null
+	newsletterEmail	varchar(30) not null
 );
 
 create table addresses (

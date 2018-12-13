@@ -49,16 +49,16 @@ namespace Coffeeland.Database
             return addressRecords;
         }
 
-        public static List<ClientRecord> GetClients()
+        public static List<ClientInfoRecord> GetClients()
         {
-            List<ClientRecord> clientsRecords = new List<ClientRecord>();
+            List<ClientInfoRecord> clientsRecords = new List<ClientInfoRecord>();
 
             String query = "SELECT * FROM clients";
             DataTable clients = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in clients.Rows)
             {
-                ClientRecord record = new ClientRecord();
+                ClientInfoRecord record = new ClientInfoRecord();
                 record.Fill(dr);
                 clientsRecords.Add(record);
             }
@@ -115,12 +115,12 @@ namespace Coffeeland.Database
 
 
         //-------- CREATE --------
-        public static bool CreateNewClient(String email, String firstName, String lastName, String password, bool newsletter)
+        public static bool CreateNewClient(String email, String firstName, String lastName, String password, String newsletterEmail)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(clientId)+1 FROM clients");
             int clientId = Convert.ToInt32(dataTableId.Rows[0]["MAX(clientId)+1"]);
 
-            String command = $"INSERT INTO clients(clientId,email,firstName,lastName,password,newsletter) VALUES({clientId},'{email}','{firstName}','{lastName}','{password}',{(newsletter ? 1 : 0)})";
+            String command = $"INSERT INTO clients(clientId,email,firstName,lastName,password,newsletterEmail) VALUES({clientId},'{email}','{firstName}','{lastName}','{password}',{newsletterEmail})";
 
             return connector.ExecuteCommand(command);
         }

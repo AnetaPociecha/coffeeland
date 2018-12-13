@@ -145,7 +145,7 @@
     <Compile Include="Database\Records\AddressRecord.cs" />
     <Compile Include="Database\Records\ComplaintRecord.cs" />
     <Compile Include="Database\Records\OrderRecord.cs" />
-    <Compile Include="Database\Records\ClientRecord.cs" />
+    <Compile Include="Database\Records\ClientInfoRecord.cs" />
     <Compile Include="Database\Records\OrderEntryRecord.cs" />
     <Compile Include="Database\Records\PaymentRecord.cs" />
     <Compile Include="Database\Records\ProductRecord.cs" />
