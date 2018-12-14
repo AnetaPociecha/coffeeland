@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using Newtonsoft.Json.Serialization;
 
 namespace Coffeeland.Messaging.Shared
 {
-    public class MessageSerializationBinder : ISerializationBinder
+    public class CommandSerializationBinder : ISerializationBinder
     {
-        static List<Type> messageTypes { get; set; }
+        static List<Type> commandTypes { get; set; }
 
-        public MessageSerializationBinder()
+        public CommandSerializationBinder()
         {
-            if (messageTypes == null)
+            if (commandTypes == null)
             {
-                messageTypes = new List<Type>();
+                commandTypes = new List<Type>();
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 foreach (Type type in myAssembly.GetTypes())
                 {
-                    if (typeof(IMessage).IsAssignableFrom(type))
-                        messageTypes.Add(type);
+                    if (typeof(ICommand).IsAssignableFrom(type))
+                        commandTypes.Add(type);
                 }
             }
         }
 
         public Type BindToType(string assemblyName, string typeName)
         {
-            return messageTypes.SingleOrDefault(t => t.Name == typeName);
+            return commandTypes.SingleOrDefault(t => t.Name == typeName);
         }
 
         public void BindToName(Type serializedType, out string assemblyName, out string typeName)

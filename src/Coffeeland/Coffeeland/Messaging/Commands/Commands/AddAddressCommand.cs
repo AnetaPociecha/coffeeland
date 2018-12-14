@@ -1,9 +1,14 @@
 ﻿using Coffeeland.Messaging.Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Coffeeland.Messaging.Dtos
+namespace Coffeeland.Messaging.Commands.Commands
 {
-    public class AddressDto : IResult
+    public class AddAddressCommand : ICommand
     {
+        public string sessionToken;
         public int key;
         public string country;
         public string city;

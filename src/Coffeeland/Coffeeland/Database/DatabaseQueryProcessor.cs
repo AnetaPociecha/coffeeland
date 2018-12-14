@@ -34,6 +34,15 @@ namespace Coffeeland.Database
             return productRecords;
         }
 
+        public static ProductRecord GetProduct(int productId)
+        {
+            String query = $"SELECT * FROM products WHERE productId={productId}";
+            DataTable addresses = connector.ExecuteQuery(query);
+            ProductRecord record = new ProductRecord();
+            record.Fill(addresses.Rows[0]);
+            return record;
+        }
+
         public static List<AddressRecord> GetAddresses(int clientId)
         {
             List<AddressRecord> addressRecords = new List<AddressRecord>();
@@ -47,6 +56,26 @@ namespace Coffeeland.Database
                 addressRecords.Add(record);
             }
             return addressRecords;
+        }
+
+        public static AddressRecord GetAddress(int addressId)
+        {
+            String query = $"SELECT * FROM addresses WHERE addressId={addressId}";
+            DataTable addresses = connector.ExecuteQuery(query);
+            AddressRecord record = new AddressRecord();
+            record.Fill(addresses.Rows[0]);
+            return record;
+        }
+
+        public static AddressRecord GetAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
+        {
+            String query = $"SELECT * FROM addresses WHERE clientId={clientId} and country='{country}' and city='{city}' and street='{street}' and ZIPCode={ZIPCode} and buildingNumber={buildingNumber} and apartmentNumber='{apartmentNumber}'";
+            DataTable addresses = connector.ExecuteQuery(query);
+            if (addresses.Rows.Count == 0)
+                return null;
+            AddressRecord record = new AddressRecord();
+            record.Fill(addresses.Rows[0]);
+            return record;
         }
 
         public static List<ClientInfoRecord> GetClients()
@@ -63,6 +92,17 @@ namespace Coffeeland.Database
                 clientsRecords.Add(record);
             }
             return clientsRecords;
+        }
+
+        public static ClientInfoRecord GetClient(string email, string password)
+        {
+            String query = $"SELECT * FROM clients WHERE email='{email}' and password='{password}'";
+            DataTable clients = connector.ExecuteQuery(query);
+            if (clients.Rows.Count == 0)
+                return null;
+            ClientInfoRecord record = new ClientInfoRecord();
+            record.Fill(clients.Rows[0]);
+            return record;
         }
 
         public static List<ComplaintRecord> GetComplaints()
@@ -233,21 +273,6 @@ namespace Coffeeland.Database
             return connector.ExecuteCommand(command);
         }
 
-
-        //-------- DELETE --------
-        public static bool DeleteAddress(int addressId)
-        {
-            String command = "DELETE FROM addresses WHERE addressId=" + addressId;
-            return connector.ExecuteCommand(command);
-        }
-
-        public static bool DeleteProduct(int productId)
-        {
-            String command = "DELETE FROM products WHERE productId=" + productId;
-            return connector.ExecuteCommand(command);
-        }
-
-
         //-------- UPDATE --------
         public static bool UpdateClientCredentials(int clientId, String whatToChange, String value)
         {
@@ -260,6 +285,11 @@ namespace Coffeeland.Database
             String command = "UPDATE products SET description='" + value + "' WHERE productId=" + productId;
             return connector.ExecuteCommand(command);
         }
-        
+
+        public static bool UpdateAddress(int addressId, bool isActive)
+        {
+            throw new NotImplementedException();    // TODO
+        }
+
     }
 }

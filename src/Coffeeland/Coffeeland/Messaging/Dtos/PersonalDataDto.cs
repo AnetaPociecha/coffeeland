@@ -8,13 +8,13 @@ using Coffeeland.Messaging.Shared;
 namespace Coffeeland.Messaging.Dtos
 
 {
-    public class ClientDto : IResult
+    public class PersonalDataDto : IResult
     {
-        public int key;
+        public bool isSuccess;
         public string email;
         public string firstName;
         public string lastName;
-        public List<OrderDto> orders;
-        public string receiveNewsletterEmail;
+        public bool receiveNewsletterEmail;
+        public string newsletterEmail;
     }
 }

@@ -151,31 +151,54 @@
     <Compile Include="Database\Records\ProductRecord.cs" />
     <Compile Include="Database\Records\WorkerRecord.cs" />
     <Compile Include="MailService\EmailMessage.cs" />
+    <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\SignInCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\UpdatePersonalDataCommand.cs" />
+    <Compile Include="Messaging\Commands\Handlers\AddAddressCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\InactivateAddressCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\RegisterNewClientCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\SignInCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\UpdatePersonalDataCommandHandler.cs" />
+    <Compile Include="Messaging\Dtos\AddressBookDto.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
-    <Compile Include="Messaging\Dtos\ClientDto.cs" />
     <Compile Include="Messaging\Dtos\OrderDto.cs" />
-    <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
-    <Compile Include="Messaging\Dtos\ProductDto.cs" />
-    <Compile Include="Messaging\Dtos\NumberDto.cs" />
-    <Compile Include="Messaging\Queries\Queries\GetSomeNumberQuery.cs" />
-    <Compile Include="Messaging\Shared\IMessage.cs" />
-    <Compile Include="Messaging\Shared\IMessageHandler.cs" />
+    <Compile Include="Messaging\Dtos\OrderEntry.cs" />
+    <Compile Include="Messaging\Dtos\OrdersDto.cs" />
+    <Compile Include="Messaging\Dtos\PersonalDataDto.cs" />
+    <Compile Include="Messaging\Dtos\ShopItemDto.cs" />
+    <Compile Include="Messaging\Dtos\ShopItemsDto.cs" />
+    <Compile Include="Messaging\Dtos\SignInInfoDto.cs" />
+    <Compile Include="Messaging\Dtos\SuccessDto.cs" />
+    <Compile Include="Messaging\Queries\Handlers\GetAddressBookQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Handlers\GetOrdersQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Handlers\GetPersonalDataQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Handlers\GetShopItemsQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Handlers\SignOutQueryHandler.cs" />
+    <Compile Include="Messaging\Queries\Queries\GetAddressBookQuery.cs" />
+    <Compile Include="Messaging\Queries\Queries\GetOrdersQuery.cs" />
+    <Compile Include="Messaging\Queries\Queries\GetPersonalDataQuery.cs" />
+    <Compile Include="Messaging\Queries\Queries\GetShopItemsQuery.cs" />
+    <Compile Include="Messaging\Queries\Queries\SignOutQuery.cs" />
+    <Compile Include="Messaging\Shared\ICommand.cs" />
+    <Compile Include="Messaging\Shared\ICommandHandler.cs" />
+    <Compile Include="Messaging\Shared\InputChecker.cs" />
     <Compile Include="Messaging\Shared\IQuery.cs" />
     <Compile Include="Messaging\Shared\IQueryHandler.cs" />
     <Compile Include="Messaging\Shared\IResult.cs" />
-    <Compile Include="Messaging\Shared\MessageSerializationBinder.cs" />
+    <Compile Include="Messaging\Shared\CommandSerializationBinder.cs" />
+    <Compile Include="Messaging\Shared\PasswordEncryptor.cs" />
     <Compile Include="Messaging\Shared\QuerySerializationBinder.cs" />
+    <Compile Include="Session\ClientSession.cs" />
+    <Compile Include="Session\SessionRepository.cs" />
     <Compile Include="SignalRCommunication\CommunicationHub.cs" />
     <Compile Include="Database\Connector.cs" />
     <Compile Include="Database\DatabaseQueryProcessor.cs" />
-    <Compile Include="Messaging\Queries\Handlers\GetSomeNumberQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Messaging\Messages\Handlers\" />
-    <Folder Include="Messaging\Messages\Messages\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

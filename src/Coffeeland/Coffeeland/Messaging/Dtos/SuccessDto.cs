@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Coffeeland.Messaging.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Coffeeland.Messaging.Shared;
 
 namespace Coffeeland.Messaging.Dtos
 {
-    public class NumberDto : IResult
+    public class SuccessDto : IResult
     {
-        public int number;
+        public bool isSuccess;
     }
 }

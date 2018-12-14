@@ -5,8 +5,8 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Shared
 {
-    public interface IMessageHandler<M> where M : IMessage
+    public interface ICommandHandler<C> where C : ICommand
     {
-        IResult Handle(M message);
+        IResult Handle(C command);
     }
 }

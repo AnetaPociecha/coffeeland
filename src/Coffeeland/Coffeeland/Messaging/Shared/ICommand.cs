@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Shared
 {
-    public interface IMessage
+    public interface ICommand
     {
     }
 }

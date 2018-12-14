@@ -16,14 +16,11 @@ namespace Coffeeland.SignalRCommunication
 {
     public class CommunicationHub : Hub
     {
-        private static DatabaseQueryProcessor _processor;
         private static JsonSerializerSettings _querySerializerSettings;
-        private static JsonSerializerSettings _messageSerializerSettings;
+        private static JsonSerializerSettings _commandSerializerSettings;
 
         public CommunicationHub()
         {
-            if(_processor == null)
-                _processor = new DatabaseQueryProcessor();
 
             if(_querySerializerSettings == null)
                 _querySerializerSettings = new JsonSerializerSettings
@@ -32,11 +29,11 @@ namespace Coffeeland.SignalRCommunication
                     SerializationBinder = new QuerySerializationBinder()
                 };
 
-            if (_messageSerializerSettings == null)
-                _messageSerializerSettings = new JsonSerializerSettings
+            if (_commandSerializerSettings == null)
+                _commandSerializerSettings = new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.All,
-                    SerializationBinder = new MessageSerializationBinder()
+                    SerializationBinder = new CommandSerializationBinder()
                 };
         }
 
@@ -46,16 +43,36 @@ namespace Coffeeland.SignalRCommunication
             dynamic query = ConvertToQuery(json);
             dynamic handler = GetQueryHandler(query);
 
-            return handler.Handle(query);
+            try
+            {
+                return handler.Handle(query);
+            }
+            catch
+            {
+                return new SuccessDto()
+                {
+                    isSuccess = false
+                };
+            }
         }
 
-        public dynamic SendMessage(string json)
+        public dynamic SendCommand(string json)
         {
 
-            dynamic message = ConvertToQuery(json);
-            dynamic handler = GetQueryHandler(message);
+            dynamic command = ConvertToCommand(json);
+            dynamic handler = GetCommandHandler(command);
 
-            return handler.Handle(message);
+            try
+            {
+                return handler.Handle(command);
+            }
+            catch
+            {
+                return new SuccessDto()
+                {
+                    isSuccess = false
+                };
+            }
         }
 
         private IQuery ConvertToQuery(string json)
@@ -70,11 +87,11 @@ namespace Coffeeland.SignalRCommunication
             }
         }
 
-        private IMessage ConvertToMessage(string json)
+        private ICommand ConvertToCommand(string json)
         {
             try
             {
-                return JsonConvert.DeserializeObject<IMessage>(json, _messageSerializerSettings);
+                return JsonConvert.DeserializeObject<ICommand>(json, _commandSerializerSettings);
             }
             catch
             {
@@ -93,12 +110,12 @@ namespace Coffeeland.SignalRCommunication
             throw new NotImplementedException();
         }
 
-        private dynamic GetMessageHandler(IMessage message)
+        private dynamic GetCommandHandler(ICommand command)
         {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             foreach (Type type in myAssembly.GetTypes())
             {
-                if (typeof(IMessageHandler<>).MakeGenericType(message.GetType()).IsAssignableFrom(type))
+                if (typeof(ICommandHandler<>).MakeGenericType(command.GetType()).IsAssignableFrom(type))
                     return Activator.CreateInstance(type);
             }
             throw new NotImplementedException();

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Coffeeland.Messaging.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Coffeeland.Messaging.Shared;
 
 namespace Coffeeland.Messaging.Dtos
 {
-    public class OrderEntryDto : IResult
+    public class ShopItemDto : IResult
     {
-        public int orderId;
+        public int key;
         public string name;
-        public int quantity;
         public int price;
+        public string img;
+        public string description;
     }
 }
