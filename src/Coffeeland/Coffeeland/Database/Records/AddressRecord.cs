@@ -16,6 +16,7 @@ namespace Coffeeland.Database.Records
         public int ZIPCode;
         public int buildingNumber;
         public string apartmentNumber;
+        public bool isActive;
 
         public void Fill(DataRow dr)
         {
@@ -27,6 +28,7 @@ namespace Coffeeland.Database.Records
             ZIPCode = Convert.ToInt32(dr["ZIPCode"]);
             buildingNumber = Convert.ToInt32(dr["buildingNumber"]);
             apartmentNumber = dr["apartmentNumber"].ToString();
+            isActive = Convert.ToInt32(dr["isActive"]) == 1 ? true : false;
         }
     }
 }

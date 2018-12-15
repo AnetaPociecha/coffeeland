@@ -171,45 +171,11 @@ namespace Coffeeland.Database
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
             int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
 
-            String command = $"INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber) VALUES({addressId},{clientId},'{country}','{city}','{street}',{ZIPCode},{buildingNumber},'{apartmentNumber}')";
+            String command = $"INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) VALUES({addressId},{clientId},'{country}','{city}','{street}',{ZIPCode},{buildingNumber},'{apartmentNumber}',1)";
             return connector.ExecuteCommand(command);
         }
 
-        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber)
-        {
-            DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
-
-
-            String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber) VALUES "
-                + "(" + addressId + ",'" + clientId + "','" + country + "','"
-                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ")";
-            return connector.ExecuteCommand(command);
-        }
-
-        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber, bool isDefault)
-        {
-            DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
-
-            String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isDefault) VALUES "
-                + "(" + addressId + ",'" + clientId + "','" + country + "','"
-                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + ",'" + apartmentNumber + "'," + (isDefault ? 1 : 0) + ")";
-            return connector.ExecuteCommand(command);
-        }
-
-        public static bool CreateNewAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, bool isDefault)
-        {
-            DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(addressId)+1 FROM addresses");
-            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int addressId);
-
-
-            String command = "INSERT INTO addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,isDefault) VALUES "
-                + "(" + addressId + ",'" + clientId + "','" + country + "','"
-                + city + "','" + street + "'," + ZIPCode + "," + buildingNumber + "," + (isDefault ? 1 : 0) + ")";
-            return connector.ExecuteCommand(command);
-        }
-
+       
         public static bool CreateNewComplaint(int orderId, int workerId, String description, String openDate, bool isClosed)
         {
             String command = "INSERT INTO complaints(orderId,workerId,description,openDate,isClosed) VALUES "
@@ -220,8 +186,11 @@ namespace Coffeeland.Database
 
         public static bool CreateNewOrderEntry(int orderId, int productId, int amount)
         {
-            String command = "INSERT INTO order_entries(orderId,productId,amount) VALUES "
-                + "(" + orderId + "," + productId + "," + amount + ")";
+            DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(orderEntryId)+1 FROM order_entries");
+            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int orderEntryId);
+
+            String command = "INSERT INTO order_entries(orderEntryId,orderId,productId,amount) VALUES "
+                + "(" + orderEntryId +"," + orderId + "," + productId + "," + amount + ")";
             return connector.ExecuteCommand(command);
         }
 
@@ -288,7 +257,20 @@ namespace Coffeeland.Database
 
         public static bool UpdateAddress(int addressId, bool isActive)
         {
-            throw new NotImplementedException();    // TODO
+            String command = $"UPDATE addresses SET isActive={(isActive ? 1 : 0)} WHERE addressId={addressId}";
+            return connector.ExecuteCommand(command);
+        }
+
+        public static bool UpdateOrder(int orderId, String closeDate)
+        {
+            String command = $"UPDATE orders SET closeDate='{closeDate}'WHERE orderId={orderId}";
+            return connector.ExecuteCommand(command);
+        }
+
+        public static bool UpdateComplaint(int orderId, bool isClosed)
+        {
+            String command = $"UPDATE complaints SET isClosed={(isClosed ? 1 : 0)} WHERE orderId={orderId}";
+            return connector.ExecuteCommand(command);
         }
 
     }
