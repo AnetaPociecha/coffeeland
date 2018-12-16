@@ -1,13 +1,17 @@
 import React from "react";
 import { SecondaryAlert } from "./../components/alert";
 
-const withMessage = Component => ({ shouldDisplayMsg, msg, ...props }) =>
-  shouldDisplayMsg ? (
-    <div className="pt-5 col-12">
-      <SecondaryAlert>{msg}</SecondaryAlert>
-    </div>
-  ) : (
-    <Component {...props} />
-  );
+const withMessage = Component => {
+  const { shouldDisplayMsg, msg } = this.props
 
-  export { withMessage };
+  return () =>
+    shouldDisplayMsg ? (
+      <div className="pt-5 col-12">
+        <SecondaryAlert>{msg}</SecondaryAlert>
+      </div>
+    ) : (
+      React.createElement(Component, Object.assign({}, this.props, {}))
+    );
+};
+
+export { withMessage };

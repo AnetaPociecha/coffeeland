@@ -1,10 +1,10 @@
-import Shop from "./../components/shop/shopPage";
-import ShopItemPage from "./../components/shop/shopItemPage";
-import SignInRegisterPage from "./../components/authentication/signInRegisterPage";
-import CartPage from "./../components/cart/cartPage";
-import MyAccount from "./../components/myAccount";
-import Information from "./../components/pages/information";
-import { SHOP, SIGN_IN, INFORMATION, CART, MY_ACCOUNT, SHOP_ITEM_FULL } from "./../constants/paths";
+import Shop from "../components/shop/shopPage";
+import ShopItemPage from "../components/shop/shopItemPage";
+import SignInRegisterPage from "../components/authentication/signInRegisterPage";
+import CartPage from "../components/cart/cartPage";
+import MyAccount from "../components/myAccount";
+import Information from "../components/pages/information";
+import { SHOP, SIGN_IN, INFORMATION, CART, MY_ACCOUNT, SHOP_ITEM_FULL } from "../constants/paths";
 
 export const routes = [
     {
