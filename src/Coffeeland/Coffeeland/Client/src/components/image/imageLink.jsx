@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
   change src={src} when you have url like 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' 
   it will work
   hack :)
- */
+*/
 // require('./coffee.jpg')
 const ImageLink = ({src, path}) => (
   <figure>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { MAX_QUANTITY } from "./constants/config";
 //import { routes } from "./routes";
 import { Provider } from "react-redux";
+import { connect } from "react-redux";
 import store from "./store";
 import Shop from "./components/shop/shopPage";
 import ShopItemPage from "./components/shop/shopItemPage";
@@ -49,9 +50,10 @@ class App extends Component {
   render() {
     const { isSignIn, cartEntries } = this.state;
 
-    return (
+    return ( 
       <Provider store={store}>
         <div className="container-fluid">
+        
           <Router>
             <div>
               <NavigationComponent
@@ -134,4 +136,9 @@ class App extends Component {
   };
 }
 
-export default App;
+const mapStateToProps = state => ({});
+
+export default connect()(App);
+
+
+// export default App;
