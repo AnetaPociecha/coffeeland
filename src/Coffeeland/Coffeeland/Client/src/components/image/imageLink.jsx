@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
   it will work
   hack :)
  */
-
+// require('./coffee.jpg')
 const ImageLink = ({src, path}) => (
   <figure>
     <NavLink to={path}>
-        <Img className="img-fluid" src={require('./coffee.jpg')} />
+        <Img className="img-fluid" src={src} />
     </NavLink>
   </figure>
 );

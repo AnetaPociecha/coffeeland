@@ -15,7 +15,7 @@ export const fetchPersonalData = () => dispatch => {
 };
 
 export const updatePersonalData = data => dispatch => {
-  const newData = { ...personalData, ...data };
+  const newData = Object.assign({}, personalData, data) 
 
   // sent to server and receive newData as response and use .then(dispatch ... )
 
@@ -26,7 +26,7 @@ export const updatePersonalData = data => dispatch => {
 };
 
 export const setNewsletterEmail = data => dispatch => {
-  const newData = { ...personalData, ...data };
+  const newData = Object.assign({}, personalData, data) 
 
   // sent to server and receive newData as response and use .then(dispatch ... )
 
@@ -37,7 +37,7 @@ export const setNewsletterEmail = data => dispatch => {
 };
 
 export const removeNewsletterEmail = () => dispatch => {
-  const newData = { ...personalData, newsletter: false, receiveNewsletterEmail: '' };
+  const newData = Object.assign({}, personalData, {newsletter: false, receiveNewsletterEmail: ''}) 
 
   // sent to server and receive newData as response and use .then(dispatch ... )
 

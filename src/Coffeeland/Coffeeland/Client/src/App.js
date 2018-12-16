@@ -5,12 +5,12 @@ import { MAX_QUANTITY } from "./constants/config";
 //import { routes } from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
-import Shop from "./components/shop/shopPage.jsx";
-import ShopItemPage from "./components/shop/shopItemPage.jsx";
-import SignInRegisterPage from "./components/authentication/signInRegisterPage.jsx";
-import CartPage from "./components/cart/cartPage.jsx";
-import MyAccount from "./components/myAccount.jsx";
-import Information from "./components/pages/information.jsx";
+import Shop from "./components/shop/shopPage";
+import ShopItemPage from "./components/shop/shopItemPage";
+import SignInRegisterPage from "./components/authentication/signInRegisterPage";
+import CartPage from "./components/cart/cartPage";
+import MyAccount from "./components/myAccount";
+import Information from "./components/pages/information";
 import { SHOP, SIGN_IN, INFORMATION, CART, MY_ACCOUNT, SHOP_ITEM_FULL } from "./constants/paths";
 
 const routes = [
