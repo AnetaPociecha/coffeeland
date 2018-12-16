@@ -4,12 +4,10 @@ import {
 import initialState from './initialState'
 
 export default function(state = initialState, action) {
+  const items = {items: [...action.payload]}
   switch (action.type) {
     case FETCH_SHOP_ITEMS:
-      return {
-        ...state,
-        items: [...action.payload]
-      };
+      return Object.assign({}, state, items); 
     default:
       return state;
   }

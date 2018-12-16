@@ -2,23 +2,14 @@ import { FETCH_ADDRESS_BOOK, UPDATE_ADDRESS_BOOK, REMOVE_ADDRESS } from "../acti
 import initialState from './initialState'
 
 export default function(state = initialState, action) {
-    console.log('payload', action.payload)
+  const payload = {addressBook: action.payload}
   switch (action.type) {
     case FETCH_ADDRESS_BOOK:
-      return {
-        ...state,
-        addressBook: action.payload
-      }
+      return Object.assign({}, state, payload); 
     case UPDATE_ADDRESS_BOOK:
-      return {
-        ...state,
-        addressBook: action.payload
-      }
+      return Object.assign({}, state, payload); 
     case REMOVE_ADDRESS:
-      return {
-        ...state,
-        addressBook: action.payload
-      }
+      return Object.assign({}, state, payload); 
     default:
       return state;
   }
