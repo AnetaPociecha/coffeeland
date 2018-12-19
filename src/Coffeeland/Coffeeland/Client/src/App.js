@@ -5,6 +5,8 @@ import { MAX_QUANTITY } from "./constants/config";
 import { routes } from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
+import { Redirect } from "react-router";
+import { SHOP } from "./constants/paths";
 
 class App extends Component {
   state = {
@@ -17,6 +19,9 @@ class App extends Component {
 
     return (
       <Provider store={store}>
+
+    {/*<Redirect to={SHOP} />*/}
+
         <div className="container-fluid">
           <Router>
             <div>
