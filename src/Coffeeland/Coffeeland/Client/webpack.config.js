@@ -40,5 +40,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
-    ]
+    ],
+    watchOptions: {
+        poll: 1000 // Check for changes every second
+      }
 }
