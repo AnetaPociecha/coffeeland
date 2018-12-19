@@ -23,3 +23,5 @@ export const INVALID_APARTMENT_NUMBER = 'Please provide valid apartment number. 
 
 export const NEWSLETTER_MAIN_INFO = 'Enter your email to be added to our mailing list and receive latest news and information.'
 export const NEWSLETTER_SMALL_INFO = 'We will not sell/rent your email address'
+
+export const INVALID_COMPLAIN = 'Complain must have at least 10 letters'

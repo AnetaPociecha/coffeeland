@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TextArea from "../textArea/textArea";
+import TextArea from "../textArea/textArea.jsx";
 import {
   isComplainValid,
 } from "./../../isValid";
