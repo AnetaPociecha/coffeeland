@@ -3,6 +3,9 @@ import {SIGN_IN, EMAIL, PASSWORD} from "../../constants/titles";
 import FormGroup from "../formGroup/formGroup";
 import FormTitle from "./formTitle";
 import { Button } from "./../button";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { signIn, signOut } from "./../../actions/signInActions";
 
 const signInEmailId = "singInEmail";
 const signInPasswordId = "signInPassword";
@@ -13,7 +16,14 @@ class SignIn extends Component {
     this.state = this.getInitialState();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.token && nextProps.token.token !== '') {
+      this.updateAppStateAferSignIn(true);
+    }
+  }
+
   render() {
+    console.log('token', this.props.token)
     const { singInEmail, signInPassword } = this.state;
 
     return (
@@ -37,7 +47,7 @@ class SignIn extends Component {
             type="password"
           />
 
-          <Button onClick={this.trySignIn} className="btn btn-dark mt-3 ml-3">
+          <Button onClick={this.onSignIn} className="btn btn-dark mt-3 ml-3">
             {SIGN_IN}
           </Button>
         </form>
@@ -63,16 +73,10 @@ class SignIn extends Component {
     };
   };
 
-  trySignIn = () => {
-    let isSignInSuccessful = this.send();
-    this.updateAppStateAferSignIn(isSignInSuccessful);
+  onSignIn = () => {
+    this.props.signIn({email: this.state.signInEmail, password: this.state.password})
   };
 
-  send = () => {
-    // rq
-    // rs
-    return this.state.singInEmail === "ann";
-  };
 
   updateAppStateAferSignIn = isSignInSuccessful => {
     this.setState(this.getInitialState());
@@ -82,4 +86,17 @@ class SignIn extends Component {
   };
 }
 
-export default SignIn;
+SignIn.propTypes = {
+  signIn: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
+  token: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  token: state.token.token
+});
+
+export default connect(
+  mapStateToProps,
+  { signIn, signOut }
+)( SignIn );

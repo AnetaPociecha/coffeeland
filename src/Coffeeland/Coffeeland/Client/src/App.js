@@ -2,43 +2,9 @@ import React, { Component } from "react";
 import NavigationComponent from "./components/navigation/navigationComponent";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { MAX_QUANTITY } from "./constants/config";
-//import { routes } from "./routes";
+import { routes } from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
-import Shop from "./components/shop/shopPage.jsx";
-import ShopItemPage from "./components/shop/shopItemPage.jsx";
-import SignInRegisterPage from "./components/authentication/signInRegisterPage.jsx";
-import CartPage from "./components/cart/cartPage.jsx";
-import MyAccount from "./components/myAccount.jsx";
-import Information from "./components/pages/information.jsx";
-import { SHOP, SIGN_IN, INFORMATION, CART, MY_ACCOUNT, SHOP_ITEM_FULL } from "./constants/paths";
-
-const routes = [
-  {
-    path: SHOP,
-    component: Shop
-  },
-  {
-    path: SIGN_IN,
-    component: SignInRegisterPage
-  },
-  {
-    path: INFORMATION,
-    component: Information
-  },
-  {
-    path: CART,
-    component: CartPage
-  },
-  {
-    path: MY_ACCOUNT,
-    component: MyAccount
-  },
-  {
-    path: SHOP_ITEM_FULL,
-    component: ShopItemPage
-  }
-];
 
 class App extends Component {
   state = {

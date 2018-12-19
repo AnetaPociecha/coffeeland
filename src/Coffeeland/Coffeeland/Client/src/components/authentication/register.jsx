@@ -6,6 +6,8 @@ import FormRow from "./formRow";
 import FormCheck from "./formCheck";
 import FormTitle from "./formTitle";
 import { Button } from "./../button";
+import {isRegisterFormValid, isPasswordValid, isRepeatedPasswordValid, isNameValid, isEmailValid} from './../../isValid'
+
 
 const firstNameId = "firstName";
 const lastNameId = "lastName";
@@ -39,7 +41,7 @@ class Register extends Component {
             <FormGroup
               id={firstNameId}
               title={title.FIRST_NAME}
-              className={this.getTextInputClass(this.isFirstNameValid)}
+              className={this.getTextInputClass(() => isNameValid(firstName))}
               invalidInputMessage={message.INVALID_FIRST_NAME}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -48,7 +50,7 @@ class Register extends Component {
             <FormGroup
               id={lastNameId}
               title={title.LAST_NAME}
-              className={this.getTextInputClass(this.isLastNameValid)}
+              className={this.getTextInputClass(() => isNameValid(lastName))}
               invalidInputMessage={message.INVALID_LAST_NAME}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -72,7 +74,7 @@ class Register extends Component {
             <FormGroup
               id={registerPasswordId}
               title={title.PASSWORD}
-              className={this.getTextInputClass(this.isPasswordValid)}
+              className={this.getTextInputClass(() => isPasswordValid(registerPassword))}
               invalidInputMessage={message.INVALID_PASSWORD}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -82,7 +84,7 @@ class Register extends Component {
             <FormGroup
               id={repeatedPasswordId}
               title={title.REPEAT_PASSWORD}
-              className={this.getTextInputClass(this.isRepeatedPasswordValid)}
+              className={this.getTextInputClass(() => isRepeatedPasswordValid(registerPassword, repeatedPassword))}
               invalidInputMessage={message.INVALID_REPEATED_PASSWORD}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -111,7 +113,7 @@ class Register extends Component {
   handleRegister = () => {
     this.setState({ isFormValidated: true });
     if (this.isFormValid()) {
-      var isRqSuccessful = this.send();
+      var isRqSuccessful = true;
       this.updateAppStateAfterRegister(isRqSuccessful);
     }
   };
@@ -129,46 +131,12 @@ class Register extends Component {
       this.setState({ isEmailTaken: false });
   };
 
-  isFirstNameValid = () => {
-    return this.state.firstName.length > 0;
-  };
-
-  isLastNameValid = () => {
-    return this.state.lastName.length > 0;
-  };
-
-  isEmailValid = () => {
-    return !!this.state.registerEmail.match(".+@.+");
-  };
-
   isEmailAvailable = () => {
-    return this.isEmailValid() && !this.state.isEmailTaken;
+    return isEmailValid(this.state.registerEmail) && !this.state.isEmailTaken;
   };
 
-  isPasswordValid = () => {
-    const { registerPassword } = this.state;
-    return (
-      registerPassword.length >= 8 &&
-      !!registerPassword.match("[a-z]+") &&
-      !!registerPassword.match("[A-Z]+") &&
-      !!registerPassword.match("[0-9]+")
-    );
-  };
-
-  isRepeatedPasswordValid = () => {
-    return this.state.registerPassword === this.state.repeatedPassword;
-  };
-
-  isFormValid = () => {
-    return (
-      this.isFirstNameValid() &&
-      this.isLastNameValid() &&
-      this.isEmailValid() &&
-      this.isPasswordValid() &&
-      this.isRepeatedPasswordValid() &&
-      this.state.checked
-    );
-  };
+  isFormValid = () => 
+    isRegisterFormValid(this.state.firstName, this.state.lastName, this.state.registerEmail, this.state.registerPassword, this.state.repeatedPassword, this.state.checked)
 
   send = () => {
     // rq
@@ -216,7 +184,7 @@ class Register extends Component {
 
   getInvalidEmailMessage = () => {
     return (
-      (this.isEmailValid() ? "" : message.INVALID_EMAIL) +
+      (isEmailValid(this.state.registerEmail) ? "" : message.INVALID_EMAIL) +
       (this.state.isEmailTaken ? message.TAKEN_EMAIL : "")
     );
   };

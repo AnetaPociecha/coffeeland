@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { getTotalPrice } from './../../helpers/priceHelper';
 
 const Price = ({ price, quantity, className }) => {
-  return <p className={className}>$ {getTotalPrice(price, quantity)}</p>;
+  return <div className={className}>$ {getTotalPrice(price, quantity)}</div>;
 }
 
 Price.propTypes = {

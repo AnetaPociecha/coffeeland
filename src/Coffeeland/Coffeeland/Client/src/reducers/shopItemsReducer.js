@@ -1,13 +1,18 @@
 import {
   FETCH_SHOP_ITEMS,
 } from "../actions/types";
-import initialState from './initialState'
+
+const initialState = {
+  items: [],
+};
 
 export default function(state = initialState, action) {
-  const items = {items: [...action.payload]}
   switch (action.type) {
     case FETCH_SHOP_ITEMS:
-      return Object.assign({}, state, items); 
+      return {
+        ...state,
+        items: [...action.payload]
+      };
     default:
       return state;
   }

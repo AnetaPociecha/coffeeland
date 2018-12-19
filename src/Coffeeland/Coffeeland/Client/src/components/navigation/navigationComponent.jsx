@@ -12,7 +12,7 @@ class NavigationComponent extends React.Component {
         } = this.props;
         
         return ( 
-            <div className="bg-light">
+            <div className="">
                 <PersonalNav 
                     isSignIn={isSignIn}
                     handleSignOut={handleSignOut}

@@ -1,6 +1,7 @@
 import React from "react";
 import { getTotalPrice } from "./../../helpers/priceHelper";
 import { PRICE_FILTER_STEP } from "../../constants/config";
+import './style.css'
 
 const PriceFormGroup = ({ id, value, onChange, label, min, max }) => (
   <div className="form-group pb-2">
@@ -11,7 +12,7 @@ const PriceFormGroup = ({ id, value, onChange, label, min, max }) => (
 
     <input
       type="range"
-      className="form-control-range"
+      className="form-control-range slider"
       id={id}
       name={id}
       value={value}
@@ -20,7 +21,7 @@ const PriceFormGroup = ({ id, value, onChange, label, min, max }) => (
       max={max}
       step={PRICE_FILTER_STEP}
     />
-    <div className="row">
+    <div className="row pt-2">
       <div className="text-left small col-6 text-muted">
         {getTotalPrice(min)}
       </div>

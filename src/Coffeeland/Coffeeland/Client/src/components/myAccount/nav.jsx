@@ -6,6 +6,7 @@ import {
   ADDRESS_BOOK,
   NEWSLETTER
 } from "../../constants/titles";
+import './../../style.css'
 
 const Nav = ({ setMode, mode }) => (
     <div
@@ -61,6 +62,6 @@ const Nav = ({ setMode, mode }) => (
     </div>
 );
 
-const getLinkClass = (currMode, mode) => ("nav-link" + (currMode === mode ? " active" : ""))
+const getLinkClass = (currMode, mode) => ("nav-link title" + (currMode === mode ? " bg-success text-white active" : " text-dark"))
 
 export { Nav };

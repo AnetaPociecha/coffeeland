@@ -1,4 +1,4 @@
-import {isNameValid, isEmailValid} from './personalDataValidation'
+import {isNameValid, isEmailValid, isPasswordValid, isRepeatedPasswordValid} from './personalDataValidation'
 
 it('should check if name is valid', () => {
     // given 
@@ -18,7 +18,7 @@ it('should check if name is valid', () => {
     expect(isNameValid(tooLongName)).toEqual(false)
 })
 
-it('should check if email is valid', () => {
+it('should valid email', () => {
     // given
     const valEmail = 'anna@gmail.com'
     const invalEmail1 = '@gmail.com'
@@ -36,4 +36,36 @@ it('should check if email is valid', () => {
     expect(isEmailValid(invalEmail4)).toEqual(false)
     expect(isEmailValid(invalEmail5)).toEqual(false)
     expect(isEmailValid(invalEmail6)).toEqual(false)
+})
+
+it('should valid password', () => {
+    // given
+    const pwd1 = 'asd12A'
+    const pwd2 = ''
+    const pwd3 = 'Haslodssddfg'
+    const pwd4 = 'Grtuy45#23tr'
+    const pwd5 = 'AddfdfdRE34'
+
+    // then
+    expect(isPasswordValid(pwd1)).toEqual(false)
+    expect(isPasswordValid(pwd2)).toEqual(false)
+    expect(isPasswordValid(pwd3)).toEqual(false)
+    expect(isPasswordValid(pwd4)).toEqual(true)
+    expect(isPasswordValid(pwd5)).toEqual(true)
+})
+
+it('should valid repeated password', () => {
+    // given
+    const pwd1 = 'asd12A'
+    const pwd2 = ''
+    const pwd3 = 'Haslodssddfg'
+    const pwd4 = 'Grtuy45#23tr'
+    const pwd5 = 'Haslodssddfg1'
+
+    // then
+    expect(isRepeatedPasswordValid(pwd1, pwd2)).toEqual(false)
+    expect(isRepeatedPasswordValid(pwd2, pwd3)).toEqual(false)
+    expect(isRepeatedPasswordValid(pwd3, pwd5)).toEqual(false)
+    expect(isRepeatedPasswordValid(pwd4, pwd4)).toEqual(true)
+    expect(isRepeatedPasswordValid(pwd1, pwd1)).toEqual(true)
 })

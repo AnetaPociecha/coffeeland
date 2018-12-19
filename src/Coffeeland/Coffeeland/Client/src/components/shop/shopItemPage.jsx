@@ -11,6 +11,8 @@ import { OrderTitle } from "../orderTitle";
 import { Info } from "../info";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
+import { SHOP } from "../../constants/paths";
 
 class ShopItemPage extends React.Component {
   constructor(props) {
@@ -31,21 +33,21 @@ class ShopItemPage extends React.Component {
     const { quantity, shouldAddToCartMsgBeDisplayed } = this.state;
 
     return item ? (
-      <div className="row mx-auto " style={this.props.style}>
+      <div className="row mx-auto border mb-5 mt-3" style={this.props.style}>
         {shouldAddToCartMsgBeDisplayed && (
           <div className="col-12 mt-4">
             <SuccessAlert>{message.PRODUCT_ADDED_TO_CART}</SuccessAlert>
           </div>
         )}
 
-        <div className="col-md-6 col-md-offset-5 p-3 mt-3">
+        <div className="col-md-6 col-md-offset-5 pb-3 pl-3 pr-3 mt-3">
           <Image src={item.img} />
         </div>
         <div className="col-md-6 col-md-offset-5 p-3 mt-3">
           <OrderTitle>{item.name}</OrderTitle>
           <Info>Type - {item.type}</Info>
           <Info>Weight - {config.WEIGTH}kg</Info>
-          <Price className="" price={item.price} />
+          <Price className="pt-2" price={item.price} />
           <div className="row">
             <div display="block" className="p-3">
               <InputSpinner
@@ -65,7 +67,7 @@ class ShopItemPage extends React.Component {
         </div>
         <Info className="p-2 text-justify"> {item.description}</Info>
       </div>
-    ) : null;
+    ) : <Redirect to={SHOP} />;
   }
 
   onAddToCart = item => {

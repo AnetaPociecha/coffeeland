@@ -8,34 +8,32 @@ module.exports = {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
     },
+	devtool: 'source-map',
     module: {
         rules: [
             {
                 test: [/\.jsx?$/, /\.js?$/],
                 resolve: { extensions: [".js", ".jsx"]},
-                exclude: /node_module/,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
             },
-            {
-                test: /\.(scss)$/,
-                use: [{
-                  loader: 'style-loader', // inject CSS to page
-                }, {
-                  loader: 'css-loader', // translates CSS into CommonJS modules
-                }, {
-                  loader: 'postcss-loader', // Run post css actions
-                  options: {
-                    plugins: function () { // post css plugins, can be exported to postcss.config.js
-                      return [
-                        require('precss'),
-                        require('autoprefixer')
-                      ];
-                    }
-                  }
-                }, {
-                  loader: 'sass-loader' // compiles Sass to CSS
-                }]
-              },
+			{
+				  test: /\.html$/,
+				  use: [
+					{
+					  loader: "html-loader"
+					}
+				  ]
+			},
+			{
+				test: /\.css$/,
+				loader: 'style-loader!css-loader'
+	      	},
+	      {
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loader: 'file-loader'
+
+	      }
         ]
     },
     plugins: [
