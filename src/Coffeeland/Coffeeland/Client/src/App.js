@@ -12,12 +12,12 @@ class App extends Component {
   state = {
     isSignIn: false,
     cartEntries: []
-  };
+  }; 
 
   render() {
     console.log('messageProcessorContext', messageProcessorContext)
     const { isSignIn, cartEntries } = this.state;
-
+    console.log(':)');
     return (
       <Provider store={store}>
         <div className="container-fluid">
