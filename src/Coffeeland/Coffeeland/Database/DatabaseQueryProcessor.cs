@@ -63,17 +63,21 @@ namespace Coffeeland.Database
             String query = $"SELECT * FROM addresses WHERE addressId={addressId}";
             DataTable addresses = connector.ExecuteQuery(query);
             AddressRecord record = new AddressRecord();
+            if (addresses.Rows.Count == 0)
+            {
+                return null;
+            }
             record.Fill(addresses.Rows[0]);
             return record;
         }
 
         public static AddressRecord GetAddress(int clientId, String country, String city, String street, int ZIPCode, int buildingNumber, String apartmentNumber)
         {
-            String query = $"SELECT * FROM addresses WHERE clientId={clientId} and country='{country}' and city='{city}' and street='{street}' and ZIPCode={ZIPCode} and buildingNumber={buildingNumber} and apartmentNumber='{apartmentNumber}'";
-            DataTable addresses = connector.ExecuteQuery(query);
+            var query = $"SELECT * FROM addresses WHERE clientId={clientId} and country='{country}' and city='{city}' and street='{street}' and ZIPCode={ZIPCode} and buildingNumber={buildingNumber} and apartmentNumber='{apartmentNumber}'";
+            var addresses = connector.ExecuteQuery(query);
             if (addresses.Rows.Count == 0)
                 return null;
-            AddressRecord record = new AddressRecord();
+            var record = new AddressRecord();
             record.Fill(addresses.Rows[0]);
             return record;
         }
@@ -271,6 +275,11 @@ namespace Coffeeland.Database
         {
             String command = $"UPDATE complaints SET isClosed={(isClosed ? 1 : 0)} WHERE orderId={orderId}";
             return connector.ExecuteCommand(command);
+        }
+
+        public static bool Erase()
+        {
+            return connector.Erase();
         }
 
     }

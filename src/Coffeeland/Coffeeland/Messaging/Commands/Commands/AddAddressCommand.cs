@@ -9,7 +9,6 @@ namespace Coffeeland.Messaging.Commands.Commands
     public class AddAddressCommand : ICommand
     {
         public string sessionToken;
-        public int key;
         public string country;
         public string city;
         public string street;
