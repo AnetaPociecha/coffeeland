@@ -41,7 +41,9 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 );
             }
 
-            return new GetAddressBookQueryHandler().Handle(new GetAddressBookQuery() { sessionToken = command.sessionToken });
+            return new GetAddressBookQueryHandler().Handle(new GetAddressBookQuery() {
+                sessionToken = command.sessionToken
+            });
         }
     }
 }

@@ -38,8 +38,8 @@ create table addresses (
 	street			varchar(30) not null,
 	ZIPCode			integer not null,
 	buildingNumber	integer not null,
-	apartmentNumber	varchar(30),
-	isDefault 		bit default 0
+	apartmentNumber	varchar(30) not null,
+	isActive 		bit default 1
 );
 
 create table workers (
@@ -60,9 +60,10 @@ create table orders (
 );
 
 create table order_entries (
-	orderId 	integer not null references orders,
-	productId	integer not null references products,
-	amount		integer not null
+	orderEntryId	integer primary key,
+	orderId 		integer not null references orders,
+	productId		integer not null references products,
+	amount			integer not null
 );
 
 create table complaints (
