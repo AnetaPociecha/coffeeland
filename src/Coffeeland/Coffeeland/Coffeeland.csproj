@@ -120,6 +120,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Client\dist\index.html" />
     <Content Include="Client\Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -130,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Client\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Client\index.html" />
     <Content Include="Client\Scripts\jquery-1.10.2.js" />
     <Content Include="Client\Scripts\jquery-1.10.2.min.js" />
     <Content Include="Client\Scripts\jquery.signalR-2.1.2.js" />
