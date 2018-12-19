@@ -17,6 +17,6 @@ class MessageProcessor {
     }
 }
 
-
+export default new MessageProcessor();
 
 

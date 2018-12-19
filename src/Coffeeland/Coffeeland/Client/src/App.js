@@ -5,8 +5,8 @@ import { MAX_QUANTITY } from "./constants/config";
 import { routes } from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
-import { Redirect } from "react-router";
-import { SHOP } from "./constants/paths";
+import messageProcessor from './messageProcessor/messageProcessor'
+const messageProcessorContext = React.createContext(messageProcessor);
 
 class App extends Component {
   state = {
@@ -15,13 +15,11 @@ class App extends Component {
   };
 
   render() {
+    console.log('messageProcessorContext', messageProcessorContext)
     const { isSignIn, cartEntries } = this.state;
 
     return (
       <Provider store={store}>
-
-    {/*<Redirect to={SHOP} />*/}
-
         <div className="container-fluid">
           <Router>
             <div>
