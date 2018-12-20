@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry: ['bootstrap','./src/index.js'],
+    entry: ['bootstrap', 'babel-polyfill', './src/index.js'],
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
@@ -18,14 +18,6 @@ module.exports = {
                 loader: 'babel-loader',
             },
 			{
-				  test: /\.html$/,
-				  use: [
-					{
-					  loader: "html-loader"
-					}
-				  ]
-			},
-			{
 				test: /\.css$/,
 				loader: 'style-loader!css-loader'
 	      	},
@@ -35,11 +27,6 @@ module.exports = {
 	      }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        })
-    ],
     watchOptions: {
         poll: 1000 // Check for changes every second
       }

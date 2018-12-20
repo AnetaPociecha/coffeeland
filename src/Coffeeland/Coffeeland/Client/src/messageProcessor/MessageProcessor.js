@@ -6,16 +6,19 @@ export default class MessageProcessor {
     static instance = new MessageProcessor();
 
     constructor() {
-        this.hub = $.connection.communicationHub;
-        $.connection.hub.start();
+        $(()=>{
+            this.hub = $.connection.communicationHub;
+            $.connection.hub.start();
+        });
+        
     }
 
-    processQuery(query) {
-        return this.hub.server.sendQuery(JSON.stringify(query));
+    async processQuery(query) {
+        return await this.hub.server.sendQuery(JSON.stringify(query)).then(data => data);
     }
 
-    processCommand(command) {
-        return this.hub.server.sendCommand(JSON.stringify(command));
+    async processCommand(command) {
+        return await this.hub.server.sendCommand(JSON.stringify(command)).then(data => data);
     }
 
     static getInstance() {
