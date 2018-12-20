@@ -2,7 +2,9 @@ import $ from 'jquery';
 window.jQuery = $;
 require('signalr');
 
-class MessageProcessor {
+export default class MessageProcessor {
+    static instance = new MessageProcessor();
+
     constructor() {
         this.hub = $.connection.communicationHub;
         $.connection.hub.start();
@@ -15,8 +17,12 @@ class MessageProcessor {
     processCommand(command) {
         return this.hub.server.sendCommand(JSON.stringify(command));
     }
+
+    static getInstance() {
+        return instance;
+    }
 }
 
-export default new MessageProcessor();
+
 
 

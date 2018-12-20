@@ -17,6 +17,8 @@ import {
   INVALID_FIRST_NAME,
   INVALID_LAST_NAME
 } from "../../constants/messages";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Profile extends Component {
   state = {
@@ -160,12 +162,33 @@ class Profile extends Component {
       isEditMode: false
     });
 
-    this.props.onPersonalDataChange({
+    
+    const rq = {
+      $type: "UpdatePersonalDataCommand",
+      sessionToken: this.props.token,
+      email: this.state.email,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      email: this.state.email
-    });
+      changePassword: false,
+      newPassword: '',
+      receiveNewsletterEmail: false,
+      newsletterEmail: ''
+    }
+    console.log(rq)
+    this.props.onPersonalDataChange(rq);
   };
 }
 
-export default Profile;
+Profile.propTypes = {
+  token: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  token: state.token.token
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)( Profile );
+

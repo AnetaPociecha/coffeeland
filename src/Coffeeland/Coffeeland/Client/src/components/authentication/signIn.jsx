@@ -5,7 +5,7 @@ import FormTitle from "./formTitle";
 import { Button } from "./../button";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { signIn, signOut } from "./../../actions/signInActions";
+import { signIn } from "./../../actions/signInActions";
 
 const signInEmailId = "singInEmail";
 const signInPasswordId = "signInPassword";
@@ -23,9 +23,7 @@ class SignIn extends Component {
   }
 
   render() {
-    console.log('token', this.props.token)
     const { singInEmail, signInPassword } = this.state;
-
     return (
       <div className="pt-5 pl-5 pr-2 pb-5">
         <FormTitle>{SIGN_IN}</FormTitle>
@@ -74,9 +72,13 @@ class SignIn extends Component {
   };
 
   onSignIn = () => {
-    this.props.signIn({email: this.state.signInEmail, password: this.state.password})
+    const rq = {
+      $type: "SignInQuery",
+      email: this.state.signInEmail, 
+      password: this.state.password
+    }
+    this.props.signIn(rq)
   };
-
 
   updateAppStateAferSignIn = isSignInSuccessful => {
     this.setState(this.getInitialState());
@@ -89,7 +91,7 @@ class SignIn extends Component {
 SignIn.propTypes = {
   signIn: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  token: PropTypes.object.isRequired
+  token: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -98,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { signIn, signOut }
+  { signIn }
 )( SignIn );

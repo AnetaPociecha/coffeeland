@@ -8,7 +8,6 @@ import FormTitle from "./formTitle";
 import { Button } from "./../button";
 import {isRegisterFormValid, isPasswordValid, isRepeatedPasswordValid, isNameValid, isEmailValid} from './../../isValid'
 
-
 const firstNameId = "firstName";
 const lastNameId = "lastName";
 const registerEmailId = "registerEmail";
@@ -110,11 +109,24 @@ class Register extends Component {
     );
   }
 
-  handleRegister = () => {
+  handleRegister = async () => {
     this.setState({ isFormValidated: true });
+
     if (this.isFormValid()) {
-      var isRqSuccessful = true;
-      this.updateAppStateAfterRegister(isRqSuccessful);
+      const rq =  {
+        $type: "RegisterNewClientCommand",
+        email: this.state.registerEmail,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        password: this.state.password,
+        receiveNewsletterEmail: ''
+    }
+    const rs = await processCommand(rq)
+    /* const rs = {
+      isSuccess: true,
+      emailTaken: false
+    } */
+    this.updateAppStateAfterRegister(rs.emailTaken);
     }
   };
 
