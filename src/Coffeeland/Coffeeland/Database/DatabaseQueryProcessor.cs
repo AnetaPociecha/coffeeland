@@ -105,10 +105,6 @@ namespace Coffeeland.Database
             if (clients.Rows.Count == 0)
                 return null;
             ClientInfoRecord record = new ClientInfoRecord();
-            if (clients.Rows.Count == 0)
-            {
-                return null;
-            }
             record.Fill(clients.Rows[0]);
             return record;
         }
