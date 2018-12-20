@@ -12,13 +12,23 @@ namespace Coffeeland.Messaging.Commands.Handlers
         public IResult Handle(SignInCommand command)
         {
             var foundClient = DatabaseQueryProcessor.GetClient(command.email, PasswordEncryptor.encryptSha256(command.password));
-            var sessionToken = SessionRepository.StartNewSession(foundClient.clientId);
 
+            if (foundClient == null)
+            {
+                return new SignInInfoDto()
+                {
+                    isSuccess = false,
+                    sessionToken = null
+                };
+            }
+
+            var sessionToken = SessionRepository.StartNewSession(foundClient.clientId);
             return new SignInInfoDto()
             {
                 isSuccess = true,
                 sessionToken = sessionToken
             };
+
         }
     }
 }

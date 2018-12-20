@@ -14,7 +14,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
         public IResult Handle(SignOutQuery query)
         {
             SessionRepository.RemoveSession(query.sessionToken);
-            return new SuccessDto()
+            return new SuccessInfoDto()
             {
                 isSuccess = true
             };

@@ -9,15 +9,21 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Queries.Handlers
 {
-    public class IQueryHandler : IQueryHandler<GetShopItemsQuery>
+    public class GetShopItemsQueryHandler : IQueryHandler<GetShopItemsQuery>
     {
         public IResult Handle(GetShopItemsQuery query)
         {
             var items = DatabaseQueryProcessor.GetProducts();
 
+            if (items.Count == 0)
+            {
+                throw new Exception();
+            }
+
             var shopItemsDto = new ShopItemDto[items.Count];
             for(var i = 0; i < items.Count; i++)
             {
+                shopItemsDto[i] = new ShopItemDto();
                 shopItemsDto[i].key = items[i].productId;
                 shopItemsDto[i].name = items[i].name;
                 shopItemsDto[i].price = items[i].price;

@@ -28,6 +28,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
 
             for (var i = 0; i < orderRecords.Count; i++)
             {
+                orderDtos[i] = new OrderDto();
                 orderDtos[i].key = orderRecords[i].orderId;
                 var addressRecord = DatabaseQueryProcessor.GetAddress(orderRecords[i].addressId);
                 orderDtos[i].address = new AddressDto()
@@ -45,11 +46,12 @@ namespace Coffeeland.Messaging.Queries.Handlers
                 orderDtos[i].status = orderRecords[i].status;
 
                 var orderEntriesRecords = DatabaseQueryProcessor.GetOrderEntries(orderRecords[i].orderId);
-                var orderEntriesDtos = new OrderEntry[orderEntriesRecords.Count];
+                var orderEntriesDtos = new OrderEntryDto[orderEntriesRecords.Count];
                 for(int j = 0; j < orderEntriesRecords.Count; j++)
                 {
+                    orderEntriesDtos[j] = new OrderEntryDto();
                     var product = DatabaseQueryProcessor.GetProduct(orderEntriesRecords[j].productId);
-                    orderEntriesDtos[j].key = 1;    // TODO
+                    orderEntriesDtos[j].key = orderEntriesRecords[j].orderEntryId;   
                     orderEntriesDtos[j].name = product.name;
                     orderEntriesDtos[j].price = orderEntriesRecords[j].amount * product.price;
                     orderEntriesDtos[j].quantity = orderEntriesRecords[j].amount;

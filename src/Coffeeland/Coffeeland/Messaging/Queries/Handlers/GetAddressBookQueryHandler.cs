@@ -25,7 +25,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
             var addressesDto = new AddressDto[addresses.Count];
             for (var i = 0; i < addresses.Count; i++)
             {
-                addressesDto[i].key = addresses[i].addressId;
+                addressesDto[i] = new AddressDto();
                 addressesDto[i].country = addresses[i].country;
                 addressesDto[i].city = addresses[i].city;
                 addressesDto[i].street = addresses[i].street;
