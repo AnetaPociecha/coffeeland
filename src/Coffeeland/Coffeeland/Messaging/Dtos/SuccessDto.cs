@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Dtos
 {
-    public class SuccessDto : IResult
+    public class SuccessInfoDto : IResult
     {
         public bool isSuccess;
     }

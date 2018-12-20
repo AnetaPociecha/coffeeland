@@ -105,6 +105,10 @@ namespace Coffeeland.Database
             if (clients.Rows.Count == 0)
                 return null;
             ClientInfoRecord record = new ClientInfoRecord();
+            if (clients.Rows.Count == 0)
+            {
+                return null;
+            }
             record.Fill(clients.Rows[0]);
             return record;
         }
@@ -191,7 +195,7 @@ namespace Coffeeland.Database
         public static bool CreateNewOrderEntry(int orderId, int productId, int amount)
         {
             DataTable dataTableId = connector.ExecuteQuery("SELECT MAX(orderEntryId)+1 FROM order_entries");
-            int.TryParse(dataTableId.Rows[0]["MAX(addressId)+1"].ToString(), out int orderEntryId);
+            int.TryParse(dataTableId.Rows[0]["MAX(orderEntryId)+1"].ToString(), out int orderEntryId);
 
             String command = "INSERT INTO order_entries(orderEntryId,orderId,productId,amount) VALUES "
                 + "(" + orderEntryId +"," + orderId + "," + productId + "," + amount + ")";

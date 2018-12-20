@@ -9,6 +9,7 @@ using Coffeeland.Messaging.Commands.Commands;
 using Coffeeland.Messaging.Dtos;
 using Coffeeland.Messaging.Shared;
 using Coffeeland.Session;
+using Coffeeland.Tests.TestsShared;
 
 
 
@@ -21,18 +22,19 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
         public void InactivateAddress_ProperAttributes_Success()
         {
             DatabaseQueryProcessor.Erase();
+            Shared.FillTheDatabase();
             int clientId = 0;
-            DatabaseQueryProcessor.CreateNewAddress(clientId, "Poland", "Cracow", "Urzednicza", 34040, 100, "1");
-            String testSessionToken = SessionRepository.StartNewSession(clientId);
+            
+            var testSessionToken = SessionRepository.StartNewSession(clientId);
 
-            InactivateAddressCommand inactivateAddressCommand = new InactivateAddressCommand
+            var inactivateAddressCommand = new InactivateAddressCommand
             {
                 sessionToken = testSessionToken,
                 addressKey = 0
             };
 
-            InactivateAddressCommandHandler handler = new InactivateAddressCommandHandler();
-            SuccessDto result = (SuccessDto) handler.Handle(inactivateAddressCommand);
+            var handler = new InactivateAddressCommandHandler();
+            var result = (SuccessInfoDto) handler.Handle(inactivateAddressCommand);
 
             DatabaseQueryProcessor.Erase();
             SessionRepository.RemoveSession(testSessionToken);
@@ -44,9 +46,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
         public void InactivateAddress_NoAddressInDatabase_Fail()
         {
             DatabaseQueryProcessor.Erase();
-            int clientId = 0;
-            int testAddressKey = 0;
-            String testSessionToken = SessionRepository.StartNewSession(clientId);
+            Shared.FillTheDatabase();
+
+            int testClientId = 0;
+            int testAddressKey = 50;
+            var testSessionToken = SessionRepository.StartNewSession(testClientId);
 
             InactivateAddressCommand inactivateAddressCommand = new InactivateAddressCommand
             {
@@ -54,8 +58,8 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 addressKey = testAddressKey
             };
 
-            InactivateAddressCommandHandler handler = new InactivateAddressCommandHandler();
-            SuccessDto result = (SuccessDto)handler.Handle(inactivateAddressCommand);
+            var handler = new InactivateAddressCommandHandler();
+            var result = (SuccessInfoDto)handler.Handle(inactivateAddressCommand);
 
             DatabaseQueryProcessor.Erase();
             SessionRepository.RemoveSession(testSessionToken);

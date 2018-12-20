@@ -165,7 +165,7 @@
     <Compile Include="Messaging\Dtos\AddressBookDto.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
     <Compile Include="Messaging\Dtos\OrderDto.cs" />
-    <Compile Include="Messaging\Dtos\OrderEntry.cs" />
+    <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
     <Compile Include="Messaging\Dtos\OrdersDto.cs" />
     <Compile Include="Messaging\Dtos\PersonalDataDto.cs" />
     <Compile Include="Messaging\Dtos\ShopItemDto.cs" />
@@ -210,6 +210,7 @@
     <Compile Include="Tests\Messaging\Queries\Handlers\GetPersonalDataQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetShopItemsQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\SignOutQueryHandlerTest.cs" />
+    <Compile Include="Tests\TestsShared\Shared.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

@@ -27,7 +27,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 command.receiveNewsletterEmail ? command.newsletterEmail : ""
                 );
 
-            return new SuccessDto()
+            return new SuccessInfoDto()
             {
                 isSuccess = true
             };

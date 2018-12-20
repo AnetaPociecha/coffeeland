@@ -34,7 +34,9 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (command.receiveNewsletterEmail)
                 DatabaseQueryProcessor.UpdateClientCredentials(clientId, "newsletterEmail", command.newsletterEmail);
 
-            return new GetPersonalDataQueryHandler().Handle(new GetPersonalDataQuery() { sessionToken = command.sessionToken });
+            return new GetPersonalDataQueryHandler().Handle(new GetPersonalDataQuery() {
+                sessionToken = command.sessionToken
+            });
         }
     }
 }

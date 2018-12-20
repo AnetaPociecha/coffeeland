@@ -17,7 +17,7 @@ namespace Coffeeland.SignalRCommunication
             }
             catch
             {
-                return new SuccessDto()
+                return new SuccessInfoDto()
                 {
                     isSuccess = false
                 };
@@ -35,7 +35,7 @@ namespace Coffeeland.SignalRCommunication
             }
             catch
             {
-                return new SuccessDto()
+                return new SuccessInfoDto()
                 {
                     isSuccess = false
                 };

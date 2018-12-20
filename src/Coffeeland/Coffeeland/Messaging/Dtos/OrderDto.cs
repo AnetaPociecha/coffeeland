@@ -9,7 +9,7 @@ namespace Coffeeland.Messaging.Dtos
     public class OrderDto : IResult
     {
         public int key;
-        public OrderEntry[] orderEntries;
+        public OrderEntryDto[] orderEntries;
         public int totalPrice;
         public AddressDto address;
         public int status;

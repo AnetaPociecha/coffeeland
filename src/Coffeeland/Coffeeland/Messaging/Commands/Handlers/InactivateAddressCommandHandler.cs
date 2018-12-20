@@ -19,13 +19,13 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (address != null && address.clientId == clientId)
             {
                 DatabaseQueryProcessor.UpdateAddress(address.addressId, false);
-                return new SuccessDto()
+                return new SuccessInfoDto()
                 {
                     isSuccess = true
                 };
             }
 
-            return new SuccessDto()
+            return new SuccessInfoDto()
             {
                 isSuccess = false
             };
