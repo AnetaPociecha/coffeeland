@@ -5,8 +5,7 @@ import { MAX_QUANTITY } from "./constants/config";
 import { routes } from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
-import messageProcessor from './messageProcessor/messageProcessor'
-const messageProcessorContext = React.createContext(messageProcessor);
+//import messageProcessor from './messageProcessor/messageProcessor'
 
 class App extends Component {
   state = {
@@ -15,7 +14,18 @@ class App extends Component {
   }; 
 
   render() {
-    console.log('messageProcessorContext', messageProcessorContext)
+    /*console.log('messageProcessorContext', messageProcessor.getInstance())
+    
+    const mp = messageProcessor.getInstance()
+    const rq = {
+      $type = "SignInCommand",
+      email: 'marek@gmail.com',
+      password: '12345'
+    }
+    mp.processCommand(rq).then(data => rs = data)
+
+    */
+
     const { isSignIn, cartEntries } = this.state;
     console.log(':)');
     return (
@@ -61,6 +71,7 @@ class App extends Component {
   onSignOut = () => {
     this.setState({ isSignIn: false });
   };
+
 
   onAddToCart = (item, quantity) => {
     const currentQuantity = this.howManyItemInCart(item);

@@ -5,7 +5,7 @@ import FormTitle from "./formTitle";
 import { Button } from "./../button";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { signIn, signOut } from "./../../actions/signInActions";
+import { signIn } from "./../../actions/signInActions";
 
 const signInEmailId = "singInEmail";
 const signInPasswordId = "signInPassword";
@@ -17,15 +17,14 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.token && nextProps.token.token !== '') {
-      this.updateAppStateAferSignIn(true);
+    console.log(nextProps.token)
+    if (nextProps.token) {
+      this.updateAppStateAferSignIn(nextProps.token.token !== '');
     }
   }
 
   render() {
-    console.log('token', this.props.token)
     const { singInEmail, signInPassword } = this.state;
-
     return (
       <div className="pt-5 pl-5 pr-2 pb-5">
         <FormTitle>{SIGN_IN}</FormTitle>
@@ -68,15 +67,20 @@ class SignIn extends Component {
   getInitialState = () => {
     return {
       singInEmail: "",
-      signInPassword: "",
-      isSignInSuccessful: false
+      signInPassword: ""
     };
   };
 
-  onSignIn = () => {
-    this.props.signIn({email: this.state.signInEmail, password: this.state.password})
+  onSignIn = async () => {
+    const rq = {
+      $type: "SignInQuery",
+      email: this.state.singInEmail, 
+      password: this.state.signInPassword
+    }
+    let succ = await this.props.signIn(rq)
+    console.log('succ', succ)
+    this.updateAppStateAferSignIn(succ);
   };
-
 
   updateAppStateAferSignIn = isSignInSuccessful => {
     this.setState(this.getInitialState());
@@ -89,7 +93,7 @@ class SignIn extends Component {
 SignIn.propTypes = {
   signIn: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  token: PropTypes.object.isRequired
+  token: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -98,5 +102,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { signIn, signOut }
+  { signIn }
 )( SignIn );
