@@ -10,7 +10,6 @@ export default class MessageProcessor {
             this.hub = $.connection.communicationHub;
             $.connection.hub.start();
         });
-        
     }
 
     async processQuery(query) {
@@ -22,7 +21,7 @@ export default class MessageProcessor {
     }
 
     static getInstance() {
-        return instance;
+        return this.instance;
     }
 }
 

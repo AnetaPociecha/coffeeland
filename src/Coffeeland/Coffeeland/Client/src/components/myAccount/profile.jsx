@@ -174,7 +174,7 @@ class Profile extends Component {
       receiveNewsletterEmail: false,
       newsletterEmail: ''
     }
-    console.log(rq)
+
     this.props.onPersonalDataChange(rq);
   };
 }

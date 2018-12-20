@@ -1,6 +1,6 @@
 import { FETCH_PERSONAL_DATA, UPDATE_PERSONAL_DATA, SET_NEWSLETTER_EMAIL, REMOVE_NEWSLETTER_EMAIL } from "./types";
 import personalData from "../personalData";
-// import MessageProcessor from './../../messageProcessor/messageProcessor'
+import MessageProcessor from './../messageProcessor/messageProcessor'
 
 // received payload is always completed personalData
 
@@ -17,7 +17,7 @@ export const fetchPersonalData = () => dispatch => {
 export const updatePersonalData = async (rq) => dispatch => {
   //sent to server and receive newData as response and use .then(dispatch ... )
   const mp = MessageProcessor.getInstance()
-  const rs = await mp.processCommand(rq)
+  const rs = mp.processCommand(rq)
   /* const rs = {
     isSuccess: true,
     email: rq.email,

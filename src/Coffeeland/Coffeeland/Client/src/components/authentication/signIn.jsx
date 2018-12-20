@@ -17,8 +17,9 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.token && nextProps.token.token !== '') {
-      this.updateAppStateAferSignIn(true);
+    console.log(nextProps.token)
+    if (nextProps.token) {
+      this.updateAppStateAferSignIn(nextProps.token.token !== '');
     }
   }
 
@@ -66,18 +67,19 @@ class SignIn extends Component {
   getInitialState = () => {
     return {
       singInEmail: "",
-      signInPassword: "",
-      isSignInSuccessful: false
+      signInPassword: ""
     };
   };
 
-  onSignIn = () => {
+  onSignIn = async () => {
     const rq = {
       $type: "SignInQuery",
-      email: this.state.signInEmail, 
-      password: this.state.password
+      email: this.state.singInEmail, 
+      password: this.state.signInPassword
     }
-    this.props.signIn(rq)
+    let succ = await this.props.signIn(rq)
+    console.log('succ', succ)
+    this.updateAppStateAferSignIn(succ);
   };
 
   updateAppStateAferSignIn = isSignInSuccessful => {

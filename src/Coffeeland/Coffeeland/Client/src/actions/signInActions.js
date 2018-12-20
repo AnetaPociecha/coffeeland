@@ -1,18 +1,19 @@
 import { SIGN_IN, SIGN_OUT } from "./types";
-import MessageProcessor from './../../messageProcessor/messageProcessor'
+import MessageProcessor from './../messageProcessor/MessageProcessor'
 const mp = MessageProcessor.getInstance();
 
-export const signIn = async (rq) => dispatch => {
+export const signIn = (rq) => dispatch => {
 
-  const rs = await mp.processQuery(rq)
+  mp.processQuery(rq).then(rs => 
+    dispatch({
+      type: SIGN_IN,
+      payload: rs.isSuccess ? {token: rs.sessionToken} : ''
+    })
+   )
     /* const rs = {
       isSuccess: true,
       sessionToken: 'xyz'
   }*/
-    dispatch({
-      type: SIGN_IN,
-      payload: {token: rs.sessionToken}
-    });
 };
 
 export const signOut = () => dispatch => {

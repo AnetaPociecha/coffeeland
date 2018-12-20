@@ -7,6 +7,7 @@ import FormCheck from "./formCheck";
 import FormTitle from "./formTitle";
 import { Button } from "./../button";
 import {isRegisterFormValid, isPasswordValid, isRepeatedPasswordValid, isNameValid, isEmailValid} from './../../isValid'
+import MessageProcessor from './../../messageProcessor/messageProcessor'
 
 const firstNameId = "firstName";
 const lastNameId = "lastName";
@@ -121,12 +122,18 @@ class Register extends Component {
         password: this.state.password,
         receiveNewsletterEmail: ''
     }
-    const rs = await processCommand(rq)
+    const mp = MessageProcessor.getInstance()
+    mp.processCommand(rq).then(
+      rs => {
+        console.log(rs)
+        this.updateAppStateAfterRegister(rs.isSuccess);
+      }
+    )
     /* const rs = {
       isSuccess: true,
       emailTaken: false
     } */
-    this.updateAppStateAfterRegister(rs.emailTaken);
+    
     }
   };
 
