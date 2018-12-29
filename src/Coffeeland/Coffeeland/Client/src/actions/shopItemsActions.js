@@ -9,9 +9,11 @@ export const fetchShopItems = () => dispatch => {
   const mp = MessageProcessor.getInstance();
   mp.processQuery(rq).then(rs => {
     console.log(rs);
+    //hack please fix it
+    si = rs.shopItems || []
     dispatch({
       type: FETCH_SHOP_ITEMS,
-      payload: rs.isSuccess ? rs : {items: []}
+      payload: rs.isSuccess ? {items: si} : {items: []}
     });
   });
 };
