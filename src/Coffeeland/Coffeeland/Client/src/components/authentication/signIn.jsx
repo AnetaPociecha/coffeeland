@@ -6,6 +6,9 @@ import { Button } from "./../button";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { signIn } from "./../../actions/signInActions";
+import MessageProcessor from './../../messageProcessor/MessageProcessor'
+
+const mp = MessageProcessor.getInstance();
 
 const signInEmailId = "singInEmail";
 const signInPasswordId = "signInPassword";
@@ -17,10 +20,10 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.token)
-    if (nextProps.token) {
-      this.updateAppStateAferSignIn(nextProps.token.token !== '');
-    }
+    console.log('nextProps.token', nextProps.token)
+    //if (nextProps.token) {
+      //this.updateAppStateAferSignIn(nextProps.token.token !== '');
+    //}
   }
 
   render() {
@@ -77,9 +80,18 @@ class SignIn extends Component {
       email: this.state.singInEmail, 
       password: this.state.signInPassword
     }
+    /*
     let succ = await this.props.signIn(rq)
     console.log('succ', succ)
     this.updateAppStateAferSignIn(succ);
+*/
+    mp.processQuery(rq).then(rs => {
+        const result = rs.isSuccess
+        console.log('sign in result', rs)
+        this.updateAppStateAferSignIn(result);
+        this.props.signIn(rs)
+      }
+     ) 
   };
 
   updateAppStateAferSignIn = isSignInSuccessful => {

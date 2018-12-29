@@ -10,10 +10,9 @@ export const fetchShopItems = () => dispatch => {
   mp.processQuery(rq).then(rs => {
     console.log(rs);
     //hack please fix it
-    si = rs.shopItems || []
     dispatch({
       type: FETCH_SHOP_ITEMS,
-      payload: rs.isSuccess ? {items: si} : {items: []}
+      payload: rs.isSuccess ? {items: rs.shopItems || []} : {items: []}
     });
   });
 };
