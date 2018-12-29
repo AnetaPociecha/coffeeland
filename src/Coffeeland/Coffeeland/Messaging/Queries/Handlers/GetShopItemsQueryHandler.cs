@@ -14,7 +14,16 @@ namespace Coffeeland.Messaging.Queries.Handlers
         public IResult Handle(GetShopItemsQuery query)
         {
             var items = DatabaseQueryProcessor.GetProducts();
-            
+
+            if (items.Count == 0)
+            {
+                return new ShopItemsDto()
+                {
+                    isSuccess = true,
+                    shopItems = null
+                };
+            }
+
             var shopItemsDto = new ShopItemDto[items.Count];
             for(var i = 0; i < items.Count; i++)
             {
