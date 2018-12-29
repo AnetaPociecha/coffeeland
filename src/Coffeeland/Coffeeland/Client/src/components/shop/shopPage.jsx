@@ -21,12 +21,13 @@ class Shop extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.shopItems) {
-      this.setState({
-        allItems: [...nextProps.shopItems],
-        typeFilterItems: [...nextProps.shopItems],
-        priceFilterItems: [...nextProps.shopItems],
-        visibleItems: [...nextProps.shopItems]
+    if (nextProps.items) {
+      console.log(nextProps.items)
+       this.setState({
+        allItems: nextProps.items.items ? [...nextProps.items.items] : [],
+        typeFilterItems:  nextProps.items.items ? [...nextProps.items.items] : [],
+        priceFilterItems: nextProps.items.items ? [...nextProps.items.items] : [],
+        visibleItems:  nextProps.items.items ? [...nextProps.items.items] : [],
       });
     }
   }
@@ -100,11 +101,11 @@ const TableWithMessage = withMessage(Table);
 
 Shop.propTypes = {
   fetchShopItems: PropTypes.func.isRequired,
-  shopItems: PropTypes.array.isRequired
+  items: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  shopItems: state.shopItems.items
+  items: state.items.items
 });
 
 export default connect(

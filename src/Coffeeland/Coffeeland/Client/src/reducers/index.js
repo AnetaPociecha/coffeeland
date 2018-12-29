@@ -5,7 +5,7 @@ import addressBookReducer from './addressBookReducer'
 import signInReducer from './signInReducer'
 
 export default combineReducers({
-  shopItems: shopItemsReducer,
+  items: shopItemsReducer,
   personalData: personalDataReducer,
   addressBook: addressBookReducer,
   token: signInReducer,

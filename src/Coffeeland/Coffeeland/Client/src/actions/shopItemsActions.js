@@ -7,11 +7,11 @@ export const fetchShopItems = () => dispatch => {
     $type: "GetShopItemsQuery"
   };
   const mp = MessageProcessor.getInstance();
-  mp.processCommand(rq).then(rs => {
+  mp.processQuery(rq).then(rs => {
     console.log(rs);
     dispatch({
       type: FETCH_SHOP_ITEMS,
-      payload: rs.isSuccess ? rs.items : []
+      payload: rs.isSuccess ? rs : {items: []}
     });
   });
 };

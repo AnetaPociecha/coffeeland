@@ -13,23 +13,31 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { SHOP } from "../../constants/paths";
+import { fetchShopItems } from "./../../actions/shopItemsActions";
+import { getItemName } from "../../helpers/pathHelper";
 
 class ShopItemPage extends React.Component {
   constructor(props) {
     super(props);
     window.scrollTo(0, 0);
   }
+
+  componentWillMount() {
+    //this.props.fetchShopItems();
+  }
+
   state = {
     quantity: 1,
     shouldAddToCartMsgBeDisplayed: false
   };
+
   render() {
     const {
       match: { params },
-      shopItems
+      items
     } = this.props;
-    const name = params.name.split("-").join(" ");
-    const item = shopItems.find(i => i.name === name);
+    const name = getItemName(params.name);
+    const item = items.items ? items.items.find(i => i.name === name) : {}
     const { quantity, shouldAddToCartMsgBeDisplayed } = this.state;
 
     return item ? (
@@ -97,14 +105,15 @@ class ShopItemPage extends React.Component {
 }
 
 ShopItemPage.propTypes = {
-  shopItems: PropTypes.array.isRequired
+  fetchShopItems: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  shopItems: state.shopItems.items
+  items: state.items.items
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchShopItems }
 )(ShopItemPage);

@@ -13,10 +13,12 @@ export default class MessageProcessor {
     }
 
     async processQuery(query) {
+        console.log('query',query)
         return await this.hub.server.sendQuery(JSON.stringify(query)).then(data => data);
     }
 
     async processCommand(command) {
+        console.log('command',command)
         return await this.hub.server.sendCommand(JSON.stringify(command)).then(data => data);
     }
 

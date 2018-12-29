@@ -4,8 +4,9 @@ import { FETCH_SHOP_ITEMS } from "../actions/types";
 it("should return shop items", () => {
   // GIVEN
   const initialState = {
-    shopItems: { items: [] }
+    items: []
   };
+
   const item = {
     key: 1,
     name: "Guatemala Antigua",
@@ -16,7 +17,7 @@ it("should return shop items", () => {
       "Guatemala is known for delicious coffee, especially from the region of Antigua. That is why we have chosen to offer this coffee – it is complex, rich, and unique, an all-around pleasing cup with a fragrant aroma."
   };
   const state = {
-    shopItems: { items: [item] }
+    items: []
   };
   const newItems = [
     {
@@ -37,7 +38,7 @@ it("should return shop items", () => {
       description:
         "A smooth light roasted dynamic powerhouse. No bitterness or aftertaste on this gem. We use portions of both our Brazil and Costa Rica for this coffee. Costa Rican coffees set the standard for washed (wet processed) bright Central American coffees in both the bean and at the mill. Costa Rican coffees are exceptionally high grown in amazing volcanic soil. These two factors come together to produce a very bright and very clean cup. The best Costas are the cups that develop a bit of berry fruitiness to compliment the straight-out brightness. Costa Rican coffees serve as an excellent bright single origin coffee and will definitely add life to various blends. Additionally, these slower grown, dense, high altitude beans can take the heat of a French roast."
     }
-  ];
+  ]
 
   // WHEN
   const stateInit = rootReducer(initialState, { type: "NOT_ACTION" });
@@ -51,9 +52,9 @@ it("should return shop items", () => {
   });
 
   // THEN
-  expect(stateInit.shopItems).toEqual(initialState.shopItems);
-  expect(stateNew.shopItems).toEqual({ items: [...newItems] });
-  expect(stateUndef.shopItems).toEqual({
+  expect(stateInit.items).toEqual(initialState.items);
+  expect(stateNew.items).toEqual(newItems.items);
+  expect(stateUndef.items).toEqual({
     items: newItems
   });
 });
