@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using Coffeeland.Database.Records;
 using System.Collections.Generic;
+using Coffeeland.Tests.TestsShared;
 
 namespace Coffeeland.Database
 {
@@ -13,7 +14,7 @@ namespace Coffeeland.Database
 
         static DatabaseQueryProcessor()
         {
-           connector = new Connector();
+            connector = new Connector();
         }
 
 
