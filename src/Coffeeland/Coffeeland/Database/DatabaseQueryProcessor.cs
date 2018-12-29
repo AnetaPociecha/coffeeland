@@ -15,8 +15,6 @@ namespace Coffeeland.Database
         static DatabaseQueryProcessor()
         {
             connector = new Connector();
-            connector.Erase();
-            Shared.FillTheDatabase();
         }
 
 
