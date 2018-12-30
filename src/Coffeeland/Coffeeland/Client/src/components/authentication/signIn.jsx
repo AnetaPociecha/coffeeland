@@ -75,7 +75,6 @@ class SignIn extends Component {
     }
     mp.processCommand(rq).then(rs => {
         const result = rs.isSuccess
-        console.log('sign in result', rs)
         this.updateAppStateAferSignIn(result);
         this.props.dispatchToken(rs)
       }

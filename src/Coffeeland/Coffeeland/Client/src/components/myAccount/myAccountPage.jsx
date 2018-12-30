@@ -20,7 +20,6 @@ class MyAccount extends Component {
   };
 
   componentWillMount() {
-    console.log('my account cwm this.props.token', this.props.token )
     this.props.fetchPersonalData(this.props.token);
   }
 
@@ -54,7 +53,7 @@ class MyAccount extends Component {
               role="tabpanel"
               aria-labelledby="orders"
             >
-              <Orders orders={this.props.personalData.orders} />
+              <Orders />
             </div>
             <div
               className={this.getTabClass("ADDRESSBOOK")}
@@ -70,7 +69,7 @@ class MyAccount extends Component {
               role="tabpanel"
               aria-labelledby="newsletter"
             >
-              <Newsletter receiveNewsletterEmail={this.props.personalData.receiveNewsletterEmail} /> 
+              <Newsletter /> 
             </div>
           </div>
         </div>

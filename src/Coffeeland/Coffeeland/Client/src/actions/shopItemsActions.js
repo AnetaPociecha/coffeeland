@@ -8,7 +8,6 @@ export const fetchShopItems = () => dispatch => {
   };
   const mp = MessageProcessor.getInstance();
   mp.processQuery(rq).then(rs => {
-    console.log(rs);
     //hack please fix it
     dispatch({
       type: FETCH_SHOP_ITEMS,

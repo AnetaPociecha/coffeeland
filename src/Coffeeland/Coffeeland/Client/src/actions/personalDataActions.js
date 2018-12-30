@@ -18,6 +18,7 @@ export const fetchPersonalData = token => dispatch => {
   };
 
   mp.processQuery(rq).then(rs => {
+    console.log("GetPersonalDataQuery rs", rs);
     dispatch({
       type: FETCH_PERSONAL_DATA,
       payload: rs
@@ -33,27 +34,15 @@ export const fetchOrders = token => dispatch => {
   mp.processQuery(rq).then(rs => {
     dispatch({
       type: FETCH_ORDERS,
-      payload: rs.isSuccess ? 
-        {orders: rs.orders} : {orders: []}
+      payload: rs.isSuccess ? { orders: rs.orders } : { orders: [] }
     });
   });
 };
 
-export const updatePersonalData = async rq => dispatch => {
-  //sent to server and receive newData as response and use .then(dispatch ... )
-  const mp = MessageProcessor.getInstance();
-  const rs = mp.processCommand(rq);
-  /* const rs = {
-    isSuccess: true,
-    email: rq.email,
-    firstName: rq.firstName,
-    lastName: rq.lastName,
-    receiveNewsletterEmail: false, // bug
-    newsletterEmail: ''
-} */
+export const updatePersonalData = data => dispatch => {
   dispatch({
     type: UPDATE_PERSONAL_DATA,
-    payload: rs
+    payload: data
   });
 };
 

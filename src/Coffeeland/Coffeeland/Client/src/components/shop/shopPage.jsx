@@ -22,7 +22,6 @@ class Shop extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.items) {
-      console.log(nextProps.items)
        this.setState({
         allItems: nextProps.items.items ? [...nextProps.items.items] : [],
         typeFilterItems:  nextProps.items.items ? [...nextProps.items.items] : [],

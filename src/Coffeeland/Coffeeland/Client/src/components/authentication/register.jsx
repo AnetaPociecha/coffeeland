@@ -6,8 +6,14 @@ import FormRow from "./formRow";
 import FormCheck from "./formCheck";
 import FormTitle from "./formTitle";
 import { Button } from "./../button";
-import {isRegisterFormValid, isPasswordValid, isRepeatedPasswordValid, isNameValid, isEmailValid} from './../../isValid'
-import MessageProcessor from './../../messageProcessor/messageProcessor'
+import {
+  isRegisterFormValid,
+  isPasswordValid,
+  isRepeatedPasswordValid,
+  isNameValid,
+  isEmailValid
+} from "./../../isValid";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
 
 const firstNameId = "firstName";
 const lastNameId = "lastName";
@@ -74,7 +80,9 @@ class Register extends Component {
             <FormGroup
               id={registerPasswordId}
               title={title.PASSWORD}
-              className={this.getTextInputClass(() => isPasswordValid(registerPassword))}
+              className={this.getTextInputClass(() =>
+                isPasswordValid(registerPassword)
+              )}
               invalidInputMessage={message.INVALID_PASSWORD}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -84,7 +92,9 @@ class Register extends Component {
             <FormGroup
               id={repeatedPasswordId}
               title={title.REPEAT_PASSWORD}
-              className={this.getTextInputClass(() => isRepeatedPasswordValid(registerPassword, repeatedPassword))}
+              className={this.getTextInputClass(() =>
+                isRepeatedPasswordValid(registerPassword, repeatedPassword)
+              )}
               invalidInputMessage={message.INVALID_REPEATED_PASSWORD}
               handleInputChange={this.handleInputChange}
               colLength={6}
@@ -114,26 +124,20 @@ class Register extends Component {
     this.setState({ isFormValidated: true });
 
     if (this.isFormValid()) {
-      const rq =  {
+      const rq = {
         $type: "RegisterNewClientCommand",
         email: this.state.registerEmail,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        password: this.state.password,
-        receiveNewsletterEmail: ''
-    }
-    const mp = MessageProcessor.getInstance()
-    mp.processCommand(rq).then(
-      rs => {
-        console.log(rs)
+        password: this.state.registerPassword,
+        receiveNewsletterEmail: false
+      };
+      const mp = MessageProcessor.getInstance();
+
+      mp.processCommand(rq).then(rs => {
+        console.log("RegisterNewClientCommand rs", rs);
         this.updateAppStateAfterRegister(rs.isSuccess);
-      }
-    )
-    /* const rs = {
-      isSuccess: true,
-      emailTaken: false
-    } */
-    
+      });
     }
   };
 
@@ -154,14 +158,15 @@ class Register extends Component {
     return isEmailValid(this.state.registerEmail) && !this.state.isEmailTaken;
   };
 
-  isFormValid = () => 
-    isRegisterFormValid(this.state.firstName, this.state.lastName, this.state.registerEmail, this.state.registerPassword, this.state.repeatedPassword, this.state.checked)
-
-  send = () => {
-    // rq
-    // rs
-    return this.state.registerEmail !== "apociecha@interia.pl";
-  };
+  isFormValid = () =>
+    isRegisterFormValid(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.registerEmail,
+      this.state.registerPassword,
+      this.state.repeatedPassword,
+      this.state.checked
+    );
 
   updateAppStateAfterRegister = isRqSuccessful => {
     if (isRqSuccessful) {

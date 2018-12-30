@@ -17,10 +17,18 @@ import {
 } from "./../../constants/messages";
 
 class Newsletter extends Component {
-  state = { newsletterEmail: "", isChecked: false };
+  state = { newNewsletterEmail: "", isChecked: false };
   render() {
-    const { newsletterEmail } = this.state;
-    const { receiveNewsletterEmail } = this.props;
+    const { newNewsletterEmail } = this.state;
+
+    //const { receiveNewsletterEmail } = this.props;
+    
+    const { newsletterEmail, 
+      receiveNewsletterEmail} = this.props;
+
+      console.log('newsletterEmail', newsletterEmail)
+      console.log('receiveNewsletterEmail', receiveNewsletterEmail)
+
     return (
       <div className="col-12 mb-4 ">
         <OrderTitle>Newsletter</OrderTitle>
@@ -33,8 +41,8 @@ class Newsletter extends Component {
                 <div className="col-12 text-muted p-1">
                   Newsletter email:
                   <br />
-                </div>
-                <div className="col-12 p-1">{receiveNewsletterEmail}</div>
+                </div> 
+                <div className="col-12 p-1">{newsletterEmail}</div>
               </div>
               <div className="col-5 my-auto text-center">
                 <Button onClick={this.newsletterSignOut}>Sign out</Button>
@@ -44,21 +52,21 @@ class Newsletter extends Component {
             <div className="row p-2 border">
               <div className="col-7 my-auto">
                 <FormGroup
-                  id="newsletterEmail"
+                  id="newNewsletterEmail"
                   title="Email"
                   className={getInputClass(
                     this.shouldEmailBeChecked,
-                    newsletterEmail
+                    newNewsletterEmail
                   )}
                   invalidInputMessage={INVALID_EMAIL}
                   handleInputChange={this.onChange}
                   colLength={12}
-                  value={newsletterEmail}
+                  value={newNewsletterEmail}
                 />
               </div>
 
               <div className="col-5 my-auto text-center">
-                <Button onClick={this.newsletterSignIn} disabled={!this.shouldEmailBeChecked(newsletterEmail)}>Sign in</Button>
+                <Button onClick={this.newsletterSignIn} disabled={!this.shouldEmailBeChecked(newNewsletterEmail)}>Sign in</Button>
               </div>
             </div>
           )}
@@ -73,17 +81,17 @@ class Newsletter extends Component {
 
   shouldEmailBeChecked = email => !this.state.isChecked || isEmailValid(email);
 
-  newsletterSignIn = () => {
-    const { newsletterEmail } = this.state;
+  newsletterSignIn = () => { // change
+    const { newNewsletterEmail } = this.state;
     this.setState({ isChecked: true });
-    isEmailValid(newsletterEmail) &&
+    isEmailValid(newNewsletterEmail) &&
       this.props.setNewsletterEmail({
-        receiveNewsletterEmail: newsletterEmail
+        newsletterEmail: newNewsletterEmail
       });
   };
 
   newsletterSignOut = () => {
-    this.setState({ isChecked: false, newsletterEmail: "" });
+    this.setState({ isChecked: false, newNewsletterEmail: "" });
     this.props.removeNewsletterEmail();
   };
 
@@ -99,10 +107,15 @@ class Newsletter extends Component {
 
 Newsletter.propTypes = {
   setNewsletterEmail: PropTypes.func.isRequired,
-  removeNewsletterEmail: PropTypes.func.isRequired
+  removeNewsletterEmail: PropTypes.func.isRequired,
+  newsletterEmail: PropTypes.string.isRequired,
+  receiveNewsletterEmail: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  newsletterEmail: state.personalData.personalData.newsletterEmail,
+  receiveNewsletterEmail: state.personalData.personalData.receiveNewsletterEmail,
+});
 
 export default connect(
   mapStateToProps,

@@ -13,9 +13,7 @@ export const dispatchToken = rs => dispatch => {
 
 export const signOut = (rq) => dispatch => {
   mp.processQuery(rq).then(rs => {
-    console.log('signOut rs', rs)
     if(rs.isSuccess) {
-      
       dispatch({
         type: SIGN_OUT,
         payload: {token: '', isSignIn: false} 
@@ -23,14 +21,3 @@ export const signOut = (rq) => dispatch => {
     } 
   })
 };
-
-/*
-export const register = (data) => dispatch => {
-    const result = 'aaa'
-    // ask server for data and use .then(dispatch ... )
-    dispatch({
-      type: REGISTER,
-      payload: result 
-    });
-};
-*/

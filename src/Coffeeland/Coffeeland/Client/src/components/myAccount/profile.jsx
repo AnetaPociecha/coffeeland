@@ -17,8 +17,13 @@ import {
   INVALID_FIRST_NAME,
   INVALID_LAST_NAME
 } from "../../constants/messages";
+import {
+  updatePersonalData
+} from "./../../actions/personalDataActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 class Profile extends Component {
   state = {
@@ -161,8 +166,6 @@ class Profile extends Component {
     this.setState({
       isEditMode: false
     });
-
-    
     const rq = {
       $type: "UpdatePersonalDataCommand",
       sessionToken: this.props.token,
@@ -171,24 +174,38 @@ class Profile extends Component {
       lastName: this.state.lastName,
       changePassword: false,
       newPassword: '',
-      receiveNewsletterEmail: false,
-      newsletterEmail: ''
+      receiveNewsletterEmail: this.props.receiveNewsletterEmail,
+      newsletterEmail: this.props.newsletterEmail
     }
-
-    this.props.onPersonalDataChange(rq);
-  };
+    mp.processCommand(rq).then(rs => {
+      if(rs.isSuccess) {
+        this.props.onPersonalDataChange(rs);
+      } else {
+          this.displayFailureMessage()
+      }     
+    })
+  }
+  
+  // TO DO
+  displayFailureMessage = () => { 
+    console.log("UpdatePersonalDataCommand fail")
+  }
 }
 
 Profile.propTypes = {
-  token: PropTypes.object.isRequired
+  token: PropTypes.string.isRequired,
+  updatePersonalData: PropTypes.func.isRequired,
+  newsletterEmail: PropTypes.string.isRequired,
+  receiveNewsletterEmail: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  token: state.token.token
+  token: state.token.token.token,
+  newsletterEmail: state.personalData.personalData.newsletterEmail,
+  receiveNewsletterEmail: state.personalData.personalData.receiveNewsletterEmail,
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { updatePersonalData }
 )( Profile );
-

@@ -25,8 +25,6 @@ class SignInRegisterPage extends Component {
       style
     } = this.props;
 
-    console.log('this.props.isSingIn in sign in register', isSignIn)
-
     return (
       <div className="row mx-auto" style={style}>
         {shouldSuccessfulRegistrationMessageBeDisplayed && (
