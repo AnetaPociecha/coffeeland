@@ -5,7 +5,7 @@ import FormTitle from "./formTitle";
 import { Button } from "./../button";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { signIn } from "./../../actions/signInActions";
+import { dispatchToken } from "./../../actions/signInActions";
 import MessageProcessor from './../../messageProcessor/MessageProcessor'
 
 const mp = MessageProcessor.getInstance();
@@ -17,13 +17,6 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps.token', nextProps.token)
-    //if (nextProps.token) {
-      //this.updateAppStateAferSignIn(nextProps.token.token !== '');
-    //}
   }
 
   render() {
@@ -76,35 +69,27 @@ class SignIn extends Component {
 
   onSignIn = async () => {
     const rq = {
-      $type: "SignInQuery",
+      $type: "SignInCommand",
       email: this.state.singInEmail, 
       password: this.state.signInPassword
     }
-    /*
-    let succ = await this.props.signIn(rq)
-    console.log('succ', succ)
-    this.updateAppStateAferSignIn(succ);
-*/
-    mp.processQuery(rq).then(rs => {
+    mp.processCommand(rq).then(rs => {
         const result = rs.isSuccess
         console.log('sign in result', rs)
         this.updateAppStateAferSignIn(result);
-        this.props.signIn(rs)
+        this.props.dispatchToken(rs)
       }
      ) 
   };
 
   updateAppStateAferSignIn = isSignInSuccessful => {
     this.setState(this.getInitialState());
-    isSignInSuccessful
-      ? this.props.handleSignIn()
-      : this.props.displayFailureSignInMassage();
+    !isSignInSuccessful && this.props.displayFailureSignInMassage();
   };
 }
 
 SignIn.propTypes = {
-  signIn: PropTypes.func.isRequired,
-  signOut: PropTypes.func.isRequired,
+  dispatchToken: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired
 };
 
@@ -114,5 +99,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { signIn }
+  { dispatchToken }
 )( SignIn );

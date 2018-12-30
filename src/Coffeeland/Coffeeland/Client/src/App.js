@@ -9,34 +9,18 @@ import store from "./store";
 
 class App extends Component {
   state = {
-    isSignIn: false,
     cartEntries: []
   }; 
 
   render() {
-    /*console.log('messageProcessorContext', messageProcessor.getInstance())
-    
-    const mp = messageProcessor.getInstance()
-    const rq = {
-      $type = "SignInCommand",
-      email: 'marek@gmail.com',
-      password: '12345'
-    }
-    mp.processCommand(rq).then(data => rs = data)
 
-    */
-
-    const { isSignIn, cartEntries } = this.state;
-    console.log(':)');
+    const { cartEntries } = this.state;
     return (
       <Provider store={store}>
         <div className="container-fluid">
           <Router>
             <div>
-              <NavigationComponent
-                isSignIn={isSignIn}
-                handleSignOut={this.onSignOut}
-              />
+              <NavigationComponent />
               {routes.map(({ path, component: C }) => (
                 <Route
                   path={path}
@@ -45,8 +29,6 @@ class App extends Component {
                   render={props => (
                     <C
                       {...props}
-                      isSignIn={isSignIn}
-                      handleSignIn={this.onSignIn}
                       onAddToCart={this.onAddToCart}
                       cartEntries={cartEntries}
                       onCartUpdate={this.onCartUpdate}
@@ -63,15 +45,6 @@ class App extends Component {
       </Provider>
     );
   }
-
-  onSignIn = () => {
-    this.setState({ isSignIn: true });
-  };
-
-  onSignOut = () => {
-    this.setState({ isSignIn: false });
-  };
-
 
   onAddToCart = (item, quantity) => {
     const currentQuantity = this.howManyItemInCart(item);

@@ -25,6 +25,7 @@ class MyAccount extends Component {
 
   render() {
     const { isSignIn } = this.props;
+
     const { mode } = this.state;
     return !isSignIn ? (
       <Redirect to={SHOP} />
@@ -91,11 +92,15 @@ class MyAccount extends Component {
 MyAccount.propTypes = {
   fetchPersonalData: PropTypes.func.isRequired,
   updatePersonalData: PropTypes.func.isRequired,
-  personalData: PropTypes.object.isRequired
+  personalData: PropTypes.object.isRequired,
+  isSignIn: PropTypes.bool.isRequired,
+  token: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  personalData: state.personalData.personalData
+  personalData: state.personalData.personalData,
+  isSignIn: state.token.token.isSignIn,
+  token: state.token.token.token,
 });
 
 export default connect(

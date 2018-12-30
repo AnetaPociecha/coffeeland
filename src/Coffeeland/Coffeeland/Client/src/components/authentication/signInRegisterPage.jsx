@@ -5,24 +5,27 @@ import { SUCCESSFUL_REGISTRATION, FAILURE_SIGN_IN} from "../../constants/message
 import { SuccessAlert, DangerAlert } from "./../alert";
 import { withRedirect } from "./../../with/withRedirect";
 import { SHOP } from "../../constants/paths";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class SignInRegisterPage extends Component {
   state = {
     shouldSuccessfulRegistrationMessageBeDisplayed: false,
-    shouldFailureSignInMessageBeDisplayed: false
+    shouldFailureSignInMessageBeDisplayed: false,
   };
 
   render() {
     const {
       shouldSuccessfulRegistrationMessageBeDisplayed,
-      shouldFailureSignInMessageBeDisplayed
+      shouldFailureSignInMessageBeDisplayed,
     } = this.state;
 
     const {
-      handleSignIn, 
       isSignIn,
       style
     } = this.props;
+
+    console.log('this.props.isSingIn in sign in register', isSignIn)
 
     return (
       <div className="row mx-auto" style={style}>
@@ -45,7 +48,6 @@ class SignInRegisterPage extends Component {
             displayFailureSignInMassage={() =>
               this.displayMessage("shouldFailureSignInMessageBeDisplayed")
             }
-            handleSignIn={handleSignIn}
           />
         </div>
         <div className="col-6">
@@ -77,4 +79,15 @@ class SignInRegisterPage extends Component {
 
 const SignInWithRedirect = withRedirect(SignIn);
 
-export default SignInRegisterPage;
+SignInRegisterPage.propTypes = {
+  isSignIn: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  isSignIn: state.token.token.isSignIn
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)( SignInRegisterPage );

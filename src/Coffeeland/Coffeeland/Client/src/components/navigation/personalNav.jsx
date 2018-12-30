@@ -9,11 +9,11 @@ import { signOut } from "./../../actions/signInActions";
 const linkClass = 'nav-link font-weight-bold title text-success'
 
 class PersonalNav extends React.Component {
+
     render() { 
         const 
         {
             isSignIn,
-            handleSignOut
         } = this.props;
 
         return ( 
@@ -34,8 +34,7 @@ class PersonalNav extends React.Component {
                             onClick={e => {
                                 if(isSignIn) {
                                     e.preventDefault();
-                                    handleSignOut();
-                                    this.props.signOut();
+                                    this.onSignOut();
                                 }
                             }}
                         >
@@ -55,16 +54,26 @@ class PersonalNav extends React.Component {
             </div>
             );
     }
+    
+    onSignOut = () => {
+        const rq = {
+            $type: "SignOutQuery",
+            sessionToken: this.props.token
+        }
+        this.props.signOut(rq);
+    }
 }
  
 
 PersonalNav.propTypes = {
     signOut: PropTypes.func.isRequired,
-    token: PropTypes.object.isRequired
+    token: PropTypes.object.isRequired,
+    isSignIn: PropTypes.bool.isRequired
   };
   
   const mapStateToProps = state => ({
-    token: state.token.token
+    token: state.token.token.token,
+    isSignIn: state.token.token.isSignIn
   });
   
   export default connect(
