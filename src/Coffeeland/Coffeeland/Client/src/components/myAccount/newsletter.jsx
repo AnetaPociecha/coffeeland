@@ -7,27 +7,19 @@ import { INVALID_EMAIL } from "../../constants/messages";
 import { getInputClass } from "./../../helpers/inputHelper";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  setNewsletterEmail,
-  removeNewsletterEmail
-} from "./../../actions/personalDataActions";
+import { updatePersonalData } from "./../../actions/personalDataActions";
 import {
   NEWSLETTER_MAIN_INFO,
   NEWSLETTER_SMALL_INFO
 } from "./../../constants/messages";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 class Newsletter extends Component {
   state = { newNewsletterEmail: "", isChecked: false };
   render() {
     const { newNewsletterEmail } = this.state;
-
-    //const { receiveNewsletterEmail } = this.props;
-    
-    const { newsletterEmail, 
-      receiveNewsletterEmail} = this.props;
-
-      console.log('newsletterEmail', newsletterEmail)
-      console.log('receiveNewsletterEmail', receiveNewsletterEmail)
+    const { newsletterEmail, receiveNewsletterEmail } = this.props;
 
     return (
       <div className="col-12 mb-4 ">
@@ -41,7 +33,7 @@ class Newsletter extends Component {
                 <div className="col-12 text-muted p-1">
                   Newsletter email:
                   <br />
-                </div> 
+                </div>
                 <div className="col-12 p-1">{newsletterEmail}</div>
               </div>
               <div className="col-5 my-auto text-center">
@@ -66,7 +58,12 @@ class Newsletter extends Component {
               </div>
 
               <div className="col-5 my-auto text-center">
-                <Button onClick={this.newsletterSignIn} disabled={!this.shouldEmailBeChecked(newNewsletterEmail)}>Sign in</Button>
+                <Button
+                  onClick={this.newsletterSignIn}
+                  disabled={!this.shouldEmailBeChecked(newNewsletterEmail)}
+                >
+                  Sign in
+                </Button>
               </div>
             </div>
           )}
@@ -81,18 +78,58 @@ class Newsletter extends Component {
 
   shouldEmailBeChecked = email => !this.state.isChecked || isEmailValid(email);
 
-  newsletterSignIn = () => { // change
+  newsletterSignIn = () => {
     const { newNewsletterEmail } = this.state;
     this.setState({ isChecked: true });
-    isEmailValid(newNewsletterEmail) &&
-      this.props.setNewsletterEmail({
+
+    if (isEmailValid(newNewsletterEmail)) { 
+      const rq = {
+        $type: "UpdatePersonalDataCommand",
+        sessionToken: this.props.token,
+        email: this.props.personalData.email,
+        firstName: this.props.personalData.firstName,
+        lastName: this.props.personalData.lastName,
+        changePassword: false,
+        newPassword: "",
+        receiveNewsletterEmail: true,
         newsletterEmail: newNewsletterEmail
+      };
+      mp.processCommand(rq).then(rs => {
+        if (rs.isSuccess) {
+          this.props.updatePersonalData(rs);
+        } else {
+          this.displayFailureMessage();
+        }
       });
+    }
+  };
+
+  // TO DO
+  displayFailureMessage = () => {
+    console.log("UpdatePersonalDataCommand fail");
   };
 
   newsletterSignOut = () => {
     this.setState({ isChecked: false, newNewsletterEmail: "" });
-    this.props.removeNewsletterEmail();
+    const rq = {
+      $type: "UpdatePersonalDataCommand",
+      sessionToken: this.props.token,
+      email: this.props.personalData.email,
+      firstName: this.props.personalData.firstName,
+      lastName: this.props.personalData.lastName,
+      changePassword: false,
+      newPassword: "",
+      receiveNewsletterEmail: false,
+      newsletterEmail: ""
+    };
+    mp.processCommand(rq).then(rs => {
+      console.log("UpdatePersonalDataCommand newsletter sign out rs",rs)
+      if (rs.isSuccess) {
+        this.props.updatePersonalData(rs);
+      } else {
+        this.displayFailureMessage();
+      }
+    });
   };
 
   onChange = event => {
@@ -106,18 +143,19 @@ class Newsletter extends Component {
 }
 
 Newsletter.propTypes = {
-  setNewsletterEmail: PropTypes.func.isRequired,
-  removeNewsletterEmail: PropTypes.func.isRequired,
+  updatePersonalData: PropTypes.func.isRequired,
   newsletterEmail: PropTypes.string.isRequired,
-  receiveNewsletterEmail: PropTypes.bool.isRequired,
+  receiveNewsletterEmail: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   newsletterEmail: state.personalData.personalData.newsletterEmail,
-  receiveNewsletterEmail: state.personalData.personalData.receiveNewsletterEmail,
+  receiveNewsletterEmail:
+    state.personalData.personalData.receiveNewsletterEmail,
+  token: state.token.token.token
 });
 
 export default connect(
   mapStateToProps,
-  { setNewsletterEmail, removeNewsletterEmail }
+  { updatePersonalData }
 )(Newsletter);

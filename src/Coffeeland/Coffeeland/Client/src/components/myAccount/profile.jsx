@@ -179,7 +179,7 @@ class Profile extends Component {
     }
     mp.processCommand(rq).then(rs => {
       if(rs.isSuccess) {
-        this.props.onPersonalDataChange(rs);
+        this.props.updatePersonalData(rs);
       } else {
           this.displayFailureMessage()
       }     

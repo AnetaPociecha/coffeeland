@@ -44,7 +44,6 @@ class MyAccount extends Component {
             >
               <Profile
                 personalData={this.props.personalData}
-                onPersonalDataChange={this.onPersonalDataChange}
               />
             </div>
             <div
@@ -69,7 +68,7 @@ class MyAccount extends Component {
               role="tabpanel"
               aria-labelledby="newsletter"
             >
-              <Newsletter /> 
+              <Newsletter personalData={this.props.personalData}/> 
             </div>
           </div>
         </div>
@@ -79,10 +78,6 @@ class MyAccount extends Component {
 
   setMode = mode => {
     this.setState({ mode });
-  };
-
-  onPersonalDataChange = obj => {
-    this.props.updatePersonalData(obj);
   };
 
   getTabClass = mode =>
