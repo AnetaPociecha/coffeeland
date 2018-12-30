@@ -1,23 +1,34 @@
-import { FETCH_PERSONAL_DATA, UPDATE_PERSONAL_DATA, SET_NEWSLETTER_EMAIL, REMOVE_NEWSLETTER_EMAIL } from "./types";
+import {
+  FETCH_PERSONAL_DATA,
+  UPDATE_PERSONAL_DATA,
+  SET_NEWSLETTER_EMAIL,
+  REMOVE_NEWSLETTER_EMAIL
+} from "./types";
 import personalData from "../personalData";
-import MessageProcessor from './../messageProcessor/messageProcessor'
+import MessageProcessor from "./../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 // received payload is always completed personalData
 
-export const fetchPersonalData = () => dispatch => {
-
+export const fetchPersonalData = token => dispatch => {
   // ask server for data and use .then(dispatch ... )
+  const rq = {
+    $type: "GetPersonalDataQuery",
+    sessionToken: token
+  };
 
-  dispatch({
-    type: FETCH_PERSONAL_DATA,
-    payload: personalData
+  mp.processQuery(rq).then(rs => {
+    dispatch({
+      type: FETCH_PERSONAL_DATA,
+      payload: rs
+    });
   });
 };
 
-export const updatePersonalData = async (rq) => dispatch => {
+export const updatePersonalData = async rq => dispatch => {
   //sent to server and receive newData as response and use .then(dispatch ... )
-  const mp = MessageProcessor.getInstance()
-  const rs = mp.processCommand(rq)
+  const mp = MessageProcessor.getInstance();
+  const rs = mp.processCommand(rq);
   /* const rs = {
     isSuccess: true,
     email: rq.email,
@@ -44,7 +55,11 @@ export const setNewsletterEmail = data => dispatch => {
 };
 
 export const removeNewsletterEmail = () => dispatch => {
-  const newData = { ...personalData, newsletter: false, receiveNewsletterEmail: '' };
+  const newData = {
+    ...personalData,
+    newsletter: false,
+    receiveNewsletterEmail: ""
+  };
 
   // sent to server and receive newData as response and use .then(dispatch ... )
 
@@ -53,4 +68,3 @@ export const removeNewsletterEmail = () => dispatch => {
     payload: newData
   });
 };
-

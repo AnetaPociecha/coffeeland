@@ -23,7 +23,7 @@ class AddressBook extends Component {
   state = {};
 
   componentWillMount() {
-    this.props.fetchAddressBook();
+    this.props.fetchAddressBook(this.props.token);
   }
 
   render() {
@@ -184,11 +184,13 @@ AddressBook.propTypes = {
   fetchAddressBook: PropTypes.func.isRequired,
   updateAddressBook: PropTypes.func.isRequired,
   removeAddress: PropTypes.func.isRequired,
-  addressBook: PropTypes.object.isRequired
+  addressBook: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  addressBook: state.addressBook.addressBook
+  addressBook: state.addressBook.addressBook,
+  token: state.token.token.token
 });
 
 export default connect(

@@ -20,7 +20,8 @@ class MyAccount extends Component {
   };
 
   componentWillMount() {
-    this.props.fetchPersonalData();
+    console.log('my account cwm this.props.token', this.props.token )
+    this.props.fetchPersonalData(this.props.token);
   }
 
   render() {
