@@ -2,7 +2,8 @@ import {
   FETCH_PERSONAL_DATA,
   UPDATE_PERSONAL_DATA,
   SET_NEWSLETTER_EMAIL,
-  REMOVE_NEWSLETTER_EMAIL
+  REMOVE_NEWSLETTER_EMAIL,
+  FETCH_ORDERS
 } from "./types";
 import personalData from "../personalData";
 import MessageProcessor from "./../messageProcessor/messageProcessor";
@@ -11,7 +12,6 @@ const mp = MessageProcessor.getInstance();
 // received payload is always completed personalData
 
 export const fetchPersonalData = token => dispatch => {
-  // ask server for data and use .then(dispatch ... )
   const rq = {
     $type: "GetPersonalDataQuery",
     sessionToken: token
@@ -21,6 +21,20 @@ export const fetchPersonalData = token => dispatch => {
     dispatch({
       type: FETCH_PERSONAL_DATA,
       payload: rs
+    });
+  });
+};
+
+export const fetchOrders = token => dispatch => {
+  const rq = {
+    $type: "GetOrdersQuery",
+    sessionToken: token
+  };
+  mp.processQuery(rq).then(rs => {
+    dispatch({
+      type: FETCH_ORDERS,
+      payload: rs.isSuccess ? 
+        {orders: rs.orders} : {orders: []}
     });
   });
 };

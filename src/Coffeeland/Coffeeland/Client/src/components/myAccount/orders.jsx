@@ -10,6 +10,11 @@ import ProductHeader from "./productHeader";
 import TotalPriceRow from "./totalPriceRow";
 import ComplainForm from "./complainForm";
 import {isComplainValid} from "./../../isValid";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {
+  fetchOrders
+} from "./../../actions/personalDataActions";
 
 class Orders extends Component {
   constructor(props){
@@ -24,11 +29,16 @@ class Orders extends Component {
     this.saveComplain = this.saveComplain.bind(this);
     this.cancelComplain = this.cancelComplain.bind(this);
 }
+
+  componentWillMount() {
+    this.props.fetchOrders(this.props.token)
+  }
   
   render() {
     const { orders } = this.props;
     const isEditMode = this.state.editMode;
     const complain = this.state.complain;
+
     return (
       <div className="row mb-4 ">
         <div className="col-12">
@@ -127,4 +137,18 @@ class Orders extends Component {
 
 }
 
-export default Orders;
+Orders.propTypes = {
+  fetchOrders: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  orders: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  orders: state.personalData.orders.orders,
+  token: state.token.token.token
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchOrders }
+)(Orders);
