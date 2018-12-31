@@ -10,8 +10,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   fetchAddressBook,
-  updateAddressBook,
-  removeAddress
+  updateAddressBook
 } from "./../../actions/addressBookActions";
 
 class AddressBook extends Component {
@@ -185,14 +184,13 @@ class AddressBook extends Component {
       sessionToken: this.props.token,
       addressKey: address.key,
     }
-    this.props.removeAddress(rq);
+    this.props.updateAddressBook(rq);
   };
 }
 
 AddressBook.propTypes = {
   fetchAddressBook: PropTypes.func.isRequired,
   updateAddressBook: PropTypes.func.isRequired,
-  removeAddress: PropTypes.func.isRequired,
   addressBook: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired
 };
@@ -204,5 +202,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchAddressBook, updateAddressBook, removeAddress }
+  { fetchAddressBook, updateAddressBook }
 )(AddressBook);
