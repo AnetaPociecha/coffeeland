@@ -32,8 +32,12 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (command.changePassword)
                 DatabaseQueryProcessor.UpdateClientCredentials(clientId, "password", PasswordEncryptor.encryptSha256(command.newPassword));
             if (command.receiveNewsletterEmail)
+            {
                 DatabaseQueryProcessor.UpdateClientCredentials(clientId, "newsletterEmail", command.newsletterEmail);
-
+            } else
+            {
+                DatabaseQueryProcessor.UpdateClientCredentials(clientId, "newsletterEmail", "");
+            }
             return new GetPersonalDataQueryHandler().Handle(new GetPersonalDataQuery() {
                 sessionToken = command.sessionToken
             });

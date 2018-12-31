@@ -44,13 +44,14 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
 
             var foundClient = DatabaseQueryProcessor.GetClient(_email, PasswordEncryptor.encryptSha256(_newPassword));
 
-            DatabaseQueryProcessor.Erase();
+            //DatabaseQueryProcessor.Erase();
             SessionRepository.RemoveSession(testSessionToken);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(_email, result.email);
             Assert.AreEqual(_firstName, result.firstName);
             Assert.AreEqual(_lastName, result.lastName);
+            Assert.AreEqual(_newsletterEmail, result.newsletterEmail);
             Assert.IsNotNull(foundClient);
         }
 
