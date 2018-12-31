@@ -1,7 +1,7 @@
 import {
-  FETCH_ADDRESS_BOOK
+  FETCH_ADDRESS_BOOK,
+  REMOVE_ADDRESS
 } from "./types";
-import addressBook from "../addressBook";
 import MessageProcessor from "./../messageProcessor/messageProcessor";
 const mp = MessageProcessor.getInstance();
 
@@ -33,15 +33,13 @@ export const updateAddressBook = rq => dispatch => {
 };
 
 export const removeAddress = rq => dispatch => {
-  const newAddresses = addressBook.addressBook.filter(a => a.key !== rq.addressKey);
   mp.processCommand(rq).then(rs => {
     console.log("InactivateAddressCommand rs", rs)
     if(rs.isSuccess) {
       dispatch({
-        type: FETCH_ADDRESS_BOOK,
-        payload: { addressBook: [...newAddresses] }
+        type: REMOVE_ADDRESS,
+        payload: rs.addressKey
       });
     }
   })
-
 };

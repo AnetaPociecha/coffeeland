@@ -1,4 +1,4 @@
-import { FETCH_ADDRESS_BOOK, UPDATE_ADDRESS_BOOK, REMOVE_ADDRESS } from "../actions/types";
+import { FETCH_ADDRESS_BOOK, REMOVE_ADDRESS } from "../actions/types";
 
 const initialState = {
   addressBook: {},
@@ -7,6 +7,13 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_ADDRESS_BOOK:
+      return {
+        ...state,
+        addressBook: action.payload
+      }
+    case REMOVE_ADDRESS:
+    console.log("state", state)
+    console.log("payload", payload)
       return {
         ...state,
         addressBook: action.payload
