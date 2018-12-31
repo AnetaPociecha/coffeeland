@@ -11,16 +11,6 @@ export default function(state = initialState, action) {
         ...state,
         addressBook: action.payload
       }
-    case UPDATE_ADDRESS_BOOK:
-      return {
-        ...state,
-        addressBook: action.payload
-      }
-    case REMOVE_ADDRESS:
-      return {
-        ...state,
-        addressBook: action.payload
-      }
     default:
       return state;
   }

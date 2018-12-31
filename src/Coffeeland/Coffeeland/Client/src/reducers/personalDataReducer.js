@@ -22,17 +22,6 @@ export default function(state = initialState, action) {
         ...state,
         personalData: action.payload
       };
-    case SET_NEWSLETTER_EMAIL:
-      return {
-        ...state,
-        personalData: action.payload
-      };
-    case REMOVE_NEWSLETTER_EMAIL:
-      return {
-        ...state,
-        personalData: action.payload
-      };
-      
     default:
       return state;
   }

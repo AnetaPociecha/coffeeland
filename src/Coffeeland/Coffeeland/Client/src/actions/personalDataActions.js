@@ -45,29 +45,3 @@ export const updatePersonalData = data => dispatch => {
     payload: data
   });
 };
-
-export const setNewsletterEmail = data => dispatch => {
-  const newData = { ...personalData, ...data };
-
-  // sent to server and receive newData as response and use .then(dispatch ... )
-
-  dispatch({
-    type: SET_NEWSLETTER_EMAIL,
-    payload: newData
-  });
-};
-
-export const removeNewsletterEmail = () => dispatch => {
-  const newData = {
-    ...personalData,
-    newsletter: false,
-    receiveNewsletterEmail: ""
-  };
-
-  // sent to server and receive newData as response and use .then(dispatch ... )
-
-  dispatch({
-    type: REMOVE_NEWSLETTER_EMAIL,
-    payload: newData
-  });
-};

@@ -138,15 +138,21 @@ class AddressBook extends Component {
         apartmentNumber
       )
     ) {
-      this.props.updateAddressBook({
-        key: 5,
-        country,
-        city,
-        street,
+
+      const rq = {
+        $type: "AddAddressCommand",
+        sessionToken: this.props.token,
+        key: "ocochodzi",
+        country: country,
+        city: city,
+        street: street,
         ZIPCode: getZIPCodeForDB(ZIPCode),
-        buildingNumber,
-        apartmentNumber
-      });
+        buildingNumber: buildingNumber,
+        appertmentNumber: apartmentNumber
+      }
+
+      this.props.updateAddressBook(rq);
+
       this.setState(this.getState());
     }
   };
@@ -176,7 +182,12 @@ class AddressBook extends Component {
   });
 
   remove = address => {
-    this.props.removeAddress(address);
+    const rq = {
+      $type: "InactivateAddressCommand",
+      sessionToken: this.props.token,
+      addressKey: address.key,
+    }
+    this.props.removeAddress(rq);
   };
 }
 
