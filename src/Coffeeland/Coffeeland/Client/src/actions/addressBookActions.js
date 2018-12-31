@@ -11,6 +11,7 @@ export const fetchAddressBook = token => dispatch => {
     sessionToken: token
   };
   mp.processQuery(rq).then(rs => {
+    console.log("getAddressBookQuery rs", rs);
     dispatch({
       type: FETCH_ADDRESS_BOOK,
       payload: rs.isSuccess
@@ -38,7 +39,7 @@ export const removeAddress = rq => dispatch => {
     if(rs.isSuccess) {
       dispatch({
         type: REMOVE_ADDRESS,
-        payload: rs.addressKey
+        payload: { addressBook: rs.addresses }
       });
     }
   })

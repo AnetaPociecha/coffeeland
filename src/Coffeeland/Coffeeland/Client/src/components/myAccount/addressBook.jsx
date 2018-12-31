@@ -124,7 +124,6 @@ class AddressBook extends Component {
       buildingNumber,
       apartmentNumber
     } = this.state;
-    // dont worry about key, you will get it from server
 
     this.setState({isChecked: true})
 
@@ -142,13 +141,12 @@ class AddressBook extends Component {
       const rq = {
         $type: "AddAddressCommand",
         sessionToken: this.props.token,
-        key: "ocochodzi",
         country: country,
         city: city,
         street: street,
         ZIPCode: getZIPCodeForDB(ZIPCode),
         buildingNumber: buildingNumber,
-        appertmentNumber: apartmentNumber
+        apartmentNumber: apartmentNumber
       }
 
       this.props.updateAddressBook(rq);

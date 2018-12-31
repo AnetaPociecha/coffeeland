@@ -12,8 +12,6 @@ export default function(state = initialState, action) {
         addressBook: action.payload
       }
     case REMOVE_ADDRESS:
-    console.log("state", state)
-    console.log("payload", payload)
       return {
         ...state,
         addressBook: action.payload
