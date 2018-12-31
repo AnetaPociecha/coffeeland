@@ -20,7 +20,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
             if (foundClients.Count != 1)
                 throw new Exception();
 
-            var addresses = DatabaseQueryProcessor.GetAddresses(clients[0].clientId);
+            var addresses = DatabaseQueryProcessor.GetAddresses(foundClients[0].clientId);
 
             var addressesDto = new AddressDto[addresses.Count];
             for (var i = 0; i < addresses.Count; i++)
