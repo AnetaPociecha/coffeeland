@@ -34,11 +34,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
             var handler = new InactivateAddressCommandHandler();
-            var result = (SuccessInfoDto) handler.Handle(inactivateAddressCommand);
+            var result = (AddressBookDto) handler.Handle(inactivateAddressCommand);
 
             DatabaseQueryProcessor.Erase();
             SessionRepository.RemoveSession(testSessionToken);
-            Assert.IsTrue(result.isSuccess);
+
+            Assert.AreEqual(result.addresses.Length,1);
            
         }
 

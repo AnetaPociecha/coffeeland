@@ -4,6 +4,9 @@ using Coffeeland.Messaging.Dtos;
 using Coffeeland.Messaging.Shared;
 using Coffeeland.Session;
 using System;
+using Coffeeland.Messaging.Queries.Queries;
+using Coffeeland.Messaging.Queries.Handlers;
+
 namespace Coffeeland.Messaging.Commands.Handlers
 {
     public class InactivateAddressCommandHandler : ICommandHandler<InactivateAddressCommand>
@@ -19,10 +22,10 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (address != null && address.clientId == clientId)
             {
                 DatabaseQueryProcessor.UpdateAddress(address.addressId, false);
-                return new SuccessInfoDto()
+                return new GetAddressBookQueryHandler().Handle(new GetAddressBookQuery()
                 {
-                    isSuccess = true
-                };
+                    sessionToken = command.sessionToken
+                });
             }
 
             return new SuccessInfoDto()

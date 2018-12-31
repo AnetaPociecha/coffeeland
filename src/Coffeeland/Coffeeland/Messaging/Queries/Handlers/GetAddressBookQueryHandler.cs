@@ -22,16 +22,19 @@ namespace Coffeeland.Messaging.Queries.Handlers
 
             var addresses = DatabaseQueryProcessor.GetAddresses(foundClients[0].clientId);
 
-            var addressesDto = new AddressDto[addresses.Count];
-            for (var i = 0; i < addresses.Count; i++)
+            var foundActiveAddresses = addresses.FindAll(a => a.isActive == true);
+
+            var addressesDto = new AddressDto[foundActiveAddresses.Count];
+            for (var i = 0; i < foundActiveAddresses.Count; i++)
             {
                 addressesDto[i] = new AddressDto();
-                addressesDto[i].country = addresses[i].country;
-                addressesDto[i].city = addresses[i].city;
-                addressesDto[i].street = addresses[i].street;
-                addressesDto[i].ZIPCode = addresses[i].ZIPCode;
-                addressesDto[i].buildingNumber = addresses[i].buildingNumber;
-                addressesDto[i].apartmentNumber = addresses[i].apartmentNumber;
+                addressesDto[i].key = foundActiveAddresses[i].addressId;
+                addressesDto[i].country = foundActiveAddresses[i].country;
+                addressesDto[i].city = foundActiveAddresses[i].city;
+                addressesDto[i].street = foundActiveAddresses[i].street;
+                addressesDto[i].ZIPCode = foundActiveAddresses[i].ZIPCode;
+                addressesDto[i].buildingNumber = foundActiveAddresses[i].buildingNumber;
+                addressesDto[i].apartmentNumber = foundActiveAddresses[i].apartmentNumber;
             }
 
             return new AddressBookDto()
