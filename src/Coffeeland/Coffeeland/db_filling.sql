@@ -102,6 +102,12 @@ values(0,0,'Poland','Gdynia','Rzemieslnicza',30445,12,'1a',1);
 insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) 
 values(1,0,'Poland','Warsaw','Grodzka',25487,23,'1',1);
 
+insert into clients(clientId,email,firstName,lastName,password,newsletterEmail)
+values(1,'magda@gmail.com','Magda','Tragarz','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9','magda@gmail.com');
+
+insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) 
+values(2,0,'Poland','Gdynia','Rzemieslnicza',30445,12,'',1);
+
 insert into orders(orderId,clientId,workerId,addressId,status,openDate) 
 values(0,0,0,1,0,DATE '2018-05-12');
 

@@ -16,6 +16,8 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
     [TestFixture]
     public class AddAddressCommandTest
     {
+
+        [TestCase(0, "Poland", "Warsaw", "Szugadzka", 34040, 100, "2a")]
         [TestCase(0,"Poland", "Cracow", "Urzednicza", 34040, 100, "")]
         public void AddAddress_CorrectAttributes_Success(int _clientId, string _country, string _city, string _street, int _ZIPCode, int _buildingNumber, string _apartmentNumber)
         {
