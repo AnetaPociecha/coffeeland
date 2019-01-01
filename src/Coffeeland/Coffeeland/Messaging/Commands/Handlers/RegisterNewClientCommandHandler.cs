@@ -19,6 +19,12 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 throw new Exception();
             }
 
+            var clients = DatabaseQueryProcessor.GetClients();
+            var foundClients = clients.FindAll(c => c.email == command.email);
+
+            if (foundClients.Count != 0)
+                throw new Exception();
+
             DatabaseQueryProcessor.CreateNewClient(
                 command.email,
                 command.firstName,
