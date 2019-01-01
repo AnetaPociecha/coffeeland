@@ -16,7 +16,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
     [TestFixture]
     public class RegisterNewClientCommandTest
     {
-        [TestCase("majek@gmail.com","Marek","Ochocki","admin123",true,"majek@gmail.com")]
+        [TestCase("magdtrag@gmail.com","Marek","Ochocki","admin123",true,"majek@gmail.com")]
         public void RegisterNewClient_CorrectData_Success(string _email, string _firstName, string _lastName, string _password, bool _receiveNewsletterEmail, string _newsletterEmail){
 
             DatabaseQueryProcessor.Erase();

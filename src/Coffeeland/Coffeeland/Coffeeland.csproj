@@ -135,7 +135,8 @@
     <Content Include="Client\Scripts\jquery-1.10.2.min.js" />
     <Content Include="Client\Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Client\Scripts\jquery.signalR-2.1.2.min.js" />
-    <Content Include="db.sql" />
+    <Content Include="Database\db.sql" />
+    <Content Include="MailService\registration.txt" />
     <Content Include="Scripts\jquery.signalR-2.4.0.js" />
     <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
     <Content Include="Web.config" />
@@ -152,6 +153,7 @@
     <Compile Include="Database\Records\ProductRecord.cs" />
     <Compile Include="Database\Records\WorkerRecord.cs" />
     <Compile Include="MailService\EmailMessage.cs" />
+    <Compile Include="MailService\MailSender.cs" />
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />

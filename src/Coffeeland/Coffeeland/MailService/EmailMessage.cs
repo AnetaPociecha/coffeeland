@@ -13,7 +13,7 @@ namespace Coffeeland.MailService
 
         const String fromName = "Coffeeland";
         const String fromEmailAddress = "coffeeland.store@gmail.com";
-        const String password = ""; //fill
+        const String password = "@dmin1234"; //fill
 
         MimeMessage message;
         BodyBuilder bodyBuilder;
@@ -41,22 +41,14 @@ namespace Coffeeland.MailService
             message.Body = bodyBuilder.ToMessageBody();
         }
 
-        public bool Send()
+        public void Send()
         {
-            try
-            {
-                SmtpClient client = new SmtpClient();
-                client.Connect(host, port, useSsl);
-                client.Authenticate(fromEmailAddress, password);
-                client.Send(message);
-                client.Disconnect(true);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
+             SmtpClient client = new SmtpClient();
+             client.Connect(host, port, useSsl);
+             client.Authenticate(fromEmailAddress, password);
+             client.Send(message);
+             client.Disconnect(true);
+
         }
 
         

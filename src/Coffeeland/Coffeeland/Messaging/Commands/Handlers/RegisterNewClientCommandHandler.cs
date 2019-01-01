@@ -3,6 +3,8 @@ using Coffeeland.Messaging.Commands.Commands;
 using Coffeeland.Messaging.Dtos;
 using Coffeeland.Messaging.Shared;
 using System;
+using Coffeeland.MailService;
+using System.Threading;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
@@ -32,6 +34,11 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 PasswordEncryptor.encryptSha256(command.password),
                 command.receiveNewsletterEmail ? command.newsletterEmail : ""
                 );
+
+            //ThreadPool.QueueUserWorkItem(
+            //    o => MailSender.SendRegistrationEmail(command.email,command.firstName)
+            //   );
+
 
             return new SuccessInfoDto()
             {

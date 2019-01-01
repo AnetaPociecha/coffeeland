@@ -9,7 +9,7 @@ namespace Coffeeland.Database
     {
         //const String connectionString = "datasource=localhost;Initial Catalog=coffeeland;port=3306;username=root;password=;Convert Zero Datetime=True";
         const String connectionString = "datasource=localhost;Initial Catalog=coffeeland_test;port=3306;username=root;password=;Convert Zero Datetime=True";
-        const String dbScriptPath = @"C:\Users\user\Desktop\coffeeRepo\coffeeland\src\Coffeeland\Coffeeland\db.sql";
+        const String dbScriptPath = @"D:\coffeeland\src\Coffeeland\Coffeeland\Database\db.sql";
 
         internal bool Erase()
         {
