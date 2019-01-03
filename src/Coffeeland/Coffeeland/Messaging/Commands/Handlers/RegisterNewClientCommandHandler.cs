@@ -3,6 +3,8 @@ using Coffeeland.Messaging.Commands.Commands;
 using Coffeeland.Messaging.Dtos;
 using Coffeeland.Messaging.Shared;
 using System;
+using Coffeeland.MailService;
+using System.Threading;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
@@ -19,6 +21,12 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 throw new Exception();
             }
 
+            var clients = DatabaseQueryProcessor.GetClients();
+            var foundClients = clients.FindAll(c => c.email == command.email);
+
+            if (foundClients.Count != 0)
+                throw new Exception();
+
             DatabaseQueryProcessor.CreateNewClient(
                 command.email,
                 command.firstName,
@@ -27,7 +35,12 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 command.receiveNewsletterEmail ? command.newsletterEmail : ""
                 );
 
-            return new SuccessDto()
+            //ThreadPool.QueueUserWorkItem(
+            //    o => MailSender.SendRegistrationEmail(command.email,command.firstName)
+            //   );
+
+
+            return new SuccessInfoDto()
             {
                 isSuccess = true
             };

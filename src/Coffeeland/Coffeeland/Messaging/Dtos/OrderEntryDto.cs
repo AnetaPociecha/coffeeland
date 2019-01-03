@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Dtos
 {
-    public class OrderEntry : IResult
+    public class OrderEntryDto : IResult
     {
         public int key;
         public string name;

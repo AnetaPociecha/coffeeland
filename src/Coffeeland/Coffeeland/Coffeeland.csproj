@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.12.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.12.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
@@ -119,6 +120,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Client\dist\index.html" />
     <Content Include="Client\Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -129,12 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Client\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Client\index.html" />
     <Content Include="Client\Scripts\jquery-1.10.2.js" />
     <Content Include="Client\Scripts\jquery-1.10.2.min.js" />
     <Content Include="Client\Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Client\Scripts\jquery.signalR-2.1.2.min.js" />
-    <Content Include="db.sql" />
+    <Content Include="Database\db.sql" />
+    <Content Include="MailService\registration.txt" />
     <Content Include="Scripts\jquery.signalR-2.4.0.js" />
     <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
     <Content Include="Web.config" />
@@ -151,6 +153,7 @@
     <Compile Include="Database\Records\ProductRecord.cs" />
     <Compile Include="Database\Records\WorkerRecord.cs" />
     <Compile Include="MailService\EmailMessage.cs" />
+    <Compile Include="MailService\MailSender.cs" />
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />
@@ -164,7 +167,7 @@
     <Compile Include="Messaging\Dtos\AddressBookDto.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
     <Compile Include="Messaging\Dtos\OrderDto.cs" />
-    <Compile Include="Messaging\Dtos\OrderEntry.cs" />
+    <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
     <Compile Include="Messaging\Dtos\OrdersDto.cs" />
     <Compile Include="Messaging\Dtos\PersonalDataDto.cs" />
     <Compile Include="Messaging\Dtos\ShopItemDto.cs" />
@@ -192,13 +195,28 @@
     <Compile Include="Messaging\Shared\QuerySerializationBinder.cs" />
     <Compile Include="Session\ClientSession.cs" />
     <Compile Include="Session\SessionRepository.cs" />
+    <Compile Include="SignalRCommunication\CommandResolver.cs" />
     <Compile Include="SignalRCommunication\CommunicationHub.cs" />
     <Compile Include="Database\Connector.cs" />
     <Compile Include="Database\DatabaseQueryProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalRCommunication\QueryResolver.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\AddAddressCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\InactivateAddressCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\RegisterNewClientCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\SignInCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\UpdatePersonalDataCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Queries\Handlers\GetAddressBookQueryHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Queries\Handlers\GetOrdersQueryHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Queries\Handlers\GetPersonalDataQueryHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Queries\Handlers\GetShopItemsQueryHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Queries\Handlers\SignOutQueryHandlerTest.cs" />
+    <Compile Include="Tests\TestsShared\Shared.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -231,6 +249,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.12.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.12.0\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

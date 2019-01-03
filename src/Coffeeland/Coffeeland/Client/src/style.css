@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+.logo
+{
+    font-family: 'Tangerine';
+}
+
+.title
+{
+    font-family: 'Open Sans', sans-serif;
+}
