@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import OrderDetails from "./orderDetails";
 import BillingDetails from "./billingDetails";
 import { Button, CloseButton } from "./../button";
+import { PaypalButton } from "../paypalButton";
 
 export default class CheckoutDetails extends Component {
   render() {
@@ -21,6 +22,15 @@ export default class CheckoutDetails extends Component {
             <BillingDetails />
           </div>
         </div>
+
+
+        <div className="row">
+          <div className="col-12 p-4 text-center">
+            <PaypalButton />
+          </div>
+        </div>
+
+
         <div className="row">
           <div className="col-12 p-4 text-center">
             <Button className="btn btn-dark btn-lg">Next</Button>

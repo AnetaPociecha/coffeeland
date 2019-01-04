@@ -36,6 +36,7 @@ class ShopItemPage extends React.Component {
       match: { params },
       items
     } = this.props;
+
     const name = getItemName(params.name);
     const item = items.items ? items.items.find(i => i.name === name) : {}
     const { quantity, shouldAddToCartMsgBeDisplayed } = this.state;

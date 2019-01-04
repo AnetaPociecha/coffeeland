@@ -1,115 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import scriptLoader from 'react-async-script-loader';
+import React from "react";
 
 class PaypalButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showButton: false,
-    };
-
-    window.React = React;
-    window.ReactDOM = ReactDOM;
-  }
-
-  componentDidMount() {
-    const {
-      isScriptLoaded,
-      isScriptLoadSucceed
-    } = this.props;
-
-    if (isScriptLoaded && isScriptLoadSucceed) {
-      this.setState({ showButton: true });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      isScriptLoaded,
-      isScriptLoadSucceed,
-    } = nextProps;
-
-    const isLoadedButWasntLoadedBefore =
-      !this.state.showButton &&
-      !this.props.isScriptLoaded &&
-      isScriptLoaded;
-
-    if (isLoadedButWasntLoadedBefore) {
-      if (isScriptLoadSucceed) {
-        this.setState({ showButton: true });
-      }
-    }
-  }
-
-
-  componentDidMount() {
-    // Todo
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // Todo
-  }
-
   render() {
-    const {
-      total,
-      currency,
-      env,
-      commit,
-      client,
-      onSuccess,
-      onError,
-      onCancel,
-    } = this.props;
-
-    const {
-      showButton,
-    } = this.state;
-
-    const payment = () =>
-    paypal.rest.payment.create(env, client, {
-      transactions: [
-        {
-          amount: {
-            total,
-            currency,
-          }
-        },
-      ],
-    });
-
-  const onAuthorize = (data, actions) =>
-    actions.payment.execute()
-      .then(() => {
-        const payment = {
-          paid: true,
-          cancelled: false,
-          payerID: data.payerID,
-          paymentID: data.paymentID,
-          paymentToken: data.paymentToken,
-          returnUrl: data.returnUrl,
-        };
-
-        onSuccess(payment);
-      });
-
-
     return (
-      <div>
-        {showButton && <paypal.Button.react
-          env={env}
-          client={client}
-          commit={commit}
-          payment={payment}
-          onAuthorize={onAuthorize}
-          onCancel={onCancel}
-          onError={onError}
-        />}
-      </div>
+      <form
+        action="https://www.paypal.com/cgi-bin/webscr"
+        method="post"
+        target="_top"
+      >
+        <input type="hidden" name="business" value="anhayla12@gmail.com" />
+        <input type="hidden" name="cmd" value="_xclick" />
+
+        <input type="hidden" name="coffee" value="23" />
+        <input type="hidden" name="amount" value="2" />
+        <input type="hidden" name="currency_code" value="PLN" />
+        <input id="invoice" type="hidden" value="unique" name="invoice" />
+        <input type="hidden" name="notify_url" value="#" />
+        <input type="hidden" name="cancel_return" value="#" />
+        <input type="hidden" name="return" value="#" />
+        <input
+          type="image"
+          name="submit"
+          border="0"
+          src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+          alt="PayPal - The safer, easier way to pay online"
+        />
+      </form>
     );
   }
 }
 
-export default scriptLoader('https://www.paypalobjects.com/api/checkout.js')(PaypalButton);
+export default PaypalButton;
