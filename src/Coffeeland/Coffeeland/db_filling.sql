@@ -94,7 +94,7 @@ insert into workers(workerId,role,email,password)
 values(1,'b','worker2@gmail.com','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9');
 
 insert into clients(clientId,email,firstName,lastName,password,newsletterEmail)
-values(0,'marek@gmail.com','Marek','Ochocki','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9','marek@gmail.com');
+values(0,'jane_doe@gmail.com','Marek','Ochocki','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9','jane_doe@gmail.com');
 
 insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) 
 values(0,0,'Poland','Gdynia','Rzemieslnicza',30445,12,'1a',1);
@@ -103,7 +103,7 @@ insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNum
 values(1,0,'Poland','Warsaw','Grodzka',25487,23,'1',1);
 
 insert into clients(clientId,email,firstName,lastName,password,newsletterEmail)
-values(1,'magda@gmail.com','Magda','Tragarz','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9','magda@gmail.com');
+values(1,'john_doe@gmail.com','John','Doe','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9','john_doe@gmail.com');
 
 insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) 
 values(2,0,'Poland','Gdynia','Rzemieslnicza',30445,12,'',1);

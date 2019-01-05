@@ -15,7 +15,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
     [TestFixture]
     public class SignInCommandTest
     {
-        [TestCase("marek@gmail.com", "admin123")]
+        [TestCase("jane_doe@gmail.com", "admin123")]
         public void SignIn_ProperAttributes_Success(string _email,string _password)
         {
             DatabaseQueryProcessor.Erase();
@@ -35,7 +35,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
         }
 
         [TestCase("wrong_email","admin123")]
-        [TestCase("marek@gmail.com", "wrong_passwd")]
+        [TestCase("jane_doe@gmail.com", "wrong_passwd")]
         public void SignIn_WrongData_Fail(string _email, string _password)
         {
             DatabaseQueryProcessor.Erase();

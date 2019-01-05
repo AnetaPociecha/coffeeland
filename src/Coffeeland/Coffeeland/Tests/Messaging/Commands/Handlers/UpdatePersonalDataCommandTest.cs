@@ -18,7 +18,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
     public class UpdatePersonalDataCommandTest
     {
 
-        [TestCase("marek@gmail.com", "Marek", "Ochocki", true, "admin1234", false, "")] 
+        [TestCase("jane_doe@gmail.com", "Jane", "Doe", true, "admin1234", false, "")] 
         public void UpdatePersonalData_ChangePassword_Success(string _email, string _firstName, string _lastName,bool _changePassword, string _newPassword, bool _receiveNewsletterEmail, string _newsletterEmail)
         { 
             DatabaseQueryProcessor.Erase();
@@ -44,7 +44,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
 
             var foundClient = DatabaseQueryProcessor.GetClient(_email, PasswordEncryptor.encryptSha256(_newPassword));
 
-            //DatabaseQueryProcessor.Erase();
+            DatabaseQueryProcessor.Erase();
             SessionRepository.RemoveSession(testSessionToken);
 
             Assert.IsNotNull(result);
@@ -55,10 +55,10 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             Assert.IsNotNull(foundClient);
         }
 
-        [TestCase("marek@gmail.com", "Marek", "Ochocki", true, "admin1234", true, "bad email")]
-        [TestCase("marek@gmail.com", "bad name 123", "Ochocki", true, "admin1234", false, "")]
-        [TestCase("merek@gmail.com", "Marek", "bad surname 123", true, "admin1234", false, "")]
-        [TestCase("bad email", "Marek", "Ochocki", true, "admin1234", false, "")]
+        [TestCase("jane_doe@gmail.com", "Jane", "Doe", true, "admin1234", true, "bad email")]
+        [TestCase("jane_doe@gmail.com", "bad name 123", "Doe", true, "admin1234", false, "")]
+        [TestCase("jane_doe@gmail.com", "Jane", "bad surname 123", true, "admin1234", false, "")]
+        [TestCase("bad email", "Jane", "Doe", true, "admin1234", false, "")]
         public void UpdatePersonalData_WrongData_Exception(string _email, string _firstName, string _lastName, bool _changePassword, string _newPassword, bool _receiveNewsletterEmail, string _newsletterEmail)
         {
             DatabaseQueryProcessor.Erase();

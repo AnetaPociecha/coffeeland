@@ -16,7 +16,7 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
     public class GetPersonalDataQueryHandlerTest
     {
         [TestCase(5)]
-        public void AddAddress_ClientDoesntExist_Exception(int _clientId)
+        public void GetPersonalData_ClientDoesntExist_Exception(int _clientId)
         {
             DatabaseQueryProcessor.Erase();
             Shared.FillTheDatabase();
@@ -40,18 +40,18 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
         }
 
         [TestCase(0)]
-        public void AddAddress_CorrectData_Success(int _clientId)
+        public void GetPersonalData_CorrectData_Success(int _clientId)
         {
             DatabaseQueryProcessor.Erase();
             Shared.FillTheDatabase();
 
             int clientId = _clientId;
 
-            string email = "marek@gmail.com";
-            string firstName = "Marek";
-            string lastName = "Ochocki";
+            string email = "jane_doe@gmail.com";
+            string firstName = "Jane";
+            string lastName = "Doe";
             bool receiveNewsletterEmail = true;
-            string newsletterEmail = "marek@gmail.com";
+            string newsletterEmail = "jane_doe@gmail.com";
 
             var testSessionToken = SessionRepository.StartNewSession(clientId);
 
