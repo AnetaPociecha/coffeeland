@@ -26,7 +26,8 @@ export default class CheckoutDetails extends Component {
 
         <div className="row">
           <div className="col-12 p-4 text-center">
-            <PaypalButton />
+            <PaypalButton /> 
+            Paypal :D
           </div>
         </div>
 
