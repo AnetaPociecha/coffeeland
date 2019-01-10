@@ -16,7 +16,7 @@ namespace Coffeeland.Tests.TestsShared
             DatabaseQueryProcessor.CreateNewWorker(WorkerRole.a, "worker1@gmail.com", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9");
             DatabaseQueryProcessor.CreateNewWorker(WorkerRole.b, "worker2@gmail.com", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9");
 
-            DatabaseQueryProcessor.CreateNewClient("marek@gmail.com", "Marek", "Ochocki", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", "marek@gmail.com");
+            DatabaseQueryProcessor.CreateNewClient("jane_doe@gmail.com", "Jane", "Doe", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", "jane_doe@gmail.com");
             DatabaseQueryProcessor.CreateNewAddress(0, "Poland", "Gdynia", "Rzemieslnicza", 30445, 12, "1a");
             DatabaseQueryProcessor.CreateNewAddress(0, "Poland", "Warsaw", "Grodzka", 25487, 23, "1");
 

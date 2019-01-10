@@ -16,7 +16,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
     [TestFixture]
     public class RegisterNewClientCommandTest
     {
-        [TestCase("magdtrag@gmail.com","Marek","Ochocki","admin123",true,"majek@gmail.com")]
+        [TestCase("john_doe@gmail.com","John","Doe","admin123",true,"john_doe@gmail.com")]
         public void RegisterNewClient_CorrectData_Success(string _email, string _firstName, string _lastName, string _password, bool _receiveNewsletterEmail, string _newsletterEmail){
 
             DatabaseQueryProcessor.Erase();
@@ -46,10 +46,10 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             Assert.AreEqual(_newsletterEmail, newClient.newsletterEmail);
         }
 
-        [TestCase("wrong_email", "Marek", "Ochocki", "admin123", true, "majek@gmail.com")]
-        [TestCase("marek@gmail.com", "12345", "Ochocki", "admin123", true, "majek@gmail.com")]
-        [TestCase("marek@gmail.com", "Marek", "12345", "admin123", true, "majek@gmail.com")]
-        [TestCase("marek@gmail.com", "Marek", "Ochocki", "admin123", true, "wrong_email")]
+        [TestCase("wrong_email", "John", "Doe", "admin123", true, "john_doe@gmail.com")]
+        [TestCase("john_doe@gmail.com", "12345", "Doe", "admin123", true, "john_doe@gmail.com")]
+        [TestCase("john_doe@gmail.com", "John", "12345", "admin123", true, "john_doe@gmail.com")]
+        [TestCase("john_doe@gmail.com", "John", "Doe", "admin123", true, "wrong_email")]
         public void RegisterNewClient_WrongData_Exception(string _email, string _firstName, string _lastName, string _password, bool _receiveNewsletterEmail, string _newsletterEmail)
         {
 
