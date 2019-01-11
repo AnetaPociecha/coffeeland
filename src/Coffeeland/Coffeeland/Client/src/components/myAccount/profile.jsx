@@ -17,12 +17,12 @@ import {
   INVALID_FIRST_NAME,
   INVALID_LAST_NAME
 } from "../../constants/messages";
-import {
-  updatePersonalData
-} from "./../../actions/personalDataActions";
+import { updatePersonalData } from "./../../actions/personalDataActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MessageProcessor from "./../../messageProcessor/messageProcessor";
+import PersonalDataRow from "../personalDataRow/personalDataRow";
+
 const mp = MessageProcessor.getInstance();
 
 class Profile extends Component {
@@ -59,61 +59,53 @@ class Profile extends Component {
         </div>
 
         {isEditMode ? (
-          
           <div className=" col-12">
-          
-          <div className="row p-2 pt-3 border">
-            <FormGroup
-              id={"firstName"}
-              title={FIRST_NAME}
-              className={this.getInputClass(isNameValid, firstName)}
-              invalidInputMessage={INVALID_FIRST_NAME}
-              handleInputChange={this.onChange}
-              colLength={6}
-              value={firstName}
-            />
+            <div className="row p-2 pt-3 border">
+              <FormGroup
+                id={"firstName"}
+                title={FIRST_NAME}
+                className={this.getInputClass(isNameValid, firstName)}
+                invalidInputMessage={INVALID_FIRST_NAME}
+                handleInputChange={this.onChange}
+                colLength={6}
+                value={firstName}
+              />
 
-            <FormGroup
-              id="lastName"
-              title={LAST_NAME}
-              className={this.getInputClass(isNameValid, lastName)}
-              invalidInputMessage={INVALID_LAST_NAME}
-              handleInputChange={this.onChange}
-              colLength={6}
-              value={lastName}
-            />
+              <FormGroup
+                id="lastName"
+                title={LAST_NAME}
+                className={this.getInputClass(isNameValid, lastName)}
+                invalidInputMessage={INVALID_LAST_NAME}
+                handleInputChange={this.onChange}
+                colLength={6}
+                value={lastName}
+              />
 
-            <FormGroup
-              id="email"
-              title={EMAIL}
-              className={this.getInputClass(isEmailValid, email)}
-              invalidInputMessage={INVALID_EMAIL}
-              handleInputChange={this.onChange}
-              colLength={12}
-              value={email}
-            />
+              <FormGroup
+                id="email"
+                title={EMAIL}
+                className={this.getInputClass(isEmailValid, email)}
+                invalidInputMessage={INVALID_EMAIL}
+                handleInputChange={this.onChange}
+                colLength={12}
+                value={email}
+              />
             </div>
             <div className="row mt-3">
-            
-            <div className="col-6 pt-3">
-              <Button onClick={this.onSave} disabled={this.isSaveDisabled()}>
-                {SAVE}
-              </Button>
-            </div>
-            <div className="col-6 text-right pt-3">
-              <Button onClick={this.onCancel}>{CANCEL}</Button>
-            </div>
-
+              <div className="col-6 pt-3">
+                <Button onClick={this.onSave} disabled={this.isSaveDisabled()}>
+                  {SAVE}
+                </Button>
+              </div>
+              <div className="col-6 text-right pt-3">
+                <Button onClick={this.onCancel}>{CANCEL}</Button>
+              </div>
             </div>
           </div>
         ) : (
           <div className="row">
-            <div className="col-12 border">
-            <div className="col-12 pt-3 pl-3 pr-3">
-              {personalData.firstName} {personalData.lastName}
-            </div>
-            <div className="col-12 p-3">{personalData.email}</div>
-            </div>
+            
+            <PersonalDataRow personalData={personalData} />
 
             <div className="col-12 text-right p-3 mt-3">
               <Button onClick={this.onEdit}>{EDIT}</Button>
@@ -124,13 +116,12 @@ class Profile extends Component {
     );
   }
 
-  isSaveDisabled = () => (
-     !(
+  isSaveDisabled = () =>
+    !(
       isNameValid(this.state.firstName) &&
       isNameValid(this.state.lastName) &&
       isEmailValid(this.state.email)
-    )
-  );
+    );
 
   onChange = event => {
     const target = event.target;
@@ -173,39 +164,39 @@ class Profile extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       changePassword: false,
-      newPassword: '',
+      newPassword: "",
       receiveNewsletterEmail: this.props.receiveNewsletterEmail,
       newsletterEmail: this.props.newsletterEmail
-    }
+    };
     mp.processCommand(rq).then(rs => {
-      if(rs.isSuccess) {
+      if (rs.isSuccess) {
         this.props.updatePersonalData(rs);
       } else {
-          this.displayFailureMessage()
-      }     
-    })
-  }
-  
+        this.displayFailureMessage();
+      }
+    });
+  };
+
   // TO DO
-  displayFailureMessage = () => { 
-    console.log("UpdatePersonalDataCommand fail")
-  }
+  displayFailureMessage = () => {
+    console.log("UpdatePersonalDataCommand fail");
+  };
 }
 
 Profile.propTypes = {
   token: PropTypes.string.isRequired,
   updatePersonalData: PropTypes.func.isRequired,
   newsletterEmail: PropTypes.string.isRequired,
-  receiveNewsletterEmail: PropTypes.bool.isRequired,
+  receiveNewsletterEmail: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   token: state.token.token.token,
   newsletterEmail: state.personalData.personalData.newsletterEmail,
-  receiveNewsletterEmail: state.personalData.personalData.receiveNewsletterEmail,
+  receiveNewsletterEmail: state.personalData.personalData.receiveNewsletterEmail
 });
 
 export default connect(
   mapStateToProps,
   { updatePersonalData }
-)( Profile );
+)(Profile);
