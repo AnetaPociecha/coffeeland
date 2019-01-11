@@ -3,7 +3,7 @@ import personaData from "./personalDataMock";
 import AddressRow from "../addressEntry/addressRow";
 import addressBook from "./addressBookMock";
 import SectionTitle from "./../orderTitle/sectionTitle";
-import { isArrayEmpty } from "./../../helpers/arrayHelper";
+import { isArrayEmpty } from "../../helpers/arrayHelper";
 import {
   ButtonDropdown,
   DropdownToggle,

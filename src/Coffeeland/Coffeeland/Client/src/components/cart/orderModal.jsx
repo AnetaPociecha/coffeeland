@@ -9,10 +9,10 @@ export default class OrderModal extends Component {
   }
 
   render() {
-    const { isActive, onModalClose } = this.props
+    const { isActive, onModalClose, cartEntries} = this.props
     return (
       <Modal isOpen={isActive} onRequestClose={onModalClose}>
-        <CheckoutDetails  onModalClose={onModalClose} />
+        <CheckoutDetails  cartEntries={cartEntries} onModalClose={onModalClose} />
       </Modal>
     );
   }

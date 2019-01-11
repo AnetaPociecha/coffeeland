@@ -10,7 +10,7 @@ export default class CheckoutDetails extends Component {
   }
 
   render() {
-      const {onModalClose} = this.props
+      const {onModalClose, cartEntries} = this.props
       const {isSubmitButtonDisabled} = this.state
     return (
       <div className="col-12 ml-3 mr-3 mb-3 pt-0">
@@ -23,10 +23,10 @@ export default class CheckoutDetails extends Component {
 
 
         <div className="row pr-4">
-          <div className="col-md-7 col-sm-12 p-2 pt-3">
-            <OrderDetails />
+          <div className="col-md-6 col-sm-12 p-2 pt-3">
+            <OrderDetails cartEntries={cartEntries}/>
           </div>
-          <div className="col-md-5 col-sm-12 p-2 pt-3 ">
+          <div className="col-md-6 col-sm-12 p-2 pt-3 ">
             <BillingDetails disableSubmitButton={this.disableSubmitButton}/>
           </div>
         </div>
