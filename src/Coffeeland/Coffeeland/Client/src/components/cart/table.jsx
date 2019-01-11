@@ -40,7 +40,7 @@ export default class Table extends Component {
           </Button>
         </div>
         <div>
-          <OrderModal isActive={isActive} onModalClose={this.onModalClose}/>
+          <OrderModal isActive={isActive} onModalClose={this.onModalClose} total={getSumPrice(cartEntries)}/>
         </div>
       </div>
     );

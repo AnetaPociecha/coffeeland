@@ -6,7 +6,7 @@ const CLIENT = {
   production: '',
 };
 const ENV = 'sandbox'
-const CURRENCY = 'PLN'
+const CURRENCY = 'USD'
 
 class PayPalButton extends React.Component {
   
@@ -23,7 +23,7 @@ class PayPalButton extends React.Component {
           env={ENV}
           commit={true}
           currency={CURRENCY}
-          total={20}
+          total={this.props.total}
           onSuccess={onSuccess}
           onError={onError}
           onCancel={onCancel}

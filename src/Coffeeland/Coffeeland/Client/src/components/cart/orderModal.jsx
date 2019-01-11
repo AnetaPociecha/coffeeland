@@ -12,7 +12,7 @@ export default class OrderModal extends Component {
     const { isActive, onModalClose } = this.props
     return (
       <Modal isOpen={isActive} onRequestClose={onModalClose}>
-        <CheckoutDetails  onModalClose={onModalClose} />
+        <CheckoutDetails  onModalClose={onModalClose} total={this.props.total}/>
       </Modal>
     );
   }
