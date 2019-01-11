@@ -14,7 +14,7 @@ export default class Table extends Component {
 
 
   render() {
-    const { cartEntries, onCartUpdate, onCartRemove } = this.props;
+    const { cartEntries, onCartUpdate, onCartRemove, sumPrice} = this.props;
     const { isActive } = this.state
     return (
       <div className="col-12 m-3">
@@ -58,5 +58,5 @@ export default class Table extends Component {
 Table.propTypes = {
   cartEntries: PropTypes.any.isRequired,
   onCartUpdate: PropTypes.func.isRequired,
-  onCartRemove: PropTypes.func.isRequired
+  onCartRemove: PropTypes.func.isRequired,
 };
