@@ -16,9 +16,11 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (clientId == -1)
                 throw new Exception();
 
-            if (false)  
+            if (!InputChecker.isValidName(command.country) ||
+                !InputChecker.isValidName(command.city) ||
+                !InputChecker.isValidName(command.street) ||
+                !InputChecker.isValidApartmentNumber(command.apartmentNumber))
             {
-                // TODO Input checking
                 throw new Exception();
             }
 
