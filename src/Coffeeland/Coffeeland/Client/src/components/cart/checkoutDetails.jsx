@@ -2,16 +2,28 @@ import React, { Component } from "react";
 import OrderDetails from "./orderDetails";
 import BillingDetails from "./billingDetails";
 import { Button, CloseButton } from "./../button";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {
+  fetchAddressBook
+} from "./../../actions/addressBookActions";
 
-export default class CheckoutDetails extends Component {
+
+class CheckoutDetails extends Component {
 
   state = {
     isSubmitButtonDisabled: false
   }
 
+  componentWillMount() {
+    this.props.fetchAddressBook(this.props.token);
+  }
+
   render() {
       const {onModalClose, cartEntries} = this.props
       const {isSubmitButtonDisabled} = this.state
+      const { addressBook } = this.props.addressBook
+
     return (
       <div className="col-12 ml-3 mr-3 mb-3 pt-0">
 
@@ -27,7 +39,7 @@ export default class CheckoutDetails extends Component {
             <OrderDetails cartEntries={cartEntries}/>
           </div>
           <div className="col-md-6 col-sm-12 p-2 pt-3 ">
-            <BillingDetails disableSubmitButton={this.disableSubmitButton}/>
+            <BillingDetails addresses={addressBook} disableSubmitButton={this.disableSubmitButton}/> 
           </div>
         </div>
 
@@ -45,5 +57,22 @@ export default class CheckoutDetails extends Component {
     console.log("disableSubmitButton", disable)
     this.setState({isSubmitButtonDisabled: disable})
   }
-
 }
+
+CheckoutDetails.propTypes = {
+  fetchAddressBook: PropTypes.func.isRequired,
+  addressBook: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  isSignIn: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  addressBook: state.addressBook.addressBook,
+  token: state.token.token.token,
+  isSignIn: state.token.token.isSignIn
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchAddressBook }
+)(CheckoutDetails);

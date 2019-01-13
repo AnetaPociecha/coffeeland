@@ -14,18 +14,19 @@ import {
 export default class BillingDetails extends Component {
   state = {
     dropdownOpen: false,
-    selectedAddress: "",
+    selectedAddress: {},
     alternativeAddresses: [],
     allAddresses: []
   };
 
-  componentWillMount() {
-    //fetch addressBook and personalData in parent
-    const addresses = addressBook.addressBook;
-    if (addresses.length > 0) {
-      this.setState({ selectedAddress: addresses[0] });
-      const rest = addresses.filter(a => a !== addresses[0]);
-      this.setState({ alternativeAddresses: rest, allAddresses: addresses });
+  componentWillReceiveProps(nextProps) {
+
+    console.log('addresses', nextProps.addresses)
+
+    if (nextProps.addresses && nextProps.addresses.length > 0) {
+      this.setState({ selectedAddress: nextProps.addresses[0] });
+      const rest = nextProps.addresses.filter(a => a !== nextProps.addresses[0]);
+      this.setState({ alternativeAddresses: rest, allAddresses: nextProps.addresses });
     }
     else {
       this.props.disableSubmitButton(true)
@@ -34,7 +35,7 @@ export default class BillingDetails extends Component {
 
   render() {
     const isAddressAvaible = !isArrayEmpty(this.state.allAddresses);
-
+    const {alternativeAddresses} = this.state
     return (
       <div className="col-12 border p-3">
         <SectionTitle>Billing Details</SectionTitle>
@@ -54,13 +55,13 @@ export default class BillingDetails extends Component {
                   <AddressRow address={this.state.selectedAddress} />
                 </DropdownToggle>
 
-                <DropdownMenu>
-                  {this.state.alternativeAddresses.map(a => (
+                {!isArrayEmpty(alternativeAddresses) && <DropdownMenu>
+                  {alternativeAddresses.map(a => (
                     <DropdownItem key={a.key} onClick={() => this.select(a)}>
                       <AddressRow address={a} />
                     </DropdownItem>
                   ))}
-                </DropdownMenu>
+                </DropdownMenu> }
               </ButtonDropdown>
             </div>
           ) : (
