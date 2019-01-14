@@ -196,7 +196,7 @@
     <Compile Include="Messaging\Shared\CommandSerializationBinder.cs" />
     <Compile Include="Messaging\Shared\PasswordEncryptor.cs" />
     <Compile Include="Messaging\Shared\QuerySerializationBinder.cs" />
-    <Compile Include="Payments\PayPalApi.cs" />
+    <Compile Include="Payments\PayPal.cs" />
     <Compile Include="Session\ClientSession.cs" />
     <Compile Include="Session\SessionRepository.cs" />
     <Compile Include="SignalRCommunication\CommandResolver.cs" />
@@ -211,7 +211,6 @@
     <Compile Include="Tests\Messaging\Commands\Handlers\RegisterNewClientCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\SignInCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\UpdatePersonalDataCommandTest.cs" />
-    <Compile Include="Tests\Messaging\PayPal.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetAddressBookQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetOrdersQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetPersonalDataQueryHandlerTest.cs" />
