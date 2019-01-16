@@ -6,7 +6,7 @@ using PayPal.Api;
 
 namespace Coffeeland.Payments
 {
-    public static class PayPalApi
+    public static class PayPal
     {
         // sample payment id - "PAY-2RR93057JR3600055LQ5FWMA"
         public static string GetTotalAmount(string paymentId)
