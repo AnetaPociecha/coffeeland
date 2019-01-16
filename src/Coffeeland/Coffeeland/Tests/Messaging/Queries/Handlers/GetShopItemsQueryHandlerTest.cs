@@ -16,7 +16,7 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
     public class GetShopItemsQueryHandlerTest
     {
         [Test]
-        public void GetShopItems_CorrectData_Success()
+        public void GetShopItems_FilledDatabase_Success()
         {
             int productsCount = 2;
 
@@ -29,6 +29,30 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
 
             var handler = new GetShopItemsQueryHandler();
             var result = (ShopItemsDto) handler.Handle(getShopItemsQuery);
+
+            DatabaseQueryProcessor.Erase();
+
+            Assert.IsTrue(result.isSuccess);
+            Assert.AreEqual(productsCount, result.shopItems.Length);
+            Assert.AreEqual(result.shopItems[0].name, "Lavazza");
+            Assert.AreEqual(result.shopItems[0].price, 15);
+            Assert.AreEqual(result.shopItems[1].name, "Vergnano");
+            Assert.AreEqual(result.shopItems[1].price, 25);
+        }
+
+        [Test]
+        public void GetShopItems_EmptyDatabase_Success()
+        {
+            int productsCount = 0;
+
+            DatabaseQueryProcessor.Erase();
+
+            var getShopItemsQuery = new GetShopItemsQuery
+            {
+            };
+
+            var handler = new GetShopItemsQueryHandler();
+            var result = (ShopItemsDto)handler.Handle(getShopItemsQuery);
 
             DatabaseQueryProcessor.Erase();
 

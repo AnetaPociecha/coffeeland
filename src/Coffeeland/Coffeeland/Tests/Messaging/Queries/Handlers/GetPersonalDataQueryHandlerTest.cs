@@ -15,6 +15,24 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
     [TestFixture]
     public class GetPersonalDataQueryHandlerTest
     {
+        [TestCase(-1)]
+        public void GetPersonalData_IncorrectClientId_Exception(int _clientId)
+        {
+            var testSessionToken = SessionRepository.StartNewSession(_clientId);
+
+            var getPersonalDataQuery = new GetPersonalDataQuery
+            {
+                sessionToken = testSessionToken,
+            };
+
+            var handler = new GetPersonalDataQueryHandler();
+            TestDelegate result = () => handler.Handle(getPersonalDataQuery);
+
+            SessionRepository.RemoveSession(testSessionToken);
+
+            Assert.Throws<Exception>(result);
+        }
+
         [TestCase(5)]
         public void GetPersonalData_ClientDoesntExist_Exception(int _clientId)
         {
@@ -47,11 +65,15 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
 
             int clientId = _clientId;
 
-            string email = "jane_doe@gmail.com";
-            string firstName = "Jane";
-            string lastName = "Doe";
-            bool receiveNewsletterEmail = true;
-            string newsletterEmail = "jane_doe@gmail.com";
+            var expectedPersonalData = new PersonalDataDto
+            {
+                isSuccess = true,
+                email = "jane_doe@gmail.com",
+                firstName = "Jane",
+                lastName = "Doe",
+                receiveNewsletterEmail = true,
+                newsletterEmail = "jane_doe@gmail.com"
+            };
 
             var testSessionToken = SessionRepository.StartNewSession(clientId);
 
@@ -67,11 +89,11 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
             SessionRepository.RemoveSession(testSessionToken);
 
             Assert.IsTrue(result.isSuccess);
-            Assert.AreEqual(email, result.email);
-            Assert.AreEqual(firstName, result.firstName);
-            Assert.AreEqual(lastName, result.lastName);
-            Assert.AreEqual(receiveNewsletterEmail, result.receiveNewsletterEmail);
-            Assert.AreEqual(newsletterEmail, result.newsletterEmail);
+            Assert.AreEqual(expectedPersonalData.email, result.email);
+            Assert.AreEqual(expectedPersonalData.firstName, result.firstName);
+            Assert.AreEqual(expectedPersonalData.lastName, result.lastName);
+            Assert.AreEqual(expectedPersonalData.receiveNewsletterEmail, result.receiveNewsletterEmail);
+            Assert.AreEqual(expectedPersonalData.newsletterEmail, result.newsletterEmail);
         }
 
     }

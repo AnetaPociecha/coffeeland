@@ -18,7 +18,7 @@ namespace Coffeeland.Tests.TestsShared
 
             DatabaseQueryProcessor.CreateNewClient("jane_doe@gmail.com", "Jane", "Doe", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", "jane_doe@gmail.com");
             DatabaseQueryProcessor.CreateNewAddress(0, "Poland", "Gdynia", "Rzemieslnicza", 30445, 12, "1a");
-            DatabaseQueryProcessor.CreateNewAddress(0, "Poland", "Warsaw", "Grodzka", 25487, 23, "1");
+            DatabaseQueryProcessor.CreateNewAddress(0, "Poland", "Warsaw", "Grodzka", 25487, 23, "");
 
             DatabaseQueryProcessor.CreateNewOrder(0, 0, 0, 1, "2018-05-12");
             DatabaseQueryProcessor.CreateNewOrderEntry(0, 0, 5);
@@ -27,6 +27,12 @@ namespace Coffeeland.Tests.TestsShared
             DatabaseQueryProcessor.CreateNewOrder(0, 1, 1, 0, "2018-10-12");
             DatabaseQueryProcessor.CreateNewOrderEntry(1,0,1);
             DatabaseQueryProcessor.CreateNewComplaint(1, 1, "I am dissatisfied", "2018-10-15", true);
+
+            DatabaseQueryProcessor.CreateNewClient("john_doe@gmail.com", "John", "Doe", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", "john_doe@gmail.com");
+            DatabaseQueryProcessor.CreateNewAddress(1, "Poland", "Cracow", "Krakowska", 30000, 1, "");
+
+            DatabaseQueryProcessor.CreateNewOrder(1,0,2,0,"2018-06-12");
+            DatabaseQueryProcessor.CreateNewOrderEntry(2,1,1);
         }
             
     }

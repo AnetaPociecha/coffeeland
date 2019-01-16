@@ -1,2 +1,2 @@
-import PaypalButton from "./paypalButton";
-export { PaypalButton };
+import PayPalButton from "./paypalButton";
+export { PayPalButton };

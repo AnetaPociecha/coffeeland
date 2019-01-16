@@ -19,5 +19,13 @@ namespace Coffeeland.Messaging.Shared
 
             return match.Success;
         }
+
+        public static bool isValidApartmentNumber(string apartmentNumber)
+        {
+            var regex = @"^[1-9]*[a-zA-Z]{0,1}$";
+            var match = Regex.Match(apartmentNumber, regex, RegexOptions.IgnoreCase);
+
+            return match.Success;
+        }
     }
 }

@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import TotalPriceRow from "./totalPriceRow";
 import { connect } from "react-redux";
 import { SecondaryAlert } from "./../alert";
+import { getSumPrice } from "./../../helpers/priceHelper";
 
 class Table extends Component {
   state = {
@@ -14,15 +15,13 @@ class Table extends Component {
   };
 
   render() {
-    const { cartEntries, onCartUpdate, onCartRemove, isSignIn } = this.props;
+    const { cartEntries, onCartUpdate, onCartRemove, isSignIn, sumPrice } = this.props;
     const { isActive } = this.state;
 
-    console.log('isSignIn', isSignIn)
-    
     return (
       <div className="col-12 m-3">
         
-        { !isSignIn && <div className="pt-1 pb-3 pl-1 pr-1 col-12">
+        { !isSignIn && <div className="pb-3 pl-1 pr-1 col-12">
           <SecondaryAlert>Please sign in before you buy</SecondaryAlert>
         </div> }
 
@@ -48,6 +47,7 @@ class Table extends Component {
             cartEntries={cartEntries}
             isActive={isActive}
             onModalClose={this.onModalClose}
+            total={getSumPrice(cartEntries)}
           />
         </div>
       </div>

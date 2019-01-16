@@ -14,14 +14,14 @@ import {
 export default class BillingDetails extends Component {
   state = {
     dropdownOpen: false,
-    selectedAddress: {},
+    selectedAddress: '',
     alternativeAddresses: [],
     allAddresses: []
   };
 
   componentWillReceiveProps(nextProps) {
 
-    console.log('addresses', nextProps.addresses)
+    if(nextProps) console.log(nextProps.addresses)
 
     if (nextProps.addresses && nextProps.addresses.length > 0) {
       this.setState({ selectedAddress: nextProps.addresses[0] });
@@ -34,7 +34,6 @@ export default class BillingDetails extends Component {
   }
 
   render() {
-    const isAddressAvaible = !isArrayEmpty(this.state.allAddresses);
     const {alternativeAddresses} = this.state
     return (
       <div className="col-12 border p-3">
@@ -45,7 +44,7 @@ export default class BillingDetails extends Component {
         </div>
 
         <div className="p-1 mt-2 mb-3 p-3 col-12 text-center">
-          {isAddressAvaible ? (
+          {!isArrayEmpty(this.state.allAddresses) ? (
             <div>
               <ButtonDropdown
                 isOpen={this.state.dropdownOpen}

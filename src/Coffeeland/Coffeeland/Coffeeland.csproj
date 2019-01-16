@@ -92,6 +92,9 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Drawing.Design" />
@@ -193,6 +196,7 @@
     <Compile Include="Messaging\Shared\CommandSerializationBinder.cs" />
     <Compile Include="Messaging\Shared\PasswordEncryptor.cs" />
     <Compile Include="Messaging\Shared\QuerySerializationBinder.cs" />
+    <Compile Include="Payments\PayPalApi.cs" />
     <Compile Include="Session\ClientSession.cs" />
     <Compile Include="Session\SessionRepository.cs" />
     <Compile Include="SignalRCommunication\CommandResolver.cs" />
@@ -207,6 +211,7 @@
     <Compile Include="Tests\Messaging\Commands\Handlers\RegisterNewClientCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\SignInCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\UpdatePersonalDataCommandTest.cs" />
+    <Compile Include="Tests\Messaging\PayPal.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetAddressBookQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetOrdersQueryHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Queries\Handlers\GetPersonalDataQueryHandlerTest.cs" />
