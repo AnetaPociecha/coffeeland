@@ -19,13 +19,11 @@ class Table extends Component {
 
   componentWillMount() {
     if (this.props.isSignIn && this.props.token) {
-      console.log("this.props.isSignIn && this.props.token");
       this.props.fetchAddressBook(this.props.token);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps.addressBook", nextProps.addressBook);
     if (
       nextProps.addressBook &&
       !isArrayEmpty(nextProps.addressBook.addressBook)
@@ -45,8 +43,9 @@ class Table extends Component {
       onCartUpdate,
       onCartRemove,
       isSignIn,
-      sumPrice
+      sumPrice,
     } = this.props;
+    const { addressBook } = this.props.addressBook;
     const { isActive, isAddressPresent } = this.state;
 
     return (
@@ -88,6 +87,7 @@ class Table extends Component {
         </div>
         <div>
           <OrderModal
+            addressBook={addressBook}
             cartEntries={cartEntries}
             isActive={isActive}
             onModalClose={this.onModalClose}

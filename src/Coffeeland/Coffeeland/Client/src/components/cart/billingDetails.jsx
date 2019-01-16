@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import personaData from "./personalDataMock";
 import AddressRow from "../addressEntry/addressRow";
-import addressBook from "./addressBookMock";
 import SectionTitle from "./../orderTitle/sectionTitle";
 import { isArrayEmpty } from "../../helpers/arrayHelper";
 import {
@@ -14,58 +13,59 @@ import {
 export default class BillingDetails extends Component {
   state = {
     dropdownOpen: false,
-    selectedAddress: '',
+    selectedAddress: "",
     alternativeAddresses: [],
     allAddresses: []
   };
 
-  componentWillReceiveProps(nextProps) {
-
-    if(nextProps) console.log(nextProps.addresses)
-
-    if (nextProps.addresses && nextProps.addresses.length > 0) {
-      this.setState({ selectedAddress: nextProps.addresses[0] });
-      const rest = nextProps.addresses.filter(a => a !== nextProps.addresses[0]);
-      this.setState({ alternativeAddresses: rest, allAddresses: nextProps.addresses });
-    }
-    else {
-      this.props.disableSubmitButton(true)
+  componentDidMount() {
+    if (this.props.addresses && !isArrayEmpty(this.props.addresses)) {
+      const rest = this.props.addresses.filter(
+        a => a !== this.props.addresses[0]
+      );
+      this.setState({
+        selectedAddress: this.props.addresses[0],
+        alternativeAddresses: rest,
+        allAddresses: this.props.addresses
+      });
     }
   }
 
   render() {
-    const {alternativeAddresses} = this.state
+    const {
+      alternativeAddresses,
+      selectedAddress,
+      dropdownOpen,
+      allAddresses
+    } = this.state;
+
     return (
-      <div className="col-12 border p-3">
+      <div className="col-12 p-2">
         <SectionTitle>Billing Details</SectionTitle>
 
-        <div className="col-12 pt-3 pr-3 pl-3 text-center">
+        <div className="col-12 pt-3 pr-4 pl-3">
           {personaData.firstName} {personaData.lastName}
         </div>
 
-        <div className="p-1 mt-2 mb-3 p-3 col-12 text-center">
-          {!isArrayEmpty(this.state.allAddresses) ? (
+        <div className="p-1 mt-2 mb-1 p-3 col-12">
+          {!isArrayEmpty(allAddresses) && (
             <div>
-              <ButtonDropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggle}
-              >
-                <DropdownToggle color="light" caret>
-                  <AddressRow address={this.state.selectedAddress} />
-                </DropdownToggle>
-
-                {!isArrayEmpty(alternativeAddresses) && <DropdownMenu>
-                  {alternativeAddresses.map(a => (
-                    <DropdownItem key={a.key} onClick={() => this.select(a)}>
-                      <AddressRow address={a} />
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu> }
-              </ButtonDropdown>
-            </div>
-          ) : (
-            <div className="text-danger font-weight-bold">
-              Please add new address to address book first.
+              {!isArrayEmpty(alternativeAddresses) ? (
+                <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle color="light" caret>
+                    <AddressRow address={selectedAddress} />
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    {alternativeAddresses.map(a => (
+                      <DropdownItem key={a.key} onClick={() => this.select(a)}>
+                        <AddressRow address={a} />
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </ButtonDropdown>
+              ) : (
+                <AddressRow address={selectedAddress} />
+              )}
             </div>
           )}
         </div>

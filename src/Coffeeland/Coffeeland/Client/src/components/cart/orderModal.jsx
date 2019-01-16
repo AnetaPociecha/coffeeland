@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import OrderDetails from "./orderDetails";
+import BillingDetails from "./billingDetails";
 import { Button, CloseButton } from "../button";
 
 const customStyles = {
@@ -37,7 +38,6 @@ export default class OrderModal extends Component {
         onAfterOpen={this.onModalOpen}
         style={customStyles}
       >
-      
         <div className="col-12">
           <div className="row">
             <div className="col-12 float-right">
@@ -48,7 +48,6 @@ export default class OrderModal extends Component {
             <div className="col-12">{this.getInnerComponent()}</div>
           </div>
         </div>
-
       </Modal>
     );
   }
@@ -66,6 +65,7 @@ export default class OrderModal extends Component {
   };
 
   getInnerComponent = () => {
+    console.log('this.props.addressBook',this.props.addressBook)
     switch (this.state.mode) {
       case ORDER_DETAILS:
         return this.getDetailsComponent(
@@ -76,13 +76,13 @@ export default class OrderModal extends Component {
         );
       case BILLING_DETAILS:
         return this.getDetailsComponent(
-          'Next',
-          <h1>billing</h1>,
+          "Next",
+          <BillingDetails addresses={this.props.addressBook} />,
           this.setPaymentMode
         );
       case PAYMENT_DETAILS:
         return this.getDetailsComponent(
-          'Exit',
+          "Exit",
           <h1>Payment</h1>,
           this.props.onModalClose
         );
@@ -91,9 +91,7 @@ export default class OrderModal extends Component {
 
   getDetailsComponent = (buttonText, child, onClik) => (
     <div className="row">
-      <div className="col-12">
-        { child }
-      </div>
+      <div className="col-12">{child}</div>
       <div className="col-12 text-center p-3">
         <Button onClick={onClik}>{buttonText}</Button>
       </div>

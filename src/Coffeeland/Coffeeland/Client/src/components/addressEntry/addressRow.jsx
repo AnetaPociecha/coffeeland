@@ -8,7 +8,7 @@ export default function AddressRow({ address }) {
     ZIPCode,
     street,
     buildingNumber,
-    appartmentNumber
+    apartmentNumber
   } = address;
   return (
     <div className="col-12">
@@ -18,7 +18,7 @@ export default function AddressRow({ address }) {
         <div className="p-1">{getZIPCode(ZIPCode)}</div>
         <div className="p-1">{street}</div>
         <div className="p-1">{buildingNumber}</div>
-        {appartmentNumber && <div className="p-1">/ {appartmentNumber}</div>}
+        {apartmentNumber && <div className="p-1">/ {apartmentNumber}</div>}
       </div>
     </div>
   );

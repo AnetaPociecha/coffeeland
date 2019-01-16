@@ -7,7 +7,7 @@ export default {
       street: "ul. Budryka",
       ZIPCode: 30072,
       buildingNumber: 2,
-      appartmentNumber: "1000A"
+      apartmentNumber: "1000A"
     },
     {
       key: 2,
@@ -16,7 +16,7 @@ export default {
       street: "",
       ZIPCode: 34654,
       buildingNumber: 691,
-      appartmentNumber: ""
+      apartmentNumber: ""
     },
     {
       key: 2,
@@ -25,7 +25,7 @@ export default {
       street: "Kwiatowa",
       ZIPCode: 34654,
       buildingNumber: 34,
-      appartmentNumber: 23
+      apartmentNumber: 23
     }
   ]
 };
