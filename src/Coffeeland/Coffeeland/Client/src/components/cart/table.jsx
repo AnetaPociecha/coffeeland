@@ -6,24 +6,64 @@ import { BUY } from "../../constants/titles";
 import PropTypes from "prop-types";
 import TotalPriceRow from "./totalPriceRow";
 import { connect } from "react-redux";
-import { SecondaryAlert } from "./../alert";
+import { WarningAlert } from "./../alert";
 import { getSumPrice } from "./../../helpers/priceHelper";
+import { fetchAddressBook } from "./../../actions/addressBookActions";
+import { isArrayEmpty } from "../../helpers/arrayHelper";
 
 class Table extends Component {
   state = {
-    isActive: false
+    isActive: false,
+    isAddressPresent: false
   };
 
+  componentWillMount() {
+    if (this.props.isSignIn && this.props.token) {
+      console.log("this.props.isSignIn && this.props.token");
+      this.props.fetchAddressBook(this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps.addressBook", nextProps.addressBook);
+    if (
+      nextProps.addressBook &&
+      !isArrayEmpty(nextProps.addressBook.addressBook)
+    ) {
+      this.setState({ isAddressPresent: true });
+    } else if (
+      nextProps.addressBook &&
+      isArrayEmpty(nextProps.addressBook.addressBook)
+    ) {
+      this.setState({ isAddressPresent: false });
+    }
+  }
+
   render() {
-    const { cartEntries, onCartUpdate, onCartRemove, isSignIn, sumPrice } = this.props;
-    const { isActive } = this.state;
+    const {
+      cartEntries,
+      onCartUpdate,
+      onCartRemove,
+      isSignIn,
+      sumPrice
+    } = this.props;
+    const { isActive, isAddressPresent } = this.state;
 
     return (
       <div className="col-12 m-3">
-        
-        { !isSignIn && <div className="pb-3 pl-1 pr-1 col-12">
-          <SecondaryAlert>Please sign in before you buy</SecondaryAlert>
-        </div> }
+        {!isSignIn && (
+          <div className="pb-3 pl-1 pr-1 col-12">
+            <WarningAlert>Please sign in before you buy</WarningAlert>
+          </div>
+        )}
+
+        {isSignIn && !isAddressPresent && (
+          <div className="pb-3 pl-1 pr-1 col-12">
+            <WarningAlert>
+              Please add address to address book before you buy
+            </WarningAlert>
+          </div>
+        )}
 
         {cartEntries.map(el => (
           <CartEntry
@@ -38,7 +78,11 @@ class Table extends Component {
         <TotalPriceRow cartEntries={cartEntries} />
 
         <div className="col-12 text-center p-3">
-          <Button onClick={this.toggleModal} className="btn btn-dark btn-lg" disabled={!isSignIn}>
+          <Button
+            onClick={this.toggleModal}
+            className="btn btn-dark btn-lg"
+            disabled={!isSignIn || !isAddressPresent}
+          >
             {BUY}
           </Button>
         </div>
@@ -68,15 +112,17 @@ Table.propTypes = {
   onCartUpdate: PropTypes.func.isRequired,
   onCartRemove: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
-  isSignIn: PropTypes.bool.isRequired
+  isSignIn: PropTypes.bool.isRequired,
+  addressBook: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   token: state.token.token.token,
-  isSignIn: state.token.token.isSignIn
+  isSignIn: state.token.token.isSignIn,
+  addressBook: state.addressBook.addressBook
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchAddressBook }
 )(Table);
