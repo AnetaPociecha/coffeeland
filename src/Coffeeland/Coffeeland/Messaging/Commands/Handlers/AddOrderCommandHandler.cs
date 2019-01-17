@@ -31,22 +31,32 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (address == null)
                 throw new Exception();
 
-            var orderId = DatabaseQueryProcessor.CreateNewOrder(
-                clientId,
-                0,  // TO DO - get rid of workers in database
-                address.addressId,
-                command.order.status,
-                DateTime.Now.ToString("dd-MM-yyyy")
-                );
-
             var products = DatabaseQueryProcessor.GetProducts();
-            var totalPrice = 0;
 
+            var totalPrice = 0;
             foreach (var orderEntry in command.order.orderEntries)
             {
                 var foundProducts = products.FindAll(p => p.name == orderEntry.name);
                 if (foundProducts.Count != 1)
                     throw new Exception();
+                
+                totalPrice += foundProducts[0].price * orderEntry.quantity;
+            }
+        
+            if (totalPrice != command.order.totalPrice)
+                throw new Exception();
+
+            var orderId = DatabaseQueryProcessor.CreateNewOrder(
+              clientId,
+              0,  // TO DO - get rid of workers in database
+              address.addressId,
+              command.order.status,
+              DateTime.Now.ToString("dd-MM-yyyy")
+              );
+
+            foreach (var orderEntry in command.order.orderEntries)
+            {
+                var foundProducts = products.FindAll(p => p.name == orderEntry.name);
 
                 DatabaseQueryProcessor.CreateNewOrderEntry(
                     orderId,
@@ -70,6 +80,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 if (isSuccess)
                     DatabaseQueryProcessor.UpdateOrder(orderId, DateTime.Now.ToString("dd-MM-yyyy"));
                     DatabaseQueryProcessor.UpdateOrder(orderId, 1);
+                //TO DO send email about payment
                 });
 
             return new SuccessInfoDto()

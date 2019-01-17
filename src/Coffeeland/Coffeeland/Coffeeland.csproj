@@ -159,12 +159,14 @@
     <Compile Include="MailService\Shared\MailSender.cs" />
     <Compile Include="MailService\RegistrationEmail.cs" />
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\AddComplaintCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddOrderCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\SignInCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\UpdatePersonalDataCommand.cs" />
     <Compile Include="Messaging\Commands\Handlers\AddAddressCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\AddComplaintCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\AddOrderCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\InactivateAddressCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\RegisterNewClientCommandHandler.cs" />
@@ -209,7 +211,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalRCommunication\QueryResolver.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Tests\Messaging\Commands\Handlers\AddAddressCommandTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\AddAddressCommandHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\AddComplaintCommandHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\AddOrderCommandHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\InactivateAddressCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\RegisterNewClientCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\SignInCommandTest.cs" />

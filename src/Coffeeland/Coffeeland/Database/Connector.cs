@@ -7,11 +7,12 @@ namespace Coffeeland.Database
 {
     class Connector
     {
-        const String connectionString = "datasource=localhost;Initial Catalog=coffeeland;port=3306;username=root;password=;Convert Zero Datetime=True";
-        //const String connectionString = "datasource=localhost;Initial Catalog=coffeeland_test;port=3306;username=root;password=;Convert Zero Datetime=True";
-        const String dbScriptPath = @"D:\coffeeland\src\Coffeeland\Coffeeland\Database\db.sql";
+        //public const String  connectionString = "datasource=localhost;Initial Catalog=coffeeland;port=3306;username=root;password=;Convert Zero Datetime=True";
+        const String connectionString = "datasource=localhost;Initial Catalog=coffeeland_test;port=3306;username=root;password=;Convert Zero Datetime=True";
+        public String dbScriptPath = System.AppContext.BaseDirectory + @"\..\Database\db.sql";
 
-        internal bool Erase()
+
+        public bool Erase()
         {
             try
             {

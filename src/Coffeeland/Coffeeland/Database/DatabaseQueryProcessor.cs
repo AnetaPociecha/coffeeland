@@ -5,19 +5,19 @@ using System.Diagnostics;
 using Coffeeland.Database.Records;
 using System.Collections.Generic;
 using Coffeeland.Tests.TestsShared;
+using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace Coffeeland.Database
 {
     public static class DatabaseQueryProcessor
     {
-        static Connector connector;
+        private static Connector connector;
 
         static DatabaseQueryProcessor()
         {
             connector = new Connector();
         }
-
-
         //-------- GET --------
         
         public static List<ProductRecord> GetProducts()
@@ -29,7 +29,7 @@ namespace Coffeeland.Database
 
             foreach (DataRow dr in products.Rows)
             {
-                ProductRecord record = new ProductRecord();
+                var record = new ProductRecord();
                 record.Fill(dr);
                 productRecords.Add(record);
             }
@@ -40,7 +40,7 @@ namespace Coffeeland.Database
         {
             String query = $"SELECT * FROM products WHERE productId={productId}";
             DataTable addresses = connector.ExecuteQuery(query);
-            ProductRecord record = new ProductRecord();
+            var record = new ProductRecord();
             record.Fill(addresses.Rows[0]);
             return record;
         }
@@ -53,7 +53,7 @@ namespace Coffeeland.Database
 
             foreach (DataRow dr in addresses.Rows)
             {
-                AddressRecord record = new AddressRecord();
+                var record = new AddressRecord();
                 record.Fill(dr);
                 addressRecords.Add(record);
             }
@@ -64,7 +64,7 @@ namespace Coffeeland.Database
         {
             String query = $"SELECT * FROM addresses WHERE addressId={addressId}";
             DataTable addresses = connector.ExecuteQuery(query);
-            AddressRecord record = new AddressRecord();
+            var record = new AddressRecord();
             if (addresses.Rows.Count == 0)
             {
                 return null;
@@ -93,7 +93,7 @@ namespace Coffeeland.Database
 
             foreach (DataRow dr in clients.Rows)
             {
-                ClientInfoRecord record = new ClientInfoRecord();
+                var record = new ClientInfoRecord();
                 record.Fill(dr);
                 clientsRecords.Add(record);
             }
@@ -106,7 +106,7 @@ namespace Coffeeland.Database
             DataTable clients = connector.ExecuteQuery(query);
             if (clients.Rows.Count == 0)
                 return null;
-            ClientInfoRecord record = new ClientInfoRecord();
+            var record = new ClientInfoRecord();
             record.Fill(clients.Rows[0]);
             return record;
         }
@@ -117,26 +117,16 @@ namespace Coffeeland.Database
             DataTable clients = connector.ExecuteQuery(query);
             if (clients.Rows.Count == 0)
                 return null;
-            ClientInfoRecord record = new ClientInfoRecord();
+            var record = new ClientInfoRecord();
             record.Fill(clients.Rows[0]);
             return record;
         }
 
-        public static ClientInfoRecord GetClientFromOrderId(int orderId) //TO DO 
-        {
-            String query = $"SELECT * FROM clients NATURAL JOIN orders WHERE orderId='{orderId}'";
-            DataTable clients = connector.ExecuteQuery(query);
-            if (clients.Rows.Count == 0)
-                return null;
-            ClientInfoRecord record = new ClientInfoRecord();
-            record.Fill(clients.Rows[0]);
-            return record;
-        }
 
         public static List<ComplaintRecord> GetComplaints()
         {
             List<ComplaintRecord> complaintRecords = new List<ComplaintRecord>();
-            String query = "SELECT orderId, workerId, description, DATE_FORMAT(openDate,'%Y-%m-%d') AS openDate, isClosed  FROM complaints";
+            String query = "SELECT orderId, workerId, description, DATE_FORMAT(openDate,'%Y-%m-%d') AS openDate, isClosed  FROM complaints ";
             DataTable complaints = connector.ExecuteQuery(query);
 
             foreach (DataRow dr in complaints.Rows)
@@ -146,6 +136,20 @@ namespace Coffeeland.Database
                 complaintRecords.Add(record);
             }
             return complaintRecords;
+        }
+
+        public static ComplaintRecord GetComplaint(int orderId)
+        {
+            String query = $"SELECT orderId, workerId, description, DATE_FORMAT(openDate,'%Y-%m-%d') AS openDate, isClosed  FROM complaints WHERE orderId='{orderId}'";
+            DataTable complaint = connector.ExecuteQuery(query);
+
+            if (complaint.Rows.Count == 0)
+                return null;
+
+            var record = new ComplaintRecord();
+            record.Fill(complaint.Rows[0]);
+
+            return record;
         }
 
         public static List<OrderEntryRecord> GetOrderEntries(int orderId)
@@ -173,7 +177,7 @@ namespace Coffeeland.Database
 
             foreach (DataRow dr in orders.Rows)
             {
-                OrderRecord record = new OrderRecord();
+                var record = new OrderRecord();
                 record.Fill(dr);
                 ordersRecords.Add(record);
             }
@@ -181,6 +185,19 @@ namespace Coffeeland.Database
 
         }
 
+        public static OrderRecord GetOrder(int orderId)
+        {
+            String query = $"SELECT orderId, clientId, workerId, addressId, status, DATE_FORMAT(openDate,'%Y-%m-%d') as openDate, DATE_FORMAT(closeDate,'%Y-%m-%d') as closeDate FROM orders WHERE orderId={orderId}";
+
+            var order = connector.ExecuteQuery(query);
+            var record = new OrderRecord();
+
+            if (order.Rows.Count == 0)
+                return null;
+            
+            record.Fill(order.Rows[0]);
+            return record;
+        }
 
         //-------- CREATE --------
         public static int CreateNewClient(String email, String firstName, String lastName, String password, String newsletterEmail)

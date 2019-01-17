@@ -35,7 +35,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 command.receiveNewsletterEmail ? command.newsletterEmail : ""
                 );
 
-            ThreadPool.QueueUserWorkItem(o => new OrderPlacementEmail().Send(clientId));
+            ThreadPool.QueueUserWorkItem(o => new RegistrationEmail().Send(clientId));
 
 
             return new SuccessInfoDto()
