@@ -6,10 +6,15 @@ using PayPal.Api;
 
 namespace Coffeeland.Payments
 {
-    public static class PayPal
+    public static class PaymentMethod
     {
+        public static bool Check(string paymentId,int totalPrice)
+        {
+            return GetTotalAmount(paymentId) == totalPrice.ToString();
+        }
+
         // sample payment id - "PAY-2RR93057JR3600055LQ5FWMA"
-        public static string GetTotalAmount(string paymentId)
+        static string GetTotalAmount(string paymentId)
         {
             var config = ConfigManager.Instance.GetProperties();
             var accessToken = new OAuthTokenCredential(config).GetAccessToken();

@@ -4,6 +4,8 @@ using Coffeeland.Messaging.Dtos;
 using Coffeeland.Messaging.Shared;
 using Coffeeland.Session;
 using System;
+using System.Threading;
+using Coffeeland.MailService;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
