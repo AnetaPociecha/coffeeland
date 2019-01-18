@@ -65,7 +65,7 @@ class App extends Component {
   onCartUpdate = (item, newQuantity) => {
     const oldCartEntries = [...this.state.cartEntries];
     const newCartEntries = oldCartEntries.map(el =>
-      el.item === item ? { item: item, quantity: newQuantity } : el
+      el.item == item ? { item: item, quantity: newQuantity } : el
     );
     this.setState({
       cartEntries: newCartEntries
@@ -73,8 +73,9 @@ class App extends Component {
   };
 
   howManyItemInCart = item => {
-    const q = this.state.cartEntries.find(entry => entry.item === item);
-    return (q && q.quantity) || 0;
+
+    const q = this.state.cartEntries.find(entry => entry.item == item);    
+    return q ? q.quantity : 0;
   };
 
   onCartRemove = item => {

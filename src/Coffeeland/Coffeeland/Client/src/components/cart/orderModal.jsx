@@ -32,7 +32,6 @@ export default class OrderModal extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps',nextProps)
     if(nextProps.addressBook) {
       this.setSelectedAddress(nextProps.addressBook[0])
     }
@@ -95,7 +94,7 @@ export default class OrderModal extends Component {
         return this.getDetailsComponent(
           "Exit",
           <PayPalButton total={this.props.total} />,
-          this.props.onModalClose
+          this.onExit
       );
     }
   };
@@ -112,4 +111,14 @@ export default class OrderModal extends Component {
       </div>
     </div>
   );
+  onExit = () => {
+    this.props.onModalClose()
+
+    const rq = {
+      $type: "AddOrder",
+      sessionToken: "",
+      paymentId: "",
+      order: {}
+    };
+  }
 }

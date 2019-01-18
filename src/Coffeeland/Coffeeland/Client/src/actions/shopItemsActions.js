@@ -8,7 +8,7 @@ export const fetchShopItems = () => dispatch => {
   };
   const mp = MessageProcessor.getInstance();
   mp.processQuery(rq).then(rs => {
-    //hack please fix it
+    console.log('GetShopItemsQuery rs',rs)
     dispatch({
       type: FETCH_SHOP_ITEMS,
       payload: rs.isSuccess ? {items: rs.shopItems || []} : {items: []}

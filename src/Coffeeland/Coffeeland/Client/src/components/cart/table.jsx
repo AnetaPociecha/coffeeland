@@ -25,12 +25,12 @@ class Table extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.addressBook &&
+      nextProps.addressBook.addressBook &&
       !isArrayEmpty(nextProps.addressBook.addressBook)
     ) {
       this.setState({ isAddressPresent: true });
     } else if (
-      nextProps.addressBook &&
+      nextProps.addressBook.addressBook &&
       isArrayEmpty(nextProps.addressBook.addressBook)
     ) {
       this.setState({ isAddressPresent: false });

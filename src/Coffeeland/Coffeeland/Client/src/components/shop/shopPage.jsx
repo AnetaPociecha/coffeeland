@@ -17,7 +17,20 @@ class Shop extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchShopItems();
+    if(!this.props.items.items) {
+      this.props.fetchShopItems();
+    }
+  }
+
+  componentDidMount() {
+    if(this.props.items.items) {
+      this.setState({
+        allItems: this.props.items.items,
+        typeFilterItems:  this.props.items.items,
+        priceFilterItems: this.props.items.items,
+        visibleItems:  this.props.items.items,
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
