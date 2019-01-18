@@ -27,7 +27,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
             if (foundClients.Count != 0)
                 throw new Exception();
 
-            DatabaseQueryProcessor.CreateNewClient(
+            var clientId = DatabaseQueryProcessor.CreateNewClient(
                 command.email,
                 command.firstName,
                 command.lastName,
@@ -35,9 +35,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 command.receiveNewsletterEmail ? command.newsletterEmail : ""
                 );
 
-            //ThreadPool.QueueUserWorkItem(
-            //    o => MailSender.SendRegistrationEmail(command.email,command.firstName)
-            //   );
+            ThreadPool.QueueUserWorkItem(o => new RegistrationEmail().Send(clientId));
 
 
             return new SuccessInfoDto()

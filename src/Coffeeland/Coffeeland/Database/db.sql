@@ -63,7 +63,7 @@ create table order_entries (
 	orderEntryId	integer primary key,
 	orderId 		integer not null references orders,
 	productId		integer not null references products,
-	amount			integer not null
+	quantity		integer not null
 );
 
 create table complaints (
@@ -75,7 +75,7 @@ create table complaints (
 );
 
 create table payments (
-	paymentId		integer primary key,
+	paymentId		varchar(100) primary key,
 	orderId			integer not null references orders,
 	amount			integer not null,
 	openDate		date not null

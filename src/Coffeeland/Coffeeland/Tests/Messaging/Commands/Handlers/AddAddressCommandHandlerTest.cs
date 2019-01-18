@@ -14,7 +14,7 @@ using Coffeeland.Tests.TestsShared;
 namespace Coffeeland.Tests.Messaging.Commands.Handlers
 {
     [TestFixture]
-    public class AddAddressCommandTest
+    public class AddAddressCommandHandlerTest
     {
 
         [TestCase(-1)]
