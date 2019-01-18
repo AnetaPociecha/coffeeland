@@ -1,5 +1,5 @@
 import React from "react";
-import SectionTitle from "./sectionTitle";
+import SectionTitle from "./../orderTitle/sectionTitle";
 
 export default function ProductHeader() {
   return (

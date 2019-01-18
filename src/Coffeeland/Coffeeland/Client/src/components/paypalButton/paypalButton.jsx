@@ -17,7 +17,7 @@ class PayPalButton extends React.Component {
     const onCancel = (data) => console.log('Cancelled payment!', data);
 
     return (
-      <div>
+      <div className="col-12 text-center p-4">
         <ReactPaypalButton
           client={CLIENT}
           env={ENV}

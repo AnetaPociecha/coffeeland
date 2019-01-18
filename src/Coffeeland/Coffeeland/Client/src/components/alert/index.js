@@ -1,4 +1,5 @@
 import SecondaryAlert from './secondaryAlert';
 import SuccessAlert from './successAlert';
 import DangerAlert from './dangerAlert';
-export {SecondaryAlert, SuccessAlert, DangerAlert};
+import WarningAlert from './warningAlert';
+export {SecondaryAlert, SuccessAlert, DangerAlert, WarningAlert};

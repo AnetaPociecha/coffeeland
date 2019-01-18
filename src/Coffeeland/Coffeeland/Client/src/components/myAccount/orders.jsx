@@ -3,7 +3,7 @@ import { ORDERS } from "./../../constants/titles";
 import { OrderTitle } from "../orderTitle";
 import { Button } from "./../button";
 import { getOrderStatus } from "./../../helpers/orderHelper";
-import SectionTitle from "./sectionTitle";
+import SectionTitle from "../orderTitle/sectionTitle";
 import OrderEntries from "./orderEntries";
 import AddressEntry from "./addressEntry";
 import ProductHeader from "./productHeader";
