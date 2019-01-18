@@ -13,7 +13,6 @@ import {
 export default class BillingDetails extends Component {
   state = {
     dropdownOpen: false,
-    selectedAddress: "",
     alternativeAddresses: [],
     allAddresses: []
   };
@@ -24,7 +23,6 @@ export default class BillingDetails extends Component {
         a => a !== this.props.addresses[0]
       );
       this.setState({
-        selectedAddress: this.props.addresses[0],
         alternativeAddresses: rest,
         allAddresses: this.props.addresses
       });
@@ -34,10 +32,10 @@ export default class BillingDetails extends Component {
   render() {
     const {
       alternativeAddresses,
-      selectedAddress,
       dropdownOpen,
       allAddresses
     } = this.state;
+    const { selectedAddress } = this.props
 
     return (
       <div className="col-12 p-2">
@@ -81,6 +79,7 @@ export default class BillingDetails extends Component {
     const alternativeAddresses = this.state.allAddresses.filter(
       a => a !== selectedAddress
     );
-    this.setState({ selectedAddress, alternativeAddresses });
+    this.setState({ alternativeAddresses });
+    this.props.setSelectedAddress(selectedAddress)
   };
 }

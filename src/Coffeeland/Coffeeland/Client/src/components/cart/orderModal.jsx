@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import OrderDetails from "./orderDetails";
 import BillingDetails from "./billingDetails";
 import { Button, CloseButton } from "../button";
+import { PayPalButton } from "./../paypalButton";
 
 const customStyles = {
   content: {
@@ -26,8 +27,16 @@ export default class OrderModal extends Component {
   }
 
   state = {
-    mode: ORDER_DETAILS
+    mode: ORDER_DETAILS,
+    selectedAddress: ''
   };
+
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps',nextProps)
+    if(nextProps.addressBook) {
+      this.setSelectedAddress(nextProps.addressBook[0])
+    }
+  }
 
   render() {
     const { isActive, onModalClose } = this.props;
@@ -65,29 +74,35 @@ export default class OrderModal extends Component {
   };
 
   getInnerComponent = () => {
-    console.log('this.props.addressBook',this.props.addressBook)
     switch (this.state.mode) {
       case ORDER_DETAILS:
         return this.getDetailsComponent(
           "Next",
-          // <OrderDetails />,
-          <h1> OrderDetails </h1>,
+          <OrderDetails cartEntries={this.props.cartEntries}/>,
           this.setBillingMode
         );
       case BILLING_DETAILS:
         return this.getDetailsComponent(
           "Next",
-          <BillingDetails addresses={this.props.addressBook} />,
+          <BillingDetails 
+            addresses={this.props.addressBook} 
+            selectedAddress={this.state.selectedAddress}
+            setSelectedAddress={this.setSelectedAddress}
+          />,
           this.setPaymentMode
         );
       case PAYMENT_DETAILS:
         return this.getDetailsComponent(
           "Exit",
-          <h1>Payment</h1>,
+          <PayPalButton total={this.props.total} />,
           this.props.onModalClose
-        );
+      );
     }
   };
+
+  setSelectedAddress = (selectedAddress) => {
+    this.setState({ selectedAddress })
+  }
 
   getDetailsComponent = (buttonText, child, onClik) => (
     <div className="row">
