@@ -243,8 +243,8 @@ namespace Coffeeland.Database
 
         public static string CreateNewPayment(string paymentId, int orderId, int amount, String openDate)
         {
-            String command = "INSERT INTO payments(paymentId,paymentToken,orderId,amount,openDate) VALUES "
-                + "(" + paymentId + ",'" + paymentId + "'," + orderId + "," + amount + ", DATE '"
+            String command = "INSERT INTO payments(paymentId,orderId,amount,openDate) VALUES "
+                + "('" + paymentId + "'," + orderId + "," + amount + ", DATE '"
                 + openDate + "')";
             connector.ExecuteCommand(command);
             return paymentId;
@@ -272,7 +272,7 @@ namespace Coffeeland.Database
                 + "(" + orderId + "," + clientId + "," + workerId + "," + addressId + "," + status + ", DATE '"
                 + openDate + "')";
             connector.ExecuteCommand(command);
-            return clientId;
+            return orderId;
         }
 
         public static int CreateNewWorker(WorkerRole role, String email, String password)

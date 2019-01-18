@@ -10,8 +10,8 @@ namespace Coffeeland.Tests.TestsShared
     {
         public static void FillTheDatabase()
         {
-            DatabaseQueryProcessor.CreateNewProduct("Lavazza", 15, "./img.jpg", "100% Arabica", "Good");
-            DatabaseQueryProcessor.CreateNewProduct("Vergnano", 25, "./img.jpg", "100% Robusta", "Strong");
+            DatabaseQueryProcessor.CreateNewProduct("Lavazza", 1500, "./img.jpg", "100% Arabica", "Good");
+            DatabaseQueryProcessor.CreateNewProduct("Vergnano", 2500, "./img.jpg", "100% Robusta", "Strong");
 
             DatabaseQueryProcessor.CreateNewWorker(WorkerRole.a, "worker1@gmail.com", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9");
             DatabaseQueryProcessor.CreateNewWorker(WorkerRole.b, "worker2@gmail.com", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9");
