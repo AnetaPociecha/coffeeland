@@ -4,6 +4,7 @@ import configurator.ChromeConfigurator;
 import configurator.Configurator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +33,7 @@ public class OrdersTest extends AccountTest{
     }
 
     @Test
+    @Ignore
     public void canComplainOnlyCompleted(){
         moveToOrdersCard();
 
@@ -50,6 +52,7 @@ public class OrdersTest extends AccountTest{
     }
 
     @Test
+    @Ignore
     public void makeComplain(){
         moveToOrdersCard();
         WebElement ableToComplain = driver.findElement(By.xpath(orders+"/div[text()='Close date']/..//button[text()='Complain']"));

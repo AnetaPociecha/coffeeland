@@ -13,10 +13,16 @@ import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
 public class SignTest implements Fillable {
+    public static final String NAME = "Imie";
+    public static final String SURNAME = "Nazwisko";
+    public static final String MAIL = "mail@mail.com";
+    public static final String PASSWORD = "Qwertyuiop1";
     private static Configurator configurator;
     private static WebDriver driver;
 
@@ -41,8 +47,8 @@ public class SignTest implements Fillable {
 
     private WebElement signIn(){
         WebElement signIn;
-
-        driver.get(AccountTest.HTTP_LOCALHOST);
+        if(!driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST_ONLOAD))
+            driver.get(AccountTest.HTTP_LOCALHOST_ONLOAD);
         signIn = driver.findElement(By.xpath("//a[@href='/signin']"));
         if(signIn.getText().contains("Sign in")){
             signIn.click();
@@ -52,8 +58,8 @@ public class SignTest implements Fillable {
 
     private void signOutIn(){
         WebElement sign;
-
-        driver.get(AccountTest.HTTP_LOCALHOST);
+        if(!driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST_ONLOAD))
+            driver.get(AccountTest.HTTP_LOCALHOST_ONLOAD);
         sign = driver.findElement(By.xpath("//a[@href='/signin']"));
         sign.click();
         sign.click();
@@ -66,7 +72,7 @@ public class SignTest implements Fillable {
         String signOutText;
         String signInText;
 
-        driver.get(AccountTest.HTTP_LOCALHOST);
+        driver.get(AccountTest.HTTP_LOCALHOST_ONLOAD);
 
         signOut = driver.findElement(By.xpath("//a[@href='/signin']"));
         signOutText = signOut.getText();
@@ -92,11 +98,27 @@ public class SignTest implements Fillable {
 
     @Test
     public void signInCorrectData(){
+        signOutIn();
+        WebElement alert;
+        WebElement signIn = driver.findElement(By.xpath("//button[text()='Sign in']"));
 
-    }
+        Map<String, WebElement> inputs = getInputFields();
 
-    @Test
-    public void signInCorrectNotExistingData(){
+        inputs.get("signMail").sendKeys(AccountTest.testMail);
+        inputs.get("signPassword").sendKeys(AccountTest.testPassword);
+
+        signIn.click();
+
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        while(!driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST)){}
+        assertEquals(AccountTest.HTTP_LOCALHOST, driver.getCurrentUrl());
+        try{
+            alert = driver.findElement(By.xpath("//a[text()='Sign out']"));
+            assertNotNull(alert);
+        }
+        catch(Exception e){
+            fail();
+        }
 
     }
 
@@ -120,7 +142,6 @@ public class SignTest implements Fillable {
     }
 
     @Test
-    @Ignore
     public void signInBadData(){
         signOutIn();
         WebElement alert;
@@ -135,7 +156,7 @@ public class SignTest implements Fillable {
 
         alert = driver.findElement(By.xpath("//div[@class='alert alert-danger text-center']"));
 
-        assertEquals(driver.getCurrentUrl(), AccountTest.HTTP_LOCALHOST+"signin");
+        assertEquals(driver.getCurrentUrl(), AccountTest.HTTP_LOCALHOST +"signin");
         assertNotNull(alert);
 
     }
@@ -144,14 +165,14 @@ public class SignTest implements Fillable {
     public void registerCorrectData(){
         signOutIn();
         WebElement register = driver.findElement(By.xpath("//button[text()='Register']"));
-
+        String mail = "mail"+ Integer.valueOf((int)(Math.random() * 10000) + 1) + "@mail.com";
         Map<String, WebElement> inputs = getInputFields();
 
-        inputs.get("firstName").sendKeys("Imie");
-        inputs.get("lastName").sendKeys("Nazwisko");
-        inputs.get("registerMail").sendKeys("mail@mail.com");
-        inputs.get("registerPassword").sendKeys("Qwertyuiop1");
-        inputs.get("repeatedPassword").sendKeys("Qwertyuiop1");
+        inputs.get("firstName").sendKeys(NAME);
+        inputs.get("lastName").sendKeys(SURNAME);
+        inputs.get("registerMail").sendKeys(mail);
+        inputs.get("registerPassword").sendKeys(PASSWORD);
+        inputs.get("repeatedPassword").sendKeys(PASSWORD);
         inputs.get("checkBox").click();
 
         register.click();
@@ -159,6 +180,30 @@ public class SignTest implements Fillable {
         assertTrue(!inputs.get("firstName").getAttribute("class").contains("is-invalid"));
         assertTrue(!inputs.get("lastName").getAttribute("class").contains("is-invalid"));
         assertTrue(!inputs.get("registerMail").getAttribute("class").contains("is-invalid"));
+        assertTrue(!inputs.get("registerPassword").getAttribute("class").contains("is-invalid"));
+        assertTrue(!inputs.get("repeatedPassword").getAttribute("class").contains("is-invalid"));
+
+    }
+
+    @Test
+    public void registerCorrectDataExistingMail(){
+        signOutIn();
+        WebElement register = driver.findElement(By.xpath("//button[text()='Register']"));
+        Map<String, WebElement> inputs = getInputFields();
+
+        inputs.get("firstName").sendKeys(NAME);
+        inputs.get("lastName").sendKeys(SURNAME);
+        inputs.get("registerMail").sendKeys(AccountTest.testMail);
+        inputs.get("registerPassword").sendKeys(PASSWORD);
+        inputs.get("repeatedPassword").sendKeys(PASSWORD);
+        inputs.get("checkBox").click();
+
+        register.click();
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue(!inputs.get("firstName").getAttribute("class").contains("is-invalid"));
+        assertTrue(!inputs.get("lastName").getAttribute("class").contains("is-invalid"));
+        assertTrue(inputs.get("registerMail").getAttribute("class").contains("is-invalid"));
         assertTrue(!inputs.get("registerPassword").getAttribute("class").contains("is-invalid"));
         assertTrue(!inputs.get("repeatedPassword").getAttribute("class").contains("is-invalid"));
 
@@ -187,7 +232,7 @@ public class SignTest implements Fillable {
     }
 
     public Map<String, WebElement> getInputFields() {
-        if(driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST+"signin")) {
+        if(driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST +"signin")) {
             Map<String, WebElement> inputs = new HashMap();
             inputs.put("signMail", driver.findElement(By.xpath("//input[@id='singInEmail']")));
             inputs.put("signPassword", driver.findElement(By.xpath("//input[@id='signInPassword']")));
