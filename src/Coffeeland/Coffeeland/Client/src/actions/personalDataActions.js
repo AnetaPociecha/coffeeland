@@ -1,15 +1,10 @@
 import {
   FETCH_PERSONAL_DATA,
   UPDATE_PERSONAL_DATA,
-  SET_NEWSLETTER_EMAIL,
-  REMOVE_NEWSLETTER_EMAIL,
   FETCH_ORDERS
 } from "./types";
-import personalData from "../personalData";
 import MessageProcessor from "./../messageProcessor/messageProcessor";
 const mp = MessageProcessor.getInstance();
-
-// received payload is always completed personalData
 
 export const fetchPersonalData = token => dispatch => {
   const rq = {
