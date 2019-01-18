@@ -24,15 +24,13 @@ public class ItemListTest {
 
     @Test
     public void viewInformations(){
-        driver.get(AccountTest.HTTP_LOCALHOST);
+        driver.get(AccountTest.HTTP_LOCALHOST_ONLOAD);
 
         WebElement information = driver.findElement(By.xpath("//a[@href='/information']"));
         information.click();
 
-        assertEquals(driver.getCurrentUrl(), AccountTest.HTTP_LOCALHOST+"information");
+        assertEquals(driver.getCurrentUrl(), AccountTest.HTTP_LOCALHOST +"information");
     }
-
-    //todo checking categories
 
     @AfterClass
     public static void disableBrowser(){

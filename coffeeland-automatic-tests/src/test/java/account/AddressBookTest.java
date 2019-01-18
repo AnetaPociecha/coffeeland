@@ -11,9 +11,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,6 +25,7 @@ public class AddressBookTest extends AccountTest implements Fillable {
 
     private static Configurator configurator;
     private static WebDriver driver;
+    private static final String ADDRESS_URL = "http://localhost:50970/myaccount";
 
     @BeforeClass
     public static void enableBrowser(){
@@ -31,33 +34,12 @@ public class AddressBookTest extends AccountTest implements Fillable {
     }
 
     private void redirectToAddressBook(){
+        if(!driver.getCurrentUrl().equals(ADDRESS_URL))
         redirectToMyAccount(driver);
         driver.findElement(By.xpath("//a[@id='addressbook']")).click();
     }
 
-    @Test
-    public void checkRemovingAddress(){
-        redirectToAddressBook();
-        List<WebElement> elements = driver.findElements(By.xpath("//div/div/div/button[text()='Remove']"));
-        int lengthBefore = elements.size();
 
-        elements.get(0).click();
-
-        List<WebElement> elementsAfter = driver.findElements(By.xpath("//div/div/div/button[text()='Remove']"));
-        assertEquals(lengthBefore-1, elementsAfter.size());
-    }
-
-    @Test
-    @Ignore
-    public void checkEditingAddress(){
-        redirectToAddressBook();
-        List<WebElement> elements = driver.findElements(By.xpath("//div/div/div/button[text()='Edit']"));
-
-        elements.get(0).click();
-
-        WebElement saveButton = driver.findElement(By.xpath("//div/div/div/button[text()='Save']"));
-        assertNotNull(saveButton);
-    }
 
     @Test
     public void checkCorrectData(){
@@ -75,7 +57,7 @@ public class AddressBookTest extends AccountTest implements Fillable {
         inputs.get("city").sendKeys("Cracow");
         inputs.get("zip").sendKeys("22-222");
         inputs.get("street").sendKeys("Sliczna");
-        inputs.get("build").sendKeys("155"); // akceptuje tylko cyfry
+        inputs.get("build").sendKeys("155");
         inputs.get("apartment").sendKeys("100");
 
         assertTrue(!inputs.get("country").getAttribute("class").contains("is-invalid"));
@@ -87,6 +69,7 @@ public class AddressBookTest extends AccountTest implements Fillable {
 
         assertTrue(saveKey.isEnabled());
 
+        saveKey.click();
 
     }
 
@@ -119,6 +102,8 @@ public class AddressBookTest extends AccountTest implements Fillable {
         assertTrue(inputs.get("apartment").getAttribute("class").contains("is-invalid"));
 
         assertTrue(!saveKey.isEnabled());
+
+        driver.findElement(By.xpath("//button[text()='Cancel']")).click();
     }
 
     @Test
@@ -139,11 +124,47 @@ public class AddressBookTest extends AccountTest implements Fillable {
         assertNotNull(inputs);
     }
 
+    @Test
+    @Ignore
+    public void checkEditingAddress(){
+        redirectToAddressBook();
+        List<WebElement> elements = driver.findElements(By.xpath("//div/div/div/button[text()='Edit']"));
+        int lengthBefore = elements.size();
+        if(lengthBefore < 1){
+            checkCorrectData();
+            elements = driver.findElements(By.xpath("//div/div/div/button[text()='Remove']"));
+            lengthBefore = elements.size();
+        }
+        elements.get(0).click();
+
+        WebElement saveButton = driver.findElement(By.xpath("//div/div/div/button[text()='Save']"));
+        assertNotNull(saveButton);
+    }
+
+    @Test
+    public void checkRemovingAddress(){
+        redirectToAddressBook();
+        List<WebElement> elements = driver.findElements(By.xpath("//div/div/div/button[text()='Remove']"));
+        List<WebElement> elementsAfter = new ArrayList<WebElement>();
+        int lengthBefore = elements.size();
+
+        if(lengthBefore > 0) {
+            elements.get(0).click();
+
+            driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+            System.out.println("Yes, it works");
+            while(elementsAfter.size() != lengthBefore - 1)
+                elementsAfter = driver.findElements(By.xpath("//div/div/div/button[text()='Remove']"));
+            assertEquals(lengthBefore - 1, elementsAfter.size());
+        }
+    }
+
     public Map<String, WebElement> getInputFields(){
-        if(driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST+"myaccount") &&
+        if(driver.getCurrentUrl().equals(AccountTest.HTTP_LOCALHOST +"myaccount") &&
                 driver.findElement(By.xpath("//a[@href='/myaccount#addressbook']")).getText().equals("Address book")) {
             String pathToInputs = "//div[@class='pb-5 pr-3 pl-3 pt-4']//input";
-            Map<String, WebElement> fields = new HashMap();
+            Map<String, WebElement> fields = new HashMap<String, WebElement>();
             fields.put("country", driver.findElement(By.xpath(pathToInputs + "[@id='country']")));
             fields.put("city", driver.findElement(By.xpath(pathToInputs + "[@id='city']")));
             fields.put("zip", driver.findElement(By.xpath(pathToInputs + "[@id='ZIPCode']")));
@@ -155,11 +176,6 @@ public class AddressBookTest extends AccountTest implements Fillable {
         }
         return null;
     }
-
-
-    //todo checking categories
-
-    //todo clicking on MyAccount may better lead to link myaccount#addressbook
 
     @AfterClass
     public static void disableBrowser(){
