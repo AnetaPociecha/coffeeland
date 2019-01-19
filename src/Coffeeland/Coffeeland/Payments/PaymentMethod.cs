@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PayPal.Api;
+using System.Globalization;
 
 namespace Coffeeland.Payments
 {
@@ -10,11 +11,12 @@ namespace Coffeeland.Payments
     {
         public static bool Check(string paymentId,int totalPrice)
         {
-            return GetTotalAmount(paymentId) == totalPrice.ToString();
+            return GetTotalAmount(paymentId)
+                == totalPrice.ToString("F", CultureInfo.InvariantCulture);
         }
 
         // sample payment id - "PAY-2RR93057JR3600055LQ5FWMA"
-        static string GetTotalAmount(string paymentId)
+        public static string GetTotalAmount(string paymentId)
         {
             var config = ConfigManager.Instance.GetProperties();
             var accessToken = new OAuthTokenCredential(config).GetAccessToken();

@@ -216,6 +216,7 @@
     <Compile Include="Tests\Messaging\Commands\Handlers\AddAddressCommandHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\AddComplaintCommandHandlerTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\AddOrderCommandHandlerTest.cs" />
+    <Compile Include="Tests\Messaging\Commands\Handlers\AddPaymentCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\InactivateAddressCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\RegisterNewClientCommandTest.cs" />
     <Compile Include="Tests\Messaging\Commands\Handlers\SignInCommandTest.cs" />

@@ -213,6 +213,15 @@ namespace Coffeeland.Database
             return record;
         }
 
+        public static int GetTotal(int orderId)
+        {
+            var query = "SELECT SUM(oe.quantity*p.price) as total FROM order_entries oe NATURAL JOIN products p WHERE oe.orderId=" + orderId;
+            var amount = connector.ExecuteQuery(query);
+            if (amount.Rows.Count == 0)
+                throw new Exception();
+            return Convert.ToInt32(amount.Rows[0]["total"])/100;
+        }
+
         //-------- CREATE --------
         public static int CreateNewClient(String email, String firstName, String lastName, String password, String newsletterEmail)
         {

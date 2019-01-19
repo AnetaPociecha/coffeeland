@@ -199,6 +199,14 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
         [TestCase(0)]
         public void AddOrder_CorrectAttributes_Success(int _clientId)
         {
+                int _key = 0;
+                string _country = "Poland";
+                string _city = "Gdynia";
+                string _street = "Rzemieslnicza";
+                int _ZIPCode = 30445;
+                int _buildingNumber = 12;
+                string _apartmentNumber = "1a";
+
             var testSessionToken = SessionRepository.StartNewSession(_clientId);
             DatabaseQueryProcessor.Erase();
             Shared.FillTheDatabase();
@@ -215,13 +223,13 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
 
             var testAddress = new AddressDto
             {
-                key = 0,
-                country = "Poland",
-                city = "Gdynia",
-                street = "Rzemieslnicza",
-                ZIPCode = 30445,
-                buildingNumber = 12,
-                apartmentNumber = "1a"
+                key = _key,
+                country = _country,
+                city = _city,
+                street = _street,
+                ZIPCode = _ZIPCode,
+                buildingNumber = _buildingNumber,
+                apartmentNumber = _apartmentNumber
             };
 
 
@@ -233,14 +241,23 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 address = testAddress
             };
 
+            var addressId = DatabaseQueryProcessor.GetAddress(_clientId,
+                                                              _country,
+                                                              _city,
+                                                              _street,
+                                                              _ZIPCode,
+                                                              _buildingNumber,
+                                                              _apartmentNumber);
+
             var handler = new AddOrderCommandHandler();
             var result = (SuccessInfoDto) handler.Handle(addOrderCommand);
-            var isSuccess = PaymentMethod.Check("PAY-5WW79794RN043793ALRBFH2A", 15);
 
-
+            var expectedOrder = DatabaseQueryProcessor.GetTheMostRecentOrder(_clientId);
+            
             SessionRepository.RemoveSession(testSessionToken);
             DatabaseQueryProcessor.Erase();
             
+           
             Assert.IsTrue(result.isSuccess);
         }
     }

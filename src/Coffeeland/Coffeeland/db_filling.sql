@@ -82,10 +82,10 @@ create table payments (
 );
 
 insert into products(productId,name,price,imagePath,productType,description) 
-values(0,'Lavazza',15,'./img.jpg','100% arabica','Good');
+values(0,'Lavazza',1500,'./img.jpg','100% arabica','Good');
 
 insert into products(productId,name,price,imagePath,productType,description) 
-values(1,'Vergnano',25,'./img.jpg','100% robusta','Strong');
+values(1,'Vergnano',2500,'./img.jpg','100% robusta','Strong');
 
 insert into workers(workerId,role,email,password)
 values(0,'a','worker1@gmail.com','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9');
@@ -108,8 +108,8 @@ values(1,'john_doe@gmail.com','John','Doe','240be518fabd2724ddb6f04eeb1da5967448
 insert into addresses(addressId,clientId,country,city,street,ZIPCode,buildingNumber,apartmentNumber,isActive) 
 values(2,0,'Poland','Gdynia','Rzemieslnicza',30445,12,'',1);
 
-insert into orders(orderId,clientId,workerId,addressId,status,openDate) 
-values(0,0,0,1,0,DATE '2018-05-12');
+insert into orders(orderId,clientId,workerId,addressId,status,openDate,closeDate) 
+values(0,0,0,1,0,DATE '2018-05-12',DATE '2018-05-14');
 
 insert into order_entries(orderEntryId,orderId,productId,amount)
 values(0,0,0,5);
