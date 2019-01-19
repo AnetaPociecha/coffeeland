@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactPaypalButton from './reactPaypalButton';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 const CLIENT = {
   sandbox: 'Ab-3JbhxORmrrglfbOo1h_zx-w1_9tfqNPHIhK8_mSo57DZiVKVmXZ3snTqpDplrNgI2J0ye9vWgTm_5',
@@ -10,9 +14,24 @@ const CURRENCY = 'USD'
 
 class PayPalButton extends React.Component {
   
+  onSuccess = (payment) => {
+
+    const rq = {
+      $type: "AddPayment",
+      sessionToken: this.props.token,
+      paymentId: payment.paymentID
+    }
+
+    mp.processCommand(rq).then(rs => console.log('rs', rs))
+
+    console.log('Successful payment!', payment);
+
+  }
+
+
   render() {
 
-    const onSuccess = (payment) => console.log('Successful payment!', payment);
+    
     const onError = (error) => console.log('Erroneous payment OR failed to load script!', error);
     const onCancel = (data) => console.log('Cancelled payment!', data);
 
@@ -24,7 +43,7 @@ class PayPalButton extends React.Component {
           commit={true}
           currency={CURRENCY}
           total={this.props.total}
-          onSuccess={onSuccess}
+          onSuccess={this.onSuccess}
           onError={onError}
           onCancel={onCancel}
         />
@@ -33,4 +52,15 @@ class PayPalButton extends React.Component {
   }
 }
 
-export default PayPalButton;
+PayPalButton.propTypes = {
+  token: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  token: state.token.token.token
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(PayPalButton);

@@ -10,7 +10,6 @@ export const fetchAddressBook = token => dispatch => {
     sessionToken: token
   };
   mp.processQuery(rq).then(rs => {
-    console.log("getAddressBookQuery rs", rs);
     dispatch({
       type: FETCH_ADDRESS_BOOK,
       payload: rs.isSuccess
