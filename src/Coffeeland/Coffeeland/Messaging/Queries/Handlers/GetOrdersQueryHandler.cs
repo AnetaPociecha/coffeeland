@@ -53,7 +53,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
                     var product = DatabaseQueryProcessor.GetProduct(orderEntriesRecords[j].productId);
                     orderEntriesDtos[j].key = orderEntriesRecords[j].orderEntryId;   
                     orderEntriesDtos[j].name = product.name;
-                    orderEntriesDtos[j].price = orderEntriesRecords[j].quantity * product.price;
+                    orderEntriesDtos[j].price = product.price;
                     orderEntriesDtos[j].quantity = orderEntriesRecords[j].quantity;
                 }
                 orderDtos[i].orderEntries = orderEntriesDtos;

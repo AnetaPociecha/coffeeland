@@ -48,7 +48,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
 
             var orderId = DatabaseQueryProcessor.CreateNewOrder(
               clientId,
-              52,
+              0,
               address.addressId,
               0,
               DateTime.Now.ToString("yyyy-MM-dd")
