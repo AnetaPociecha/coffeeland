@@ -14,7 +14,8 @@ import { isArrayEmpty } from "../../helpers/arrayHelper";
 class Table extends Component {
   state = {
     isActive: false,
-    isAddressPresent: false
+    isAddressPresent: false,
+    showBuyMsg: false
   };
 
   componentWillMount() {
@@ -92,6 +93,7 @@ class Table extends Component {
             isActive={isActive}
             onModalClose={this.onModalClose}
             total={getSumPrice(cartEntries)}
+            cleanUpAfterBuy={this.cleanUpAfterBuy}
           />
         </div>
       </div>
@@ -105,6 +107,17 @@ class Table extends Component {
   onModalClose = () => {
     this.setState({ isActive: false });
   };
+
+  cleanUpAfterBuy = () => {
+    console.log('cleanUpAfterBuy')
+    this.setState({showBuyMsg:true})
+    setTimeout(()=>this.setState({showBuyMsg:false}), 5000)
+
+    this.props.cartEntries.forEach(ce => {
+      this.props.onCartRemove(ce.item)
+    });
+  }
+
 }
 
 Table.propTypes = {

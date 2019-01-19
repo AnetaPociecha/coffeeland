@@ -32,7 +32,8 @@ class OrderModal extends Component {
 
   state = {
     mode: ORDER_DETAILS,
-    selectedAddress: ""
+    selectedAddress: "",
+    showMsg: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -117,7 +118,11 @@ class OrderModal extends Component {
   );
   onExit = () => {
     this.props.onModalClose();
+    this.handleOrderRq();
+    this.props.cleanUpAfterBuy()
+  };
 
+  handleOrderRq = () => {
     const orderEntries = this.props.cartEntries.map(
       ce =>
         (ce = {
@@ -140,8 +145,11 @@ class OrderModal extends Component {
       order: order
     };
     mp.processCommand(rq).then(rs => console.log("rs", rs));
-  };
+  }
+
 }
+
+
 
 OrderModal.propTypes = {
   token: PropTypes.string.isRequired

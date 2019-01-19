@@ -23,11 +23,8 @@ class PayPalButton extends React.Component {
     }
 
     mp.processCommand(rq).then(rs => console.log('rs', rs))
-
     console.log('Successful payment!', payment);
-
   }
-
 
   render() {
 
