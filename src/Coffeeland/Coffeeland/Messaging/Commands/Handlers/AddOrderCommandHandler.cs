@@ -7,12 +7,13 @@ using Coffeeland.Session;
 using System.Threading;
 using Coffeeland.MailService;
 using Coffeeland.Payments;
+using System.Globalization;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
-    public class AddOrderCommandHandler : ICommandHandler<AddOrderCommand>
+    public class AddOrderCommandHandler : ICommandHandler<AddOrder>
     {
-        public IResult Handle(AddOrderCommand command)
+        public IResult Handle(AddOrder command)
         {
             int clientId = SessionRepository.GetClientIdOfSession(command.sessionToken);
             if (clientId == -1)
@@ -42,7 +43,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
         
-            if (totalPrice != command.totalPrice)
+            if (totalPrice.ToString("F", CultureInfo.InvariantCulture) != command.totalPrice)
                 throw new Exception();
 
             var orderId = DatabaseQueryProcessor.CreateNewOrder(
@@ -62,7 +63,6 @@ namespace Coffeeland.Messaging.Commands.Handlers
                     foundProducts[0].productId,
                     orderEntry.quantity
                     );
-                totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
 
             return new SuccessInfoDto()

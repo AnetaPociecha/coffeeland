@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Commands.Commands
 {
-    public class AddOrderCommand : ICommand
+    public class AddOrder : ICommand
     {
         public string sessionToken;
         public OrderEntryDto[] orderEntries;
-        public int totalPrice;
+        public string totalPrice;
         public AddressDto address;
     }
 }

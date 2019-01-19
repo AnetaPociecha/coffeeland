@@ -6,7 +6,7 @@ using Coffeeland.Messaging.Shared;
 
 namespace Coffeeland.Messaging.Commands.Commands
 {
-    public class AddPaymentCommand : ICommand
+    public class AddPayment : ICommand
     {
         public string sessionToken;
         public string paymentId;

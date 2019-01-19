@@ -162,8 +162,8 @@
     <Compile Include="MailService\UnsuccessfullPaymentEmail.cs" />
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddComplaintCommand.cs" />
-    <Compile Include="Messaging\Commands\Commands\AddOrderCommand.cs" />
-    <Compile Include="Messaging\Commands\Commands\AddPaymentCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\AddOrder.cs" />
+    <Compile Include="Messaging\Commands\Commands\AddPayment.cs" />
     <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\SignInCommand.cs" />

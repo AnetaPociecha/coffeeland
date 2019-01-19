@@ -43,11 +43,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
             
-            var addOrderCommand = new AddOrderCommand
+            var addOrderCommand = new AddOrder
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
-                totalPrice = 15,
+                totalPrice = "15.00",
                 address = testAddress
             };
 
@@ -87,11 +87,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var addOrderCommand = new AddOrderCommand
+            var addOrderCommand = new AddOrder
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
-                totalPrice = 15,
+                totalPrice = "15.00",
                 address = testAddress
             };
 
@@ -134,11 +134,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrderCommand
+            var addOrderCommand = new AddOrder
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
-                totalPrice = 15,
+                totalPrice = "15.00",
                 address = testAddress
             };
 
@@ -179,11 +179,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrderCommand
+            var addOrderCommand = new AddOrder
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
-                totalPrice = 25,
+                totalPrice = "25.00",
                 address = testAddress
             };
 
@@ -233,11 +233,11 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrderCommand
+            var addOrderCommand = new AddOrder
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
-                totalPrice = 15,
+                totalPrice = "15.00",
                 address = testAddress
             };
 
