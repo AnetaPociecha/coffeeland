@@ -1,4 +1,4 @@
-import { PROCESSING, COMPLETED, UNDEFINED } from './../constants/titles'
+import { PROCESSING, COMPLETED, PAID, UNDEFINED } from './../constants/titles'
 
 export const getOrderStatus = (status) => {
     switch(status) {
@@ -6,6 +6,9 @@ export const getOrderStatus = (status) => {
             return PROCESSING
         }
         case 1: {
+            return PAID
+        }
+        case 2: {
             return COMPLETED
         }
         default: {

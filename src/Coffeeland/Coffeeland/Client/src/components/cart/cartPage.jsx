@@ -12,7 +12,7 @@ class CartPage extends Component {
   };
 
   render() {
-    const { cartEntries, onCartUpdate, onCartRemove, style } = this.props;
+    const { cartEntries, onCartUpdate, onCartRemove, style, onCartEmpty } = this.props;
     const { showBuyMsg } = this.state;
     return (
       <div className="row mx-auto m-4" style={style}>
@@ -42,10 +42,7 @@ class CartPage extends Component {
   }
 
   cleanUpAfterBuy = () => {
-    this.props.cartEntries.forEach(ce => {
-      this.props.onCartRemove(ce.item);
-    });
-
+    this.props.onCartEmpty();
     this.setState({ showBuyMsg: true });
     setTimeout(() => this.setState({ showBuyMsg: false }), 5000);
   };
