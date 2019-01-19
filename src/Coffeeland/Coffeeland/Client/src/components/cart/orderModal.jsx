@@ -74,6 +74,7 @@ class OrderModal extends Component {
   };
 
   setPaymentMode = () => {
+    this.handleOrderRq();
     this.setState({ mode: PAYMENT_DETAILS });
   };
 
@@ -87,7 +88,7 @@ class OrderModal extends Component {
         );
       case BILLING_DETAILS:
         return this.getDetailsComponent(
-          "Next",
+          "Buy",
           <BillingDetails
             addresses={this.props.addressBook}
             selectedAddress={this.state.selectedAddress}
@@ -118,7 +119,6 @@ class OrderModal extends Component {
   );
   onExit = () => {
     this.props.onModalClose();
-    this.handleOrderRq();
     this.props.cleanUpAfterBuy()
   };
 
@@ -133,16 +133,12 @@ class OrderModal extends Component {
         })
     );
 
-    const order = {
-      orderEntries: orderEntries,
-      totalPrice: this.props.total,
-      address: this.state.selectedAddress
-    };
-
     const rq = {
       $type: "AddOrder",
       sessionToken: this.props.token,
-      order: order
+      orderEntries: orderEntries,
+      totalPrice: this.props.total,
+      address: this.state.selectedAddress
     };
     mp.processCommand(rq).then(rs => console.log("rs", rs));
   }

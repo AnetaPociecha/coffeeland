@@ -14,8 +14,7 @@ import { isArrayEmpty } from "../../helpers/arrayHelper";
 class Table extends Component {
   state = {
     isActive: false,
-    isAddressPresent: false,
-    showBuyMsg: false
+    isAddressPresent: false
   };
 
   componentWillMount() {
@@ -44,13 +43,13 @@ class Table extends Component {
       onCartUpdate,
       onCartRemove,
       isSignIn,
-      sumPrice,
+      cleanUpAfterBuy
     } = this.props;
     const { addressBook } = this.props.addressBook;
     const { isActive, isAddressPresent } = this.state;
 
     return (
-      <div className="col-12 m-3">
+      <div className="row m-3">
         {!isSignIn && (
           <div className="pb-3 pl-1 pr-1 col-12">
             <WarningAlert>Please sign in before you buy</WarningAlert>
@@ -65,18 +64,20 @@ class Table extends Component {
           </div>
         )}
 
-        {cartEntries.map(el => (
-          <CartEntry
-            key={el.item.name}
-            item={el.item}
-            quantity={el.quantity}
-            onCartUpdate={onCartUpdate}
-            onCartRemove={onCartRemove}
-          />
-        ))}
-
-        <TotalPriceRow cartEntries={cartEntries} />
-
+        <div className="col-12">
+          {cartEntries.map(el => (
+            <CartEntry
+              key={el.item.name}
+              item={el.item}
+              quantity={el.quantity}
+              onCartUpdate={onCartUpdate}
+              onCartRemove={onCartRemove}
+            />
+          ))}
+        </div>
+        <div className="col-12">
+          <TotalPriceRow cartEntries={cartEntries} />
+        </div>
         <div className="col-12 text-center p-3">
           <Button
             onClick={this.toggleModal}
@@ -93,7 +94,7 @@ class Table extends Component {
             isActive={isActive}
             onModalClose={this.onModalClose}
             total={getSumPrice(cartEntries)}
-            cleanUpAfterBuy={this.cleanUpAfterBuy}
+            cleanUpAfterBuy={cleanUpAfterBuy}
           />
         </div>
       </div>
@@ -107,17 +108,6 @@ class Table extends Component {
   onModalClose = () => {
     this.setState({ isActive: false });
   };
-
-  cleanUpAfterBuy = () => {
-    console.log('cleanUpAfterBuy')
-    this.setState({showBuyMsg:true})
-    setTimeout(()=>this.setState({showBuyMsg:false}), 5000)
-
-    this.props.cartEntries.forEach(ce => {
-      this.props.onCartRemove(ce.item)
-    });
-  }
-
 }
 
 Table.propTypes = {
