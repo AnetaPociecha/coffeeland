@@ -45,11 +45,13 @@ namespace Coffeeland.Messaging.Commands.Handlers
            if (isSuccessPayment)
            {
                 DatabaseQueryProcessor.UpdateOrder(order.orderId, 1);
-                new SuccessfullPaymentEmail().Send(clientId);
+                ThreadPool.QueueUserWorkItem( o =>
+                    new SuccessfullPaymentEmail().Send(clientId));
            }
            else
            {
-                new UnsuccessfullPaymentEmail().Send(clientId);
+                ThreadPool.QueueUserWorkItem(o =>
+                    new UnsuccessfullPaymentEmail().Send(clientId));
            }
             
             return new SuccessInfoDto
