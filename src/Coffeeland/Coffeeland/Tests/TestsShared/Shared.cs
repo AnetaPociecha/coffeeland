@@ -35,6 +35,8 @@ namespace Coffeeland.Tests.TestsShared
 
             DatabaseQueryProcessor.CreateNewOrder(1,0,2,0,"2018-06-12");
             DatabaseQueryProcessor.CreateNewOrderEntry(2,1,1);
+
+            DatabaseQueryProcessor.CreateNewClient("anne_bottom@gmail.com", "Anne", "Bottom", "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", "anne_bottom@gmail.com");
         }
             
     }

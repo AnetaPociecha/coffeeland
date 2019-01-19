@@ -8,7 +8,7 @@ namespace Coffeeland.Database
     class Connector
     {
         const String connectionString = "datasource=localhost;Initial Catalog=coffeeland_test;port=3306;username=root;password=Herbatnik;Convert Zero Datetime=True";
-        public String dbScriptPath = "C:\Users\user\Desktop\coffeeRepo\coffeeland\src\Coffeeland\Coffeeland\Database\db.sql";
+        public String dbScriptPath = "C:/Users/user/Desktop/coffeeRepo/coffeeland/src/Coffeeland/Coffeeland/Database/db.sql";
 
         public bool Erase()
         {
