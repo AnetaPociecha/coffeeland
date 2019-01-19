@@ -44,7 +44,6 @@ namespace Coffeeland.Messaging.Commands.Handlers
            var isSuccessPayment = PaymentMethod.Check(command.paymentId, totalPrice);
            if (isSuccessPayment)
            {
-                DatabaseQueryProcessor.UpdateOrder(order.orderId, DateTime.Now.ToString("yyyy-MM-dd"));
                 DatabaseQueryProcessor.UpdateOrder(order.orderId, 1);
                 new SuccessfullPaymentEmail().Send(clientId);
            }

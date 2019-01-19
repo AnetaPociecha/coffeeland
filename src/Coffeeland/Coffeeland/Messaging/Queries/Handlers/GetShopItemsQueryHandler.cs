@@ -24,6 +24,7 @@ namespace Coffeeland.Messaging.Queries.Handlers
                 shopItemsDto[i].price = items[i].price;
                 shopItemsDto[i].img = items[i].imagePath;
                 shopItemsDto[i].description = items[i].description;
+                shopItemsDto[i].type = items[i].productType;
             }
 
             return new ShopItemsDto()

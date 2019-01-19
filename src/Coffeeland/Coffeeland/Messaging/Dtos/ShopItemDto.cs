@@ -13,5 +13,6 @@ namespace Coffeeland.Messaging.Dtos
         public int price;
         public string img;
         public string description;
+        public string type;
     }
 }

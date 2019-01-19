@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const ImageLink = ({src, path}) => (
   <figure>
     <NavLink to={path}>
-        <Img className="img-fluid" src={require('./coffee.jpg')} />
+        <Img className="img-fluid" src={src} />
     </NavLink>
   </figure>
 );
