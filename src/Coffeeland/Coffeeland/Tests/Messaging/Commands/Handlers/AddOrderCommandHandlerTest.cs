@@ -42,15 +42,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
    
             var addOrderCommand = new AddOrderCommand
@@ -96,15 +93,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -152,15 +146,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -206,15 +197,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 25,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -261,15 +249,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = _totalPrice,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -290,7 +275,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             SessionRepository.RemoveSession(testSessionToken);
             DatabaseQueryProcessor.Erase();
 
-            Assert.IsTrue(isSuccess);
+            Assert.IsFalse(isSuccess);
           
         }
 
@@ -322,15 +307,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -346,7 +328,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
 
 
             SessionRepository.RemoveSession(testSessionToken);
-            //DatabaseQueryProcessor.Erase();
+            DatabaseQueryProcessor.Erase();
 
             Assert.IsTrue(result.isSuccess);
         }

@@ -50,7 +50,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
               clientId,
               52,
               address.addressId,
-              command.order.status,
+              0,
               DateTime.Now.ToString("yyyy-MM-dd")
               );
 
