@@ -56,7 +56,9 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             var isSuccessfulPayment = PaymentMethod.Check(_paymentId,total);
             var handler = new AddPaymentCommandHandler();
             var result = (SuccessInfoDto)handler.Handle(addPaymentCommand);
-            
+
+            DatabaseQueryProcessor.Erase();
+
             SessionRepository.RemoveSession(testSessionToken);
             Assert.IsTrue(result.isSuccess);
             Assert.IsTrue(isSuccessfulPayment);

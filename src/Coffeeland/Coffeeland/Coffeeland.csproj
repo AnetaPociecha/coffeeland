@@ -158,6 +158,8 @@
     <Compile Include="MailService\Shared\EmailMessage.cs" />
     <Compile Include="MailService\Shared\MailSender.cs" />
     <Compile Include="MailService\RegistrationEmail.cs" />
+    <Compile Include="MailService\SuccessfullPaymentEmail.cs" />
+    <Compile Include="MailService\UnsuccessfullPaymentEmail.cs" />
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddComplaintCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddOrderCommand.cs" />
