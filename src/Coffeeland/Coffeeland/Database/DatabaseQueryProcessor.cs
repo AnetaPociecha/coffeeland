@@ -199,6 +199,20 @@ namespace Coffeeland.Database
             return record;
         }
 
+        public static OrderRecord GetTheMostRecentOrder(int clientId)
+        {
+             String query = $"SELECT orderId, clientId, workerId, addressId, status, DATE_FORMAT(max(openDate),'%Y-%m-%d') as openDate, DATE_FORMAT(closeDate,'%Y-%m-%d') as closeDate FROM orders WHERE clientId={clientId}";
+
+            var order = connector.ExecuteQuery(query);
+            var record = new OrderRecord();
+
+            if (order.Rows.Count == 0)
+                return null;
+            
+            record.Fill(order.Rows[0]);
+            return record;
+        }
+
         //-------- CREATE --------
         public static int CreateNewClient(String email, String firstName, String lastName, String password, String newsletterEmail)
         {

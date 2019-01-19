@@ -20,21 +20,20 @@ namespace Coffeeland.Messaging.Commands.Handlers
 
             var address = DatabaseQueryProcessor.GetAddress(
                 clientId,
-                command.order.address.country,
-                command.order.address.city,
-                command.order.address.street,
-                command.order.address.ZIPCode,
-                command.order.address.buildingNumber,
-                command.order.address.apartmentNumber
+                command.address.country,
+                command.address.city,
+                command.address.street,
+                command.address.ZIPCode,
+                command.address.buildingNumber,
+                command.address.apartmentNumber
                 );
 
             if (address == null)
                 throw new Exception();
 
             var products = DatabaseQueryProcessor.GetProducts();
-
             var totalPrice = 0;
-            foreach (var orderEntry in command.order.orderEntries)
+            foreach (var orderEntry in command.orderEntries)
             {
                 var foundProducts = products.FindAll(p => p.name == orderEntry.name);
                 if (foundProducts.Count != 1)
@@ -43,7 +42,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
         
-            if (totalPrice != command.order.totalPrice)
+            if (totalPrice != command.totalPrice)
                 throw new Exception();
 
             var orderId = DatabaseQueryProcessor.CreateNewOrder(
@@ -54,7 +53,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
               DateTime.Now.ToString("yyyy-MM-dd")
               );
 
-            foreach (var orderEntry in command.order.orderEntries)
+            foreach (var orderEntry in command.orderEntries)
             {
                 var foundProducts = products.FindAll(p => p.name == orderEntry.name);
 
@@ -65,24 +64,6 @@ namespace Coffeeland.Messaging.Commands.Handlers
                     );
                 totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
-
-            DatabaseQueryProcessor.CreateNewPayment(
-                    command.paymentId,
-                    orderId,
-                    totalPrice,
-                    DateTime.Now.ToString("yyyy-MM-dd")
-                    );
-
-            ThreadPool.QueueUserWorkItem(o => (new OrderPlacementEmail()).Send(clientId));
-            ThreadPool.QueueUserWorkItem(o => {
-                var isSuccess = PaymentMethod.Check(command.paymentId, totalPrice);
-                if (isSuccess)
-                {
-                    DatabaseQueryProcessor.UpdateOrder(orderId, DateTime.Now.ToString("dd-MM-yyyy"));
-                    DatabaseQueryProcessor.UpdateOrder(orderId, 1);
-                    //TO DO send email about payment
-                }
-            });
 
             return new SuccessInfoDto()
             {

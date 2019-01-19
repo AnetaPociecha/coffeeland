@@ -10,7 +10,8 @@ namespace Coffeeland.Messaging.Commands.Commands
     public class AddOrderCommand : ICommand
     {
         public string sessionToken;
-        public string paymentId;
-        public NewOrderDto order;
+        public OrderEntryDto[] orderEntries;
+        public int totalPrice;
+        public AddressDto address;
     }
 }

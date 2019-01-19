@@ -161,6 +161,7 @@
     <Compile Include="Messaging\Commands\Commands\AddAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddComplaintCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\AddOrderCommand.cs" />
+    <Compile Include="Messaging\Commands\Commands\AddPaymentCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\InactivateAddressCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\RegisterNewClientCommand.cs" />
     <Compile Include="Messaging\Commands\Commands\SignInCommand.cs" />
@@ -168,13 +169,13 @@
     <Compile Include="Messaging\Commands\Handlers\AddAddressCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\AddComplaintCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\AddOrderCommandHandler.cs" />
+    <Compile Include="Messaging\Commands\Handlers\AddPaymentCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\InactivateAddressCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\RegisterNewClientCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\SignInCommandHandler.cs" />
     <Compile Include="Messaging\Commands\Handlers\UpdatePersonalDataCommandHandler.cs" />
     <Compile Include="Messaging\Dtos\AddressBookDto.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
-    <Compile Include="Messaging\Dtos\NewOrderDto.cs" />
     <Compile Include="Messaging\Dtos\OrderDto.cs" />
     <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
     <Compile Include="Messaging\Dtos\OrdersDto.cs" />
