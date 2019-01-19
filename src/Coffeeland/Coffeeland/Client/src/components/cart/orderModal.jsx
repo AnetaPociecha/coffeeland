@@ -134,7 +134,7 @@ class OrderModal extends Component {
     );
 
     const rq = {
-      $type: "AddOrder",
+      $type: "AddOrderCommand",
       sessionToken: this.props.token,
       orderEntries: orderEntries,
       totalPrice: this.props.total,
@@ -142,10 +142,7 @@ class OrderModal extends Component {
     };
     mp.processCommand(rq).then(rs => console.log("rs", rs));
   }
-
 }
-
-
 
 OrderModal.propTypes = {
   token: PropTypes.string.isRequired
