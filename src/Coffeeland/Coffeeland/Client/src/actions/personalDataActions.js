@@ -13,6 +13,7 @@ export const fetchPersonalData = token => dispatch => {
   };
 
   mp.processQuery(rq).then(rs => {
+    console.log('GetPersonalDataQuery rs', rs)
     dispatch({
       type: FETCH_PERSONAL_DATA,
       payload: rs
