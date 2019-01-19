@@ -9,35 +9,41 @@ import AddressEntry from "./addressEntry";
 import ProductHeader from "./productHeader";
 import TotalPriceRow from "./totalPriceRow";
 import ComplainForm from "./complainForm";
-import {isComplainValid} from "./../../isValid";
+import { isComplainValid } from "./../../isValid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  fetchOrders
-} from "./../../actions/personalDataActions";
+import { fetchOrders } from "./../../actions/personalDataActions";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 class Orders extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state = {editMode: null,
-                  complains: null,
-                  complain:""};
+    this.state = {
+      editMode: null,
+      complains: null,
+      complain: "",
+      showComplainMsg: false,
+      complainSucc: false
+    };
 
     this.edit = this.edit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.saveComplain = this.saveComplain.bind(this);
     this.cancelComplain = this.cancelComplain.bind(this);
-}
+  }
 
   componentWillMount() {
-    this.props.fetchOrders(this.props.token)
+    this.props.fetchOrders(this.props.token);
   }
-  
+
   render() {
     const { orders } = this.props;
     const isEditMode = this.state.editMode;
     const complain = this.state.complain;
+    const showComplainMsg = this.state.showComplainMsg;
+    const complainSucc = this.state.complainSucc;
 
     return (
       <div className="row mb-4 ">
@@ -78,28 +84,54 @@ class Orders extends Component {
                   {closeDate && <SectionTitle>Close date</SectionTitle>}
                   <div className="col-12 pt-2 pr-4 pl-4"> {closeDate} </div>
 
-		{isEditMode && isEditMode[key] ?
-                      <div className="col-12 pt-2 pr-4 pl-4">
+                  {isEditMode && isEditMode[key] ? (
+                    <div className="col-12 pt-2 pr-4 pl-4 pb-3">
+                      <ComplainForm
+                        complain={complain}
+                        onChange={this.onChange}
+                      />
 
-                          <ComplainForm
-                            complain={complain}
-                            onChange={this.onChange}
-                          />
-
-                        <div className="row">
-                          <div className="col-6 text-left">
-                            <Button disabled={!isComplainValid(complain)} onClick = {() => this.saveComplain(complain, key)}>Send</Button>
-                          </div>
-                          <div className="col-6 text-right">
-                            <Button onClick = {() => this.cancelComplain(key)}>Cancel</Button>
-                          </div>
+                      <div className="row mb-2 pl">
+                        <div className="col-6 text-left pl-4 pt-3 pb-3">
+                          <Button
+                            disabled={!isComplainValid(complain)}
+                            onClick={() => this.saveComplain(complain, key)}
+                          >
+                            Send
+                          </Button>
+                        </div>
+                        <div className="col-6 text-right pr-4 pt-3 pb-3">
+                          <Button onClick={() => this.cancelComplain(key)}>
+                            Cancel
+                          </Button>
                         </div>
                       </div>
-                   :
-                  <div className="col-12 text-center pt-3 pb-2">
-                    <Button disabled={!closeDate} onClick={() => this.edit(isEditMode, key)}>Complain</Button>
-                  </div>
-                }
+                    </div>
+                  ) : (
+                    <div className="col-12 text-center pt-3 pb-2">
+                      {showComplainMsg && complainSucc && (
+                        <div className="col-12 pb-3 text-center text-success text-weight-bold">
+                          Complain was send. We will contact you via email.
+                        </div>
+                      )}
+
+                      {showComplainMsg && !complainSucc && (
+                        <div className="col-12 pb-3 text-center text-danger text-weight-bold">
+                          We cannot accept your complain. We accept only one
+                          complain per order. <br />
+                          You can contact us via email coffeeland1234@gmail.com
+                          if you have any questions.
+                        </div>
+                      )}
+
+                      <Button
+                        disabled={!closeDate}
+                        onClick={() => this.edit(isEditMode, key)}
+                      >
+                        Complain
+                      </Button>
+                    </div>
+                  )}
                 </div>
               )
             )}
@@ -107,12 +139,12 @@ class Orders extends Component {
       </div>
     );
   }
-  edit(isEditMode, key){
-    const editModeForKeys = this.state.editMode ==! null ? this.state.editMode : [];
-    isEditMode ? isEditMode=isEditMode : isEditMode=[];
-    isEditMode[key] ? isEditMode[key]=false : isEditMode[key]=true;
-    this.setState({editMode: isEditMode});
-    console.log("Key: "+key);
+  edit(isEditMode, key) {
+    const editModeForKeys =
+      this.state.editMode == !null ? this.state.editMode : [];
+    isEditMode ? (isEditMode = isEditMode) : (isEditMode = []);
+    isEditMode[key] ? (isEditMode[key] = false) : (isEditMode[key] = true);
+    this.setState({ editMode: isEditMode });
   }
 
   onChange = event => {
@@ -124,17 +156,37 @@ class Orders extends Component {
     });
   };
 
-  saveComplain (complain, key) {
+  saveComplain(complain, key) {
     const complains_ = this.state.complains ? this.state.complains : [];
-    this.setState({complains : {...complains_,
-      [key] : complain
-    }, editMode : {...this.state.editMode, [key] : false}});
-  };
+    this.setState({
+      complains: { ...complains_, [key]: complain },
+      editMode: { ...this.state.editMode, [key]: false }
+    });
 
-  cancelComplain(complain, key){
-    this.setState({editMode: {...this.state.EditMode, [key]: false}});
-  };
+    const rq = {
+      $type: "AddComplaintCommand",
+      orderId: key,
+      description: complain,
+      sessionToken: this.props.token
+    };
 
+    mp.processCommand(rq).then(rs => {
+      console.log("rs", rs);
+      if (rs.isSuccess) {
+        this.setState({ complainSucc: true });
+        setTimeout(() => this.setState({ complainSucc: false }), 7000);
+      } else {
+        this.setState({ complainFail: true });
+        setTimeout(() => this.setState({ complainFail: false }), 7000);
+      }
+      this.setState({ showComplainMsg: true });
+      setTimeout(() => this.setState({ showComplainMsg: false }), 7000);
+    });
+  }
+
+  cancelComplain(complain, key) {
+    this.setState({ editMode: { ...this.state.EditMode, [key]: false } });
+  }
 }
 
 Orders.propTypes = {

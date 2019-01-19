@@ -3,11 +3,6 @@ import {NavLink} from 'react-router-dom';
 import Img from "react-image";
 import PropTypes from "prop-types";
 
-/*
-  change src={src} when you have url like 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' 
-  it will work
-  hack :)
- */
 
 const ImageLink = ({src, path}) => (
   <figure>

@@ -15,7 +15,6 @@ const CURRENCY = 'USD'
 class PayPalButton extends React.Component {
   
   onSuccess = (payment) => {
-
     const rq = {
       $type: "AddPaymentCommand",
       sessionToken: this.props.token,

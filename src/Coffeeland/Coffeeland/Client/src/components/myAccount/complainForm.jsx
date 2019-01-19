@@ -15,7 +15,7 @@ export default class ComplainForm extends Component {
       onChange,
     } = this.props;
     return (
-      <div /*className="row"*/>
+      <div className="p-2" /*className="row"*/>
 
           <TextArea
             id="complain"
