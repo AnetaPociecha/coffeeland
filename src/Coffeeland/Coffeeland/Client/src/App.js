@@ -32,6 +32,7 @@ class App extends Component {
                       cartEntries={cartEntries}
                       onCartUpdate={this.onCartUpdate}
                       onCartRemove={this.onCartRemove}
+                      onCartEmpty={this.onCartEmpty}
                       style={{ maxWidth: 1000 }}
                     />
                   )}
@@ -85,6 +86,11 @@ class App extends Component {
       cartEntries: newCartEntries
     });
   };
+
+  onCartEmpty = () => {
+    this.setState({cartEntries: []})
+  }
+
 }
 
 export default App;

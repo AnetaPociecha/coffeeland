@@ -16,7 +16,7 @@ create table products (
 	price	    	integer	not null,
 	imagePath		varchar(50) not null,
 	productType		varchar(30) not null,
-	description		varchar(100) not null
+	description		varchar(10000) not null
 );
 
 

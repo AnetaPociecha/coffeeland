@@ -11,10 +11,10 @@ class Information extends Component {
                 </h5>
                 <div className="text-justify">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget velit id arcu tristique luctus. Nunc sed risus eget neque varius congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla egestas velit vel purus convallis sagittis. Nulla quis urna mollis, porttitor lectus et, venenatis massa. Nam a porta libero, eget blandit sapien. In at dignissim enim. Nulla ac urna vestibulum, consectetur sapien a, ultricies felis. Suspendisse sit amet lacinia ante. Quisque magna sapien, pharetra non elit in, scelerisque ullamcorper dui. Nunc faucibus ipsum ac sagittis ullamcorper. Pellentesque ac porttitor purus, sed lobortis nisi. Ut mattis elementum risus, id fermentum urna tincidunt elementum.
+                        There are infinite ways to ruin a good cup of coffee—the grind’s not right, the pour wasn’t steady enough, water’s too chilly—but the most surefire way to make a bad cup of coffee is to use bad beans. All the fancy coffee-brewing devices in the world can’t turn trash into something delicious. The cash spent outfitting a kitchen with fancy gadgetry would be for naught if you’re going to bring home beans from the supermarket. It’s something I learned the hard way since falling in love with coffee after a roommate busted a Chemex out when I was in college almost a [shivers] decade ago.
                     </p>
                     <p>
-                        Aliquam varius tellus in ornare accumsan. Cras eget leo eget nulla bibendum semper. Vestibulum dapibus in sapien sit amet maximus. Cras imperdiet lectus at diam suscipit auctor. Suspendisse potenti. Sed fringilla viverra velit at blandit. Donec consectetur blandit facilisis. In volutpat vulputate velit, at posuere elit finibus a. Phasellus pharetra auctor felis, et lacinia nisi lobortis sagittis. Praesent faucibus congue tellus. Aliquam suscipit mauris et urna varius, ut varius augue dapibus.
+                        Contact us via email coffeeland1234@gmail.com.
                     </p>
                 </div>
             </div> );
