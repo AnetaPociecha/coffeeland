@@ -17,7 +17,7 @@ class PayPalButton extends React.Component {
   onSuccess = (payment) => {
 
     const rq = {
-      $type: "AddPayment",
+      $type: "AddPaymentCommand",
       sessionToken: this.props.token,
       paymentId: payment.paymentID
     }

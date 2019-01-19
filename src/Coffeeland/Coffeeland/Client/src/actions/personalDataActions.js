@@ -26,6 +26,7 @@ export const fetchOrders = token => dispatch => {
     sessionToken: token
   };
   mp.processQuery(rq).then(rs => {
+    console.log('GetOrdersQuery rs',rs)
     dispatch({
       type: FETCH_ORDERS,
       payload: rs.isSuccess ? { orders: rs.orders } : { orders: [] }
