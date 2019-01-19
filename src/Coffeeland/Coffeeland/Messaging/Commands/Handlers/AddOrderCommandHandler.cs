@@ -40,7 +40,7 @@ namespace Coffeeland.Messaging.Commands.Handlers
                 if (foundProducts.Count != 1)
                     throw new Exception();
                 
-                totalPrice += foundProducts[0].price * orderEntry.quantity;
+                totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
         
             if (totalPrice != command.order.totalPrice)
@@ -48,10 +48,10 @@ namespace Coffeeland.Messaging.Commands.Handlers
 
             var orderId = DatabaseQueryProcessor.CreateNewOrder(
               clientId,
-              0,  // TO DO - get rid of workers in database
+              52,
               address.addressId,
-              command.order.status,
-              DateTime.Now.ToString("dd-MM-yyyy")
+              0,
+              DateTime.Now.ToString("yyyy-MM-dd")
               );
 
             foreach (var orderEntry in command.order.orderEntries)
@@ -63,25 +63,26 @@ namespace Coffeeland.Messaging.Commands.Handlers
                     foundProducts[0].productId,
                     orderEntry.quantity
                     );
-                totalPrice += foundProducts[0].price * orderEntry.quantity;
+                totalPrice += foundProducts[0].price/100 * orderEntry.quantity;
             }
 
-            var client = DatabaseQueryProcessor.GetClient(clientId);
             DatabaseQueryProcessor.CreateNewPayment(
                     command.paymentId,
                     orderId,
                     totalPrice,
-                    DateTime.Now.ToString("dd-MM-yyyy")
+                    DateTime.Now.ToString("yyyy-MM-dd")
                     );
 
             ThreadPool.QueueUserWorkItem(o => (new OrderPlacementEmail()).Send(clientId));
             ThreadPool.QueueUserWorkItem(o => {
                 var isSuccess = PaymentMethod.Check(command.paymentId, totalPrice);
                 if (isSuccess)
+                {
                     DatabaseQueryProcessor.UpdateOrder(orderId, DateTime.Now.ToString("dd-MM-yyyy"));
                     DatabaseQueryProcessor.UpdateOrder(orderId, 1);
-                //TO DO send email about payment
-                });
+                    //TO DO send email about payment
+                }
+            });
 
             return new SuccessInfoDto()
             {

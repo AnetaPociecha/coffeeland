@@ -35,9 +35,9 @@ namespace Coffeeland.Tests.Messaging.Queries.Handlers
             Assert.IsTrue(result.isSuccess);
             Assert.AreEqual(productsCount, result.shopItems.Length);
             Assert.AreEqual(result.shopItems[0].name, "Lavazza");
-            Assert.AreEqual(result.shopItems[0].price, 15);
+            Assert.AreEqual(result.shopItems[0].price, 1500);
             Assert.AreEqual(result.shopItems[1].name, "Vergnano");
-            Assert.AreEqual(result.shopItems[1].price, 25);
+            Assert.AreEqual(result.shopItems[1].price, 2500);
         }
 
         [Test]

@@ -9,6 +9,7 @@ using Coffeeland.Messaging.Commands.Handlers;
 using Coffeeland.Database;
 using Coffeeland.Tests.TestsShared;
 using Coffeeland.Messaging.Dtos;
+using Coffeeland.Payments;
 
 namespace Coffeeland.Tests.Messaging.Commands.Handlers
 {
@@ -41,15 +42,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
    
             var addOrderCommand = new AddOrderCommand
@@ -95,15 +93,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -151,15 +146,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -205,15 +197,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
                 totalPrice = 25,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -232,10 +221,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             Assert.Throws<Exception>(result);
         }
 
-        [TestCase(0)]
-        public void AddOrder_PaymentCheckFailed_Exception(int _clientId)
+        [TestCase(0, "PAY-2RR93057JR3600055LQ5FWMA",15)]
+        public void AddOrder_PaymentCheckFailed_Exception(int _clientId, string _paymentId, int _totalPrice)
         {
             var testSessionToken = SessionRepository.StartNewSession(_clientId);
+            DatabaseQueryProcessor.Erase();
+            Shared.FillTheDatabase();
 
             var testOrderEntry = new OrderEntryDto
             {
@@ -258,15 +249,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
-                totalPrice = 15,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                totalPrice = _totalPrice,
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -276,19 +264,27 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 order = testOrder,
             };
 
+            var isSuccess = PaymentMethod.Check(_paymentId, _totalPrice);
             var handler = new AddOrderCommandHandler();
-            TestDelegate result = () => handler.Handle(addOrderCommand);
+            var result =  handler.Handle(addOrderCommand);
+
+            var foundOrders = DatabaseQueryProcessor.GetOrders(_clientId);
+            
+
 
             SessionRepository.RemoveSession(testSessionToken);
             DatabaseQueryProcessor.Erase();
 
-            Assert.Throws<Exception>(result);
+            Assert.IsFalse(isSuccess);
+          
         }
 
         [TestCase(0)]
         public void AddOrder_CorrectAttributes_Success(int _clientId)
         {
             var testSessionToken = SessionRepository.StartNewSession(_clientId);
+            DatabaseQueryProcessor.Erase();
+            Shared.FillTheDatabase();
 
             var testOrderEntry = new OrderEntryDto
             {
@@ -311,15 +307,12 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var testOrder = new OrderDto
+            var testOrder = new NewOrderDto
             {
                 key = 3,
                 orderEntries = testOrderEntries,
-                totalPrice = 25,
-                address = testAddress,
-                status = 0,
-                openDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                closeDate = DateTime.Now.ToString("yyyy-MM-dd")
+                totalPrice = 15,
+                address = testAddress
             };
 
             var addOrderCommand = new AddOrderCommand
@@ -330,12 +323,14 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
             var handler = new AddOrderCommandHandler();
-            //var result = (SuccessInfoDto) handler.Handle(addOrderCommand);
+            var result = (SuccessInfoDto) handler.Handle(addOrderCommand);
+            var isSuccess = PaymentMethod.Check("PAY-5WW79794RN043793ALRBFH2A", 15);
+
 
             SessionRepository.RemoveSession(testSessionToken);
             DatabaseQueryProcessor.Erase();
 
-            Assert.IsTrue(true);
+            Assert.IsTrue(result.isSuccess);
         }
     }
 }

@@ -174,6 +174,7 @@
     <Compile Include="Messaging\Commands\Handlers\UpdatePersonalDataCommandHandler.cs" />
     <Compile Include="Messaging\Dtos\AddressBookDto.cs" />
     <Compile Include="Messaging\Dtos\AddressDto.cs" />
+    <Compile Include="Messaging\Dtos\NewOrderDto.cs" />
     <Compile Include="Messaging\Dtos\OrderDto.cs" />
     <Compile Include="Messaging\Dtos\OrderEntryDto.cs" />
     <Compile Include="Messaging\Dtos\OrdersDto.cs" />
