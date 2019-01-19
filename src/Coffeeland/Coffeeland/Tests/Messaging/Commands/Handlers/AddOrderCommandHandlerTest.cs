@@ -43,7 +43,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
             
-            var addOrderCommand = new AddOrder
+            var addOrderCommand = new AddOrderCommand
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
@@ -87,7 +87,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
                 apartmentNumber = "1a"
             };
 
-            var addOrderCommand = new AddOrder
+            var addOrderCommand = new AddOrderCommand
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
@@ -134,7 +134,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrder
+            var addOrderCommand = new AddOrderCommand
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
@@ -179,7 +179,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrder
+            var addOrderCommand = new AddOrderCommand
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,
@@ -233,7 +233,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             };
 
 
-            var addOrderCommand = new AddOrder
+            var addOrderCommand = new AddOrderCommand
             {
                 sessionToken = testSessionToken,
                 orderEntries = testOrderEntries,

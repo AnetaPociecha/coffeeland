@@ -11,9 +11,9 @@ using System.Globalization;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
-    public class AddOrderCommandHandler : ICommandHandler<AddOrder>
+    public class AddOrderCommandHandler : ICommandHandler<AddOrderCommand>
     {
-        public IResult Handle(AddOrder command)
+        public IResult Handle(AddOrderCommand command)
         {
             int clientId = SessionRepository.GetClientIdOfSession(command.sessionToken);
             if (clientId == -1)

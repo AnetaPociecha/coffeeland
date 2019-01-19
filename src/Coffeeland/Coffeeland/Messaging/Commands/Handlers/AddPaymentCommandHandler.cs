@@ -13,9 +13,9 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Commands.Handlers
 {
-    public class AddPaymentCommandHandler : ICommandHandler<AddPayment>
+    public class AddPaymentCommandHandler : ICommandHandler<AddPaymentCommand>
     {
-        public IResult Handle(AddPayment command)
+        public IResult Handle(AddPaymentCommand command)
         {
             int clientId = SessionRepository.GetClientIdOfSession(command.sessionToken);
             if (clientId == -1)

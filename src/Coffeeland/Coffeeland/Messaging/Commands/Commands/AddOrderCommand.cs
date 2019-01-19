@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Coffeeland.Messaging.Commands.Commands
 {
-    public class AddOrder : ICommand
+    public class AddOrderCommand : ICommand
     {
         public string sessionToken;
         public OrderEntryDto[] orderEntries;
