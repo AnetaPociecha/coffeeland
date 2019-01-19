@@ -4,6 +4,10 @@ import OrderDetails from "./orderDetails";
 import BillingDetails from "./billingDetails";
 import { Button, CloseButton } from "../button";
 import { PayPalButton } from "./../paypalButton";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import MessageProcessor from "./../../messageProcessor/messageProcessor";
+const mp = MessageProcessor.getInstance();
 
 const customStyles = {
   content: {
@@ -21,19 +25,19 @@ const ORDER_DETAILS = "ORDER DETAILS";
 const BILLING_DETAILS = "BILLING DETAILS";
 const PAYMENT_DETAILS = "PAYMENT DETAILS";
 
-export default class OrderModal extends Component {
+class OrderModal extends Component {
   componentWillMount() {
     Modal.setAppElement("body");
   }
 
   state = {
     mode: ORDER_DETAILS,
-    selectedAddress: ''
+    selectedAddress: ""
   };
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.addressBook) {
-      this.setSelectedAddress(nextProps.addressBook[0])
+    if (nextProps.addressBook) {
+      this.setSelectedAddress(nextProps.addressBook[0]);
     }
   }
 
@@ -77,14 +81,14 @@ export default class OrderModal extends Component {
       case ORDER_DETAILS:
         return this.getDetailsComponent(
           "Next",
-          <OrderDetails cartEntries={this.props.cartEntries}/>,
+          <OrderDetails cartEntries={this.props.cartEntries} />,
           this.setBillingMode
         );
       case BILLING_DETAILS:
         return this.getDetailsComponent(
           "Next",
-          <BillingDetails 
-            addresses={this.props.addressBook} 
+          <BillingDetails
+            addresses={this.props.addressBook}
             selectedAddress={this.state.selectedAddress}
             setSelectedAddress={this.setSelectedAddress}
           />,
@@ -95,13 +99,13 @@ export default class OrderModal extends Component {
           "Exit",
           <PayPalButton total={this.props.total} />,
           this.onExit
-      );
+        );
     }
   };
 
-  setSelectedAddress = (selectedAddress) => {
-    this.setState({ selectedAddress })
-  }
+  setSelectedAddress = selectedAddress => {
+    this.setState({ selectedAddress });
+  };
 
   getDetailsComponent = (buttonText, child, onClik) => (
     <div className="row">
@@ -112,13 +116,42 @@ export default class OrderModal extends Component {
     </div>
   );
   onExit = () => {
-    this.props.onModalClose()
+    this.props.onModalClose();
+
+    const orderEntries = this.props.cartEntries.map(
+      ce =>
+        (ce = {
+          key: ce.item.key,
+          name: ce.item.name,
+          quantity: ce.quantity,
+          price: ce.item.price
+        })
+    );
+
+    const order = {
+      orderEntries: orderEntries,
+      totalPrice: this.props.total,
+      address: this.state.selectedAddress
+    };
 
     const rq = {
       $type: "AddOrder",
-      sessionToken: "",
-      paymentId: "",
-      order: {}
+      sessionToken: this.props.token,
+      order: order
     };
-  }
+    mp.processCommand(rq).then(rs => console.log("rs", rs));
+  };
 }
+
+OrderModal.propTypes = {
+  token: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  token: state.token.token.token
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(OrderModal);
