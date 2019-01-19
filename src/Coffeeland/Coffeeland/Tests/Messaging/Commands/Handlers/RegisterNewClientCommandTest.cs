@@ -69,12 +69,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             Assert.AreEqual(_newsletterEmail, newClient.newsletterEmail);
         }
 
-        //[TestCase("wrong_email")]
-        //[TestCase("123@gmail.com")]
         [TestCase("wrong.gmail.com")]
-        //[TestCase("wrongemail@gmail")]
-        //[TestCase("wrongemail@122.pl")]
-        //[TestCase("wrongemail%%%%@gmail.com")]
         public void RegisterNewClient_IncorrectEmail_Exception(string _email)
         { 
             DatabaseQueryProcessor.Erase();
@@ -98,12 +93,8 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
         }
 
 
-        //[TestCase("wrong_email")]
-        //[TestCase("123@gmail.com")]
+    
         [TestCase("wrong.gmail.com")]
-        //[TestCase("wrongemail@gmail")]
-        //[TestCase("wrongemail@122.pl")]
-        //[TestCase("wrongemail%%%%@gmail.com")]
         public void RegisterNewClient_IncorrectNewsletterEmail_Exception(string _newsletterEmail)
         {
 
@@ -126,8 +117,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             DatabaseQueryProcessor.Erase();
             Assert.Throws<Exception>(result);
         }
-
-        //[TestCase("Jane_wrong")]
+        
         [TestCase("Jane123")]
         [TestCase("Jane&&&")]
         public void RegisterNewClient_IncorrectFirstName_Exception(string _firstName)
@@ -153,7 +143,7 @@ namespace Coffeeland.Tests.Messaging.Commands.Handlers
             Assert.Throws<Exception>(result);
         }
 
-        //[TestCase("Doe_wrong")]
+
         [TestCase("Doe123")]
         [TestCase("Doe&&&")]
         public void RegisterNewClient_IncorrectLastName_Exception(string _lastName)
