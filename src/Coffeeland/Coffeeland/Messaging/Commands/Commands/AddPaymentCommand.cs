@@ -10,6 +10,5 @@ namespace Coffeeland.Messaging.Commands.Commands
     {
         public string sessionToken;
         public string paymentId;
-        public int orderId;
     }
 }
